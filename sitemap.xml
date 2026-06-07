@@ -2,6 +2,24 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://hkb150429.github.io/lib/needsharebutton/README.html</loc>
+    
+    <lastmod>2026-06-07</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://hkb150429.github.io/2026/06/07/%E5%B9%BF%E5%B7%9E%E5%9C%B0%E9%93%81/</loc>
+    
+    <lastmod>2026-06-07</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://hkb150429.github.io/2026/06/06/hello-world/</loc>
     
     <lastmod>2026-06-06</lastmod>

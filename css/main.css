@@ -1251,7 +1251,7 @@ pre code {
     vertical-align: middle;
   }
   .links-of-author a::before {
-    background: #66bf46;
+    background: #b30fff;
     display: inline-block;
     margin-right: 3px;
     transform: translateY(-2px);
@@ -2817,4 +2817,17 @@ header.header {
   .comments {
     padding: 10px 12px;
   }
+}
+/* 彻底屏蔽所有分享组件 */
+.post-footer .share,
+.share-container,
+.share-buttons,
+.a2a_kit,
+.a2a_floating_style,
+[class*="a2a_"],
+[class*="share-"] {
+  display: none !important;
+  visibility: hidden !important;
+  height: 0 !important;
+  overflow: hidden !important;
 }
