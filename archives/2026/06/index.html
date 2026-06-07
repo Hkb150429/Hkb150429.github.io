@@ -96,8 +96,8 @@
 </style>
 
 <div class="share-box">
-  <a class="share-item" href="https://service.weibo.com/share/share.php?title=分类&url=https://hkb150429.github.io/categories/index.html" target="_blank" title="分享到微博">微博</a>
-  <a class="share-item" href="https://connect.qq.com/widget/shareqq/index.html?title=分类&url=https://hkb150429.github.io/categories/index.html" target="_blank" title="分享到QQ">QQ</a>
+  <a class="share-item" href="https://service.weibo.com/share/share.php?title=关于&url=https://hkb150429.github.io/about/index.html" target="_blank" title="分享到微博">微博</a>
+  <a class="share-item" href="https://connect.qq.com/widget/shareqq/index.html?title=关于&url=https://hkb150429.github.io/about/index.html" target="_blank" title="分享到QQ">QQ</a>
   <div class="share-item" onclick="copyLink()" title="复制链接">复制</div>
 </div>
 
@@ -105,7 +105,7 @@
 
 <script>
 function copyLink() {
-  const url = "https://hkb150429.github.io/categories/index.html";
+  const url = "https://hkb150429.github.io/about/index.html";
   navigator.clipboard.writeText(url).then(() => {
     const t = document.getElementById('copyToast');
     t.style.display = 'block';
@@ -197,7 +197,7 @@ setTimeout(() => {
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-schedule"><a href="/schedule/" rel="section"><i class="fa fa-calendar fa-fw"></i>日程表</a></li><li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
