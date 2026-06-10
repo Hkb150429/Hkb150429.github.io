@@ -47,99 +47,8 @@
 
 
   
-<style>
-.share-box{
-  position:fixed;
-  left:10px;
-  top:50%;
-  transform:translateY(-50%);
-  z-index:9999;
-  background:#fff;
-  border-radius:8px;
-  padding:8px 6px;
-  box-shadow:0 2px 10px rgba(0,0,0,0.1);
-}
-.share-item{
-  display:block;
-  width:44px;
-  height:44px;
-  line-height:44px;
-  text-align:center;
-  margin:6px 0;
-  border-radius:50%;
-  text-decoration:none;
-  color:#333;
-  font-size:14px;
-  font-weight:bold;
-  cursor:pointer;
-  transition:all 0.3s;
-  border:1px solid #eee;
-  background:#fafafa;
-}
-.share-item:hover{
-  background:#f0f0f0;
-  transform:scale(1.08);
-}
-.copy-toast{
-  position:fixed;
-  top:50%;
-  left:50%;
-  transform:translate(-50%,-50%);
-  background:rgba(0,0,0,0.7);
-  color:#fff;
-  padding:8px 16px;
-  border-radius:4px;
-  font-size:14px;
-  z-index:10000;
-  display:none;
-}
-</style>
-
-<div class="share-box">
-  <div class="share-item" onclick="copyLink()" title="复制链接">复制</div>
-</div>
-
-<div class="copy-toast" id="copyToast">链接已复制</div>
-
-<script>
-function copyLink() {
-  const url = "https://hkb150429.github.io/about/index.html";
-  navigator.clipboard.writeText(url).then(() => {
-    const t = document.getElementById('copyToast');
-    t.style.display = 'block';
-    setTimeout(() => t.style.display = 'none', 1500);
-  }).catch(err => console.error('复制失败', err));
-}
-</script>
-  <script src="/%5Bobject%20Object%5D"></script>
   <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
-
-
-<script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
-<style>
-.darkmode-layer, .darkmode-toggle {
-  z-index: 99999 !important;
-}
-</style>
-<script>
-setTimeout(() => {
-  const options = {
-    bottom: '64px',
-    right: 'unset',
-    left: 32,
-    time: '0.1s',
-    mixColor: '#fff',
-    backgroundColor: '#fff',
-    buttonColorDark: '#100f2c',
-    buttonColorLight: '#fff',
-    saveInCookies: true,
-    label: '🌓',
-    autoMatchOsTheme: true
-  };
-  const darkmode = new Darkmode(options);
-  darkmode.showWidget();
-}, 500);
-</script><script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
 
   <script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.5.0/dist/search.js" integrity="sha256-xFC6PJ82SL9b3WkGjFavNiA9gm5z6UBxWPiu4CYjptg=" crossorigin="anonymous" defer></script>
 <script src="/js/third-party/search/local-search.js" defer></script>
@@ -164,7 +73,7 @@ setTimeout(() => {
   <noscript>
     <link rel="stylesheet" href="/css/noscript.css">
   </noscript>
-</head>
+<style>.darkmode--activated{--body-bg-color:#282828;--content-bg-color:#333;--card-bg-color:#555;--text-color:#ccc;--blockquote-color:#bbb;--link-color:#ccc;--link-hover-color:#eee;--brand-color:#ddd;--brand-hover-color:#ddd;--table-row-odd-bg-color:#282828;--table-row-hover-bg-color:#363636;--menu-item-bg-color:#555;--btn-default-bg:#222;--btn-default-color:#ccc;--btn-default-border-color:#555;--btn-default-hover-bg:#666;--btn-default-hover-color:#ccc;--btn-default-hover-border-color:#666;--highlight-background:#282b2e;--highlight-foreground:#a9b7c6;--highlight-gutter-background:#34393d;--highlight-gutter-foreground:#9ca9b6}.darkmode--activated img{opacity:.75}.darkmode--activated img:hover{opacity:.9}.darkmode--activated code{color:#69dbdc;background:0 0}button.darkmode-toggle{z-index:9999}.darkmode-ignore,img{display:flex!important}.beian img{display:inline-block!important}</style></head>
 
 <body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
   <div class="headband"></div>
@@ -262,7 +171,7 @@ setTimeout(() => {
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">2</span>
+          <span class="site-state-item-count">4</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -310,6 +219,234 @@ setTimeout(() => {
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://hkb150429.github.io/2026/06/10/%E6%AD%A5%E6%95%B0%E6%97%A5%E6%A6%9C%E7%AC%AC%E4%B8%80%E6%9C%9F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="hkb">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="HKB Blog">
+      <meta itemprop="description" content="HKB的博客">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | HKB Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2026/06/10/%E6%AD%A5%E6%95%B0%E6%97%A5%E6%A6%9C%E7%AC%AC%E4%B8%80%E6%9C%9F/" class="post-title-link" itemprop="url">步数日榜第一期</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2026-06-10 21:25:04 / 修改时间：21:27:21" itemprop="dateCreated datePublished" datetime="2026-06-10T21:25:04+08:00">2026-06-10</time>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>22</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>1 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p><img src="/images/1-0.png" alt="图片" /></p>
+<p><img src="/images/1-1.png" alt="图片" /></p>
+<p><img src="/images/1-2.png" alt="图片" /></p>
+<p><img src="/images/1-3.png" alt="图片" /></p>
+<p><img src="/images/1-4.png" alt="图片" /></p>
+<p><img src="/images/1-5.png" alt="图片" /></p>
+<p><img src="/images/1-6.png" alt="图片" /></p>
+<p><img src="/images/1-7.png" alt="图片" /></p>
+<p><img src="/images/1-8.png" alt="图片" /></p>
+<p><img src="/images/1-9.png" alt="图片" /></p>
+<p><img src="/images/1-10.png" alt="图片" /></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://hkb150429.github.io/2026/06/09/%E5%B9%BF%E5%B7%9E%E5%9C%B0%E9%93%811%E5%8F%B7%E7%BA%BF/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="hkb">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="HKB Blog">
+      <meta itemprop="description" content="HKB的博客">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | HKB Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2026/06/09/%E5%B9%BF%E5%B7%9E%E5%9C%B0%E9%93%811%E5%8F%B7%E7%BA%BF/" class="post-title-link" itemprop="url">广州地铁1号线</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2026-06-09 13:37:48 / 修改时间：14:22:22" itemprop="dateCreated datePublished" datetime="2026-06-09T13:37:48+08:00">2026-06-09</time>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>587</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>2 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="广州地铁1号线介绍"><a class="markdownIt-Anchor" href="#广州地铁1号线介绍"></a> 广州地铁1号线介绍</h1>
+<p>广州地铁1号线是广州市首条建成运营的城市轨道交通线路，也是大湾区早期核心通勤干线，代表色为<strong>黄色</strong>。</p>
+<h2 id="一-基本概况"><a class="markdownIt-Anchor" href="#一-基本概况"></a> 一、基本概况</h2>
+<ul>
+<li><strong>开通时间</strong>：<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1997</mn></mrow><annotation encoding="application/x-tex">1997</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord">9</span><span class="mord">9</span><span class="mord">7</span></span></span></span>年<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>6</mn></mrow><annotation encoding="application/x-tex">6</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">6</span></span></span></span>月<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>28</mn></mrow><annotation encoding="application/x-tex">28</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span><span class="mord">8</span></span></span></span>日首段（西塱—黄沙）观光试运营，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1999</mn></mrow><annotation encoding="application/x-tex">1999</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord">9</span><span class="mord">9</span><span class="mord">9</span></span></span></span>年<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>6</mn></mrow><annotation encoding="application/x-tex">6</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">6</span></span></span></span>月<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>28</mn></mrow><annotation encoding="application/x-tex">28</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span><span class="mord">8</span></span></span></span>日全线正式运营。</li>
+<li><strong>线路走向</strong>：西南—东北走向，起于荔湾区<strong>西塱站</strong>，止于天河区<strong>广州东站</strong>，途经荔湾、越秀、天河三区。</li>
+<li><strong>线路长度</strong>：全长<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>18.497</mn></mrow><annotation encoding="application/x-tex">18.497</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord">8</span><span class="mord">.</span><span class="mord">4</span><span class="mord">9</span><span class="mord">7</span></span></span></span>千米，其中地下段<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>16.449</mn></mrow><annotation encoding="application/x-tex">16.449</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord">6</span><span class="mord">.</span><span class="mord">4</span><span class="mord">4</span><span class="mord">9</span></span></span></span>千米、地面段<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2.048</mn></mrow><annotation encoding="application/x-tex">2.048</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span><span class="mord">.</span><span class="mord">0</span><span class="mord">4</span><span class="mord">8</span></span></span></span>千米。</li>
+<li><strong>车站数量</strong>：共设<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>16</mn></mrow><annotation encoding="application/x-tex">16</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord">6</span></span></span></span>座车站，含西塱、坑口<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn></mrow><annotation encoding="application/x-tex">2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span></span></span></span>座地面站，其余为地下站。</li>
+<li><strong>列车编组</strong>：<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>6</mn></mrow><annotation encoding="application/x-tex">6</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">6</span></span></span></span>节编组A型列车。</li>
+<li><strong>客流强度</strong>：<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2024</mn></mrow><annotation encoding="application/x-tex">2024</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span><span class="mord">0</span><span class="mord">2</span><span class="mord">4</span></span></span></span>年日均客流<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>83.43</mn></mrow><annotation encoding="application/x-tex">83.43</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">8</span><span class="mord">3</span><span class="mord">.</span><span class="mord">4</span><span class="mord">3</span></span></span></span>万人次，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2025</mn></mrow><annotation encoding="application/x-tex">2025</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span><span class="mord">0</span><span class="mord">2</span><span class="mord">5</span></span></span></span>年稳居全国地铁单线客流强度首位。</li>
+</ul>
+<h2 id="二-运营信息2026最新"><a class="markdownIt-Anchor" href="#二-运营信息2026最新"></a> 二、运营信息（2026最新）</h2>
+<ul>
+<li><strong>首末班车</strong>：
+<ul>
+<li>西塱→广州东站：首班<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>06</mn><mo>:</mo><mn>00</mn></mrow><annotation encoding="application/x-tex">06:00</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span><span class="mord">6</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">:</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span><span class="mord">0</span></span></span></span>，末班<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>22</mn><mo>:</mo><mn>55</mn></mrow><annotation encoding="application/x-tex">22:55</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span><span class="mord">2</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">:</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">5</span><span class="mord">5</span></span></span></span></li>
+<li>广州东站→西塱：首班<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>06</mn><mo>:</mo><mn>10</mn></mrow><annotation encoding="application/x-tex">06:10</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span><span class="mord">6</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">:</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord">0</span></span></span></span>，末班<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>23</mn><mo>:</mo><mn>30</mn></mrow><annotation encoding="application/x-tex">23:30</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span><span class="mord">3</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">:</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">3</span><span class="mord">0</span></span></span></span></li>
+</ul>
+</li>
+<li><strong>发车间隔</strong>：平峰约<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>4</mn></mrow><annotation encoding="application/x-tex">4</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">4</span></span></span></span>分钟，高峰加密班次。</li>
+<li><strong>票价范围</strong>：<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn></mrow><annotation encoding="application/x-tex">2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span></span></span></span>–<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>5</mn></mrow><annotation encoding="application/x-tex">5</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">5</span></span></span></span>元。</li>
+</ul>
+<h2 id="三-站点与换乘16站"><a class="markdownIt-Anchor" href="#三-站点与换乘16站"></a> 三、站点与换乘（16站）</h2>
+<ol>
+<li>西塱（换乘广佛线、<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>10</mn></mrow><annotation encoding="application/x-tex">10</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord">0</span></span></span></span>号线、<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>22</mn></mrow><annotation encoding="application/x-tex">22</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span><span class="mord">2</span></span></span></span>号线）</li>
+<li>坑口</li>
+<li>花地湾</li>
+<li>芳村（换乘<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>11</mn></mrow><annotation encoding="application/x-tex">11</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord">1</span></span></span></span>号线、<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>22</mn></mrow><annotation encoding="application/x-tex">22</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span><span class="mord">2</span></span></span></span>号线）</li>
+<li>黄沙（换乘<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>6</mn></mrow><annotation encoding="application/x-tex">6</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">6</span></span></span></span>号线）</li>
+<li>长寿路</li>
+<li>陈家祠（换乘<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>8</mn></mrow><annotation encoding="application/x-tex">8</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">8</span></span></span></span>号线）</li>
+<li>西门口</li>
+<li>公园前（换乘<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn></mrow><annotation encoding="application/x-tex">2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span></span></span></span>号线）</li>
+<li>农讲所</li>
+<li>烈士陵园（换乘<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>12</mn></mrow><annotation encoding="application/x-tex">12</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord">2</span></span></span></span>号线）</li>
+<li>东山口（换乘<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>6</mn></mrow><annotation encoding="application/x-tex">6</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">6</span></span></span></span>号线）</li>
+<li>杨箕（换乘<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>5</mn></mrow><annotation encoding="application/x-tex">5</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">5</span></span></span></span>号线）</li>
+<li>体育西路（换乘<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>3</mn></mrow><annotation encoding="application/x-tex">3</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">3</span></span></span></span>号线）</li>
+<li>体育中心</li>
+<li>广州东站（换乘<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>3</mn></mrow><annotation encoding="application/x-tex">3</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">3</span></span></span></span>号线、<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>11</mn></mrow><annotation encoding="application/x-tex">11</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord">1</span></span></span></span>号线、<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>18</mn></mrow><annotation encoding="application/x-tex">18</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord">8</span></span></span></span>号线）</li>
+</ol>
+<h2 id="四-线路意义"><a class="markdownIt-Anchor" href="#四-线路意义"></a> 四、线路意义</h2>
+<ul>
+<li>作为广州地铁“开篇之作”，总投资<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>122.616</mn></mrow><annotation encoding="application/x-tex">122.616</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord">2</span><span class="mord">2</span><span class="mord">.</span><span class="mord">6</span><span class="mord">1</span><span class="mord">6</span></span></span></span>亿元，终结广州无地铁历史，奠定城市轨道交通网络基础。</li>
+<li>串联广州东站、体育西、公园前、陈家祠、芳村等核心商圈、交通枢纽与文旅节点，是<strong>东西向通勤大动脉+文旅黄金线</strong>。</li>
+<li>极大缓解中山路、珠江隧道、珠江大桥交通压力，强化芳村与中心城区联系，支撑广州城市空间拓展。</li>
+</ul>
+<h2 id="五-远期规划"><a class="markdownIt-Anchor" href="#五-远期规划"></a> 五、远期规划</h2>
+<p>规划自西塱站向南延伸至海南村站，进一步强化广佛同城衔接，完善西南片区轨道覆盖。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="https://hkb150429.github.io/2026/06/07/%E5%B9%BF%E5%B7%9E%E5%9C%B0%E9%93%81/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -338,9 +475,15 @@ setTimeout(() => {
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2026-06-07 16:48:52 / 修改时间：22:43:58" itemprop="dateCreated datePublished" datetime="2026-06-07T16:48:52+08:00">2026-06-07</time>
+      <time title="创建时间：2026-06-07 16:48:52" itemprop="dateCreated datePublished" datetime="2026-06-07T16:48:52+08:00">2026-06-07</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2026-06-09 14:22:20" itemprop="dateModified" datetime="2026-06-09T14:22:20+08:00">2026-06-09</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -348,7 +491,7 @@ setTimeout(() => {
       </span>
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%9C%B0%E9%93%81/" itemprop="url" rel="index"><span itemprop="name">地铁</span></a>
+          <a href="/categories/%E5%9C%B0%E9%93%81-%E5%B9%BF%E5%B7%9E/" itemprop="url" rel="index"><span itemprop="name">地铁,广州</span></a>
         </span>
     </span>
 
@@ -359,14 +502,14 @@ setTimeout(() => {
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>205</span>
+      <span>1.2k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>1 分钟</span>
+      <span>4 分钟</span>
     </span>
 </div>
 
@@ -377,12 +520,41 @@ setTimeout(() => {
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="1-广州地铁"><a href="#1-广州地铁" class="headerlink" title="$1$-广州地铁"></a>$1$-广州地铁</h1><p>广州地铁，截止2026&#x2F;6&#x2F;7日，广州地铁运营线路共$19$条，共设车站$397$座，换乘站$77$座，运营里程$779.9$千米，位列中国第三名。</p>
-<p>其开通的线路有：$1$,$2$,$3$,$4$,$5$,$6$,$7$,$8$,$9$,$10$,$11$,$12$北，$12$南,$13$,$14$,$18$,$21$,$22$，APM线。</p>
-<h1 id="2-佛山地铁"><a href="#2-佛山地铁" class="headerlink" title="$2$-佛山地铁"></a>$2$-佛山地铁</h1><p>佛山地铁，截止2026&#x2F;6&#x2F;7日，佛山地铁运营线路共$5$条，共设车站$54$座，换乘站$6$座（包括广州南站，林岳西站）。</p>
-<p>其开通的线路有：广佛，$2$,$3$北，$3$南线。</p>
-<h1 id="3-广东城际"><a href="#3-广东城际" class="headerlink" title="$3$-广东城际"></a>$3$-广东城际</h1><p>广东城际，截止2026&#x2F;6&#x2F;7日，广东城际运营线路$6$条，共设车站$81$座，换乘站（城际之间）$5$座。</p>
-<p>其开通的线路有：广州东环，广清，广肇，穗深，广惠，琶莲城际。</p>
+          <h1 id="2026年粤港澳大湾区地铁轨道交通总数统计"><a class="markdownIt-Anchor" href="#2026年粤港澳大湾区地铁轨道交通总数统计"></a> 2026年粤港澳大湾区地铁（轨道交通）总数统计</h1>
+<p>本统计数据更新至<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2026</mn></mrow><annotation encoding="application/x-tex">2026</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span><span class="mord">0</span><span class="mord">2</span><span class="mord">6</span></span></span></span>年<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>6</mn></mrow><annotation encoding="application/x-tex">6</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">6</span></span></span></span>月，统计范围为粤港澳大湾区<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>9</mn></mrow><annotation encoding="application/x-tex">9</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">9</span></span></span></span>市<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn></mrow><annotation encoding="application/x-tex">2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span></span></span></span>区（广州、深圳、佛山、东莞、珠海、惠州、中山、江门、肇庆、香港、澳门），区分城市地铁（常规轨道交通）与城际轨道、有轨电车，核心统计大众日常通勤主流地铁线路，同步汇总全网总规模、运营里程与站点数量，清晰呈现“轨道上的大湾区”建设成果。</p>
+<h2 id="一-大湾区地铁核心总览核心数据"><a class="markdownIt-Anchor" href="#一-大湾区地铁核心总览核心数据"></a> 一、大湾区地铁核心总览（核心数据）</h2>
+<p>截至<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2026</mn></mrow><annotation encoding="application/x-tex">2026</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span><span class="mord">0</span><span class="mord">2</span><span class="mord">6</span></span></span></span>年<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>6</mn></mrow><annotation encoding="application/x-tex">6</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">6</span></span></span></span>月，粤港澳大湾区全域已运营轨道交通（含地铁、市域快线、轻轨、澳门轻轨、港铁主线）核心数据汇总：</p>
+<ul>
+<li>总运营线路数：<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>90</mn></mrow><annotation encoding="application/x-tex">90</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">9</span><span class="mord">0</span></span></span></span>条</li>
+<li>总运营站点数：<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1704</mn></mrow><annotation encoding="application/x-tex">1704</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord">7</span><span class="mord">0</span><span class="mord">4</span></span></span></span>座</li>
+<li>全域轨道交通总里程：突破<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2800</mn></mrow><annotation encoding="application/x-tex">2800</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span><span class="mord">8</span><span class="mord">0</span><span class="mord">0</span></span></span></span>公里</li>
+<li>核心城市地铁覆盖率：广深佛莞四大核心城市实现全域主城区地铁覆盖，形成大湾区一小时通勤轨道网络</li>
+</ul>
+<p>注：数据不含单独统计的有轨电车支线、景区捷运、市内微循环小轨道，仅统计对外公共通勤主干轨道交通线路。</p>
+<h2 id="二-各城市地铁运营明细2026最新"><a class="markdownIt-Anchor" href="#二-各城市地铁运营明细2026最新"></a> 二、各城市地铁运营明细（2026最新）</h2>
+<h3 id="1-广州市"><a class="markdownIt-Anchor" href="#1-广州市"></a> 1. 广州市</h3>
+<p>作为大湾区轨道枢纽核心，广州地铁线网规模稳居全国前列。目前已运营<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>19</mn></mrow><annotation encoding="application/x-tex">19</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord">9</span></span></span></span>条地铁主干线路，不含支线拆分统计，全网运营总里程<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>779</mn></mrow><annotation encoding="application/x-tex">779</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">7</span><span class="mord">7</span><span class="mord">9</span></span></span></span>公里，运营车站<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>398</mn></mrow><annotation encoding="application/x-tex">398</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">3</span><span class="mord">9</span><span class="mord">8</span></span></span></span>座。<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2026</mn></mrow><annotation encoding="application/x-tex">2026</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span><span class="mord">0</span><span class="mord">2</span><span class="mord">6</span></span></span></span>年持续推进<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>15</mn></mrow><annotation encoding="application/x-tex">15</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord">5</span></span></span></span>条、<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>361</mn></mrow><annotation encoding="application/x-tex">361</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">3</span><span class="mord">6</span><span class="mord">1</span></span></span></span>公里轨道交通建设，年内计划开通<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>6</mn></mrow><annotation encoding="application/x-tex">6</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">6</span></span></span></span>条（段）地铁、<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>4</mn></mrow><annotation encoding="application/x-tex">4</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">4</span></span></span></span>条城际线路，进一步加密中心城区与外围城区轨道衔接。</p>
+<h3 id="2-深圳市"><a class="markdownIt-Anchor" href="#2-深圳市"></a> 2. 深圳市</h3>
+<p>深圳地铁高速扩容，当前已运营<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>16</mn></mrow><annotation encoding="application/x-tex">16</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord">6</span></span></span></span>条地铁主干线路，另有<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span>条线路即将通车，同步配套<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn></mrow><annotation encoding="application/x-tex">2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span></span></span></span>条有轨电车线路。<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2026</mn></mrow><annotation encoding="application/x-tex">2026</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span><span class="mord">0</span><span class="mord">2</span><span class="mord">6</span></span></span></span>年深圳重点推进<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>11</mn></mrow><annotation encoding="application/x-tex">11</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord">1</span></span></span></span>条城市轨道线路建设，全域地铁站点<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>800</mn></mrow><annotation encoding="application/x-tex">800</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">8</span><span class="mord">0</span><span class="mord">0</span></span></span></span>米覆盖率超<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>85</mn><mi mathvariant="normal">%</mi></mrow><annotation encoding="application/x-tex">85\%</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.80556em;vertical-align:-0.05556em;"></span><span class="mord">8</span><span class="mord">5</span><span class="mord">%</span></span></span></span>，核心区轨道密度位居大湾区首位，形成全覆盖、高时效的都市圈轨道网络。</p>
+<h3 id="3-佛山市"><a class="markdownIt-Anchor" href="#3-佛山市"></a> 3. 佛山市</h3>
+<p>佛山依托广佛同城优势，轨道全面对接广州线网，是大湾区跨城地铁互通最成熟的城市。目前已运营多条跨城及市域地铁线路，全面融入广州轨道网络，实现广佛核心区无缝换乘，助力大湾区同城化发展。</p>
+<h3 id="4-东莞市"><a class="markdownIt-Anchor" href="#4-东莞市"></a> 4. 东莞市</h3>
+<p>东莞聚焦临深、临广轨道衔接，当前已运营主干地铁线路，另有多条市域地铁、跨城城际轨道在建，串联广州、深圳核心城区，是大湾区中部轨道通勤的重要枢纽节点。</p>
+<h3 id="5-香港特别行政区"><a class="markdownIt-Anchor" href="#5-香港特别行政区"></a> 5. 香港特别行政区</h3>
+<p>香港轨道体系成熟完善，港铁主干运营线路<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>10</mn></mrow><annotation encoding="application/x-tex">10</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord">0</span></span></span></span>条，配套<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>12</mn></mrow><annotation encoding="application/x-tex">12</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord">2</span></span></span></span>条轻铁线路、<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>6</mn></mrow><annotation encoding="application/x-tex">6</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">6</span></span></span></span>条叮叮车线路及<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>3</mn></mrow><annotation encoding="application/x-tex">3</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">3</span></span></span></span>条机场捷运线路，公共轨道出行覆盖率极高，是大湾区轨道交通运营效率最高的区域之一。</p>
+<h3 id="6-澳门特别行政区"><a class="markdownIt-Anchor" href="#6-澳门特别行政区"></a> 6. 澳门特别行政区</h3>
+<p>澳门当前运营<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span>条轻轨线路，另有<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>3</mn></mrow><annotation encoding="application/x-tex">3</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">3</span></span></span></span>条轻轨线路规划在建，逐步完善澳门本地轨道网络，同时对接大湾区内地城市轨道体系。</p>
+<h3 id="7-珠海-惠州-中山-江门-肇庆"><a class="markdownIt-Anchor" href="#7-珠海-惠州-中山-江门-肇庆"></a> 7. 珠海、惠州、中山、江门、肇庆</h3>
+<p>上述五市现阶段以城际轨道交通为主要通勤轨道，暂无成熟运营的城市主干地铁线路，目前多条城际轨道、市域快轨在建及规划中，逐步接入大湾区整体轨道网络。</p>
+<h2 id="三-大湾区轨道网络整体格局"><a class="markdownIt-Anchor" href="#三-大湾区轨道网络整体格局"></a> 三、大湾区轨道网络整体格局</h2>
+<p>当前粤港澳大湾区已形成“广深双核引领、佛莞联动、全域互通”的轨道交通格局。通过地铁、市域快线、城际铁路多网融合，实现广、深、佛、莞四城地铁无缝换乘，搭配全域<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>90</mn></mrow><annotation encoding="application/x-tex">90</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">9</span><span class="mord">0</span></span></span></span>条轨道线路、<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1704</mn></mrow><annotation encoding="application/x-tex">1704</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord">7</span><span class="mord">0</span><span class="mord">4</span></span></span></span>座站点、超<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2800</mn></mrow><annotation encoding="application/x-tex">2800</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span><span class="mord">8</span><span class="mord">0</span><span class="mord">0</span></span></span></span>公里的运营里程，全面成型大湾区一小时通勤生活圈。</p>
+<p>根据远期规划，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2030</mn></mrow><annotation encoding="application/x-tex">2030</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span><span class="mord">0</span><span class="mord">3</span><span class="mord">0</span></span></span></span>年大湾区轨道交通线路将扩容至<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>110</mn></mrow><annotation encoding="application/x-tex">110</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord">1</span><span class="mord">0</span></span></span></span>条、<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2121</mn></mrow><annotation encoding="application/x-tex">2121</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span><span class="mord">1</span><span class="mord">2</span><span class="mord">1</span></span></span></span>座站点，轨道网络覆盖密度、跨城通行效率将进一步提升，全面支撑粤港澳大湾区一体化发展。</p>
+<h2 id="四-统计说明"><a class="markdownIt-Anchor" href="#四-统计说明"></a> 四、统计说明</h2>
+<ol>
+<li>统计时间：<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2026</mn></mrow><annotation encoding="application/x-tex">2026</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span><span class="mord">0</span><span class="mord">2</span><span class="mord">6</span></span></span></span>年<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>6</mn></mrow><annotation encoding="application/x-tex">6</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">6</span></span></span></span>月，包含年内已开通新线，不含未通车在建、规划线路；</li>
+<li>统计口径：主干地铁、市域快线、港澳主干轨道、澳门轻轨，剔除小众微循环轨道、景区专线、单独有轨电车支线；</li>
+<li>数据来源：广州地铁、深圳地铁官方发布、广东省轨道交通建设公示、大湾区轨道行业权威统计。</li>
+</ol>
 
       
     </div>
@@ -468,17 +640,18 @@ setTimeout(() => {
     
     <div class="post-body" itemprop="articleBody">
           <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
+<h2 id="quick-start"><a class="markdownIt-Anchor" href="#quick-start"></a> Quick Start</h2>
+<h3 id="create-a-new-post"><a class="markdownIt-Anchor" href="#create-a-new-post"></a> Create a new post</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
 <p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
+<h3 id="run-server"><a class="markdownIt-Anchor" href="#run-server"></a> Run server</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
 <p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
+<h3 id="generate-static-files"><a class="markdownIt-Anchor" href="#generate-static-files"></a> Generate static files</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
 <p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
+<h3 id="deploy-to-remote-sites"><a class="markdownIt-Anchor" href="#deploy-to-remote-sites"></a> Deploy to remote sites</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
 <p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
 
       
@@ -519,14 +692,14 @@ setTimeout(() => {
       <i class="fa fa-chart-line"></i>
     </span>
       <span>站点总字数：</span>
-    <span title="站点总字数">0k</span>
+    <span title="站点总字数">2k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span>站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">1 分钟</span>
+    <span title="站点阅读时长">6 分钟</span>
   </span>
 </div>
 
@@ -549,20 +722,26 @@ setTimeout(() => {
 <noscript>
   <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
 </noscript>
+<script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
 
-<style>
-/* 强制显示侧边栏！覆盖所有隐藏样式 */
-.sidebar {
-  display: block !important;
-  opacity: 1 !important;
-  visibility: visible !important;
-  transform: none !important;
-  position: relative !important;
-  z-index: 100 !important;
+<script>
+var options = {
+  bottom: '64px',
+  right: '32px',
+  left: '32px',
+  time: '0.5s',
+  mixColor: '#121212',
+  backgroundColor: '#fff',
+  buttonColorDark: '#121212',
+  buttonColorLight: '#fff',
+  saveInCookies: true,
+  label: '🌓',
+  autoMatchOsTheme: true
 }
-.main {
-  display: flex !important;
-}
-</style>
+const darkmode = new Darkmode(options);
+window.darkmode = darkmode;
+darkmode.showWidget();
+</script>
+
 </body>
 </html>
