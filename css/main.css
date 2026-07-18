@@ -1251,7 +1251,7 @@ pre code {
     vertical-align: middle;
   }
   .links-of-author a::before {
-    background: #831720;
+    background: #ffc1e8;
     display: inline-block;
     margin-right: 3px;
     transform: translateY(-2px);
@@ -2820,7 +2820,7 @@ header.header {
   background: #111 !important;
   padding: 10px 0;
 }
-/* 侧边栏头部 hkb blog 强制白色，解决和黑底融合看不见 */
+/* 侧边栏头部站点标题强制白色 */
 .sidebar-header .site-title {
   color: #fff !important;
   text-shadow: 0 0 4px rgba(0,0,0,0.6) !important;
@@ -2828,24 +2828,29 @@ header.header {
 .sidebar-header .site-title:hover {
   color: #93c5fd !important;
 }
+/* 顶部站点标题文字永远白色 */
 .site-title {
   color: #fff !important;
 }
+/* 侧边栏下方作者名永久白色 */
 .sidebar-author-name {
   color: #fff !important;
 }
 .sidebar-author-name:hover {
   color: #60a5fa !important;
 }
+/* 全局变量 */
 :root {
   --light-title-color: #545454;
   --dark-title-color: #eee;
   --light-bg-color: #fff;
   --dark-bg-color: #1a1a1a;
 }
+/* 浅色模式：文字颜色 + 浅色背景图 */
 body:not(.darkmode--activated) {
-  background: var(--light-bg-color) !important;
   color: var(--light-title-color) !important;
+  background: url("/images/bg-light.jpg") no-repeat fixed 50% 50% !important;
+  background-size: cover !important;
 }
 body:not(.darkmode--activated) .post-title,
 body:not(.darkmode--activated) .site-title,
@@ -2857,9 +2862,11 @@ body:not(.darkmode--activated) h5,
 body:not(.darkmode--activated) h6 {
   color: var(--light-title-color) !important;
 }
+/* 深色模式：文字颜色 + 深色背景图 */
 body.darkmode--activated {
-  background: var(--dark-bg-color) !important;
   color: var(--dark-title-color) !important;
+  background: url("/images/bg-dark.jpg") no-repeat fixed 50% 50% !important;
+  background-size: cover !important;
 }
 body.darkmode--activated .post-title,
 body.darkmode--activated .site-title,
@@ -2871,9 +2878,11 @@ body.darkmode--activated h5,
 body.darkmode--activated h6 {
   color: var(--dark-title-color) !important;
 }
+/* 深色切换按钮层级 */
 .darkmode-toggle {
   z-index: 9999 !important;
 }
+/* Read More 按钮 */
 .post-button .btn {
   color: #555 !important;
   background-color: #fff;
@@ -2881,7 +2890,6 @@ body.darkmode--activated h6 {
   font-size: 15px;
   box-shadow: inset 0px 0px 10px 0px rgba(0,0,0,0.35);
   border: none !important;
-  transition-property: unset;
   padding: 0px 15px;
 }
 .post-button .btn:hover {
@@ -2891,10 +2899,21 @@ body.darkmode--activated h6 {
   box-shadow: inset 0px 0px 10px 0px rgba(0,0,0,0.35);
   background-image: linear-gradient(90deg, #a166ab 0%, #ef4e7b 25%, #f37055 50%, #ef4e7b 75%, #a166ab 100%);
 }
+/* 文章卡片 */
 .post {
   margin-top: 60px;
   margin-bottom: 60px;
   padding: 25px;
   -webkit-box-shadow: 0 0 5px rgba(202,203,203,0.5);
   -moz-box-shadow: 0 0 5px rgba(202,203,204,0.5);
+  background: rgba(255,255,255,0.85);
+}
+/* 侧边栏透明 */
+.sidebar {
+  background-color: transparent;
+  opacity: 0.9;
+}
+/* 顶部导航栏半透明白色 */
+.header-inner {
+  background: rgba(255,255,255,0.8);
 }
