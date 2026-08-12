@@ -174,7 +174,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">22</span>
+          <span class="site-state-item-count">23</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -213,6 +213,134 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://hkb150429.github.io/posts/aab035b/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="hkb">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="HKB Blog">
+      <meta itemprop="description" content="HKB的博客">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | HKB Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/posts/aab035b/" class="post-title-link" itemprop="url">【信息】知识点-割点和桥</a>
+        </h2>
+
+        <div class="post-meta-container">
+
+
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2026-08-12 22:57:50 / 修改时间：23:01:53" itemprop="dateCreated datePublished" datetime="2026-08-12T22:57:50+08:00">2026-08-12</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/information-technology/" itemprop="url" rel="index"><span itemprop="name">information-technology</span></a>
+        </span>
+    </span>
+
+  
+    <span id="/posts/aab035b/" class="post-meta-item twikoo_visitors" data-flag-title="【信息】知识点-割点和桥" title="阅读次数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="twikoo_visitors"></span>
+    </span>
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>167</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>1 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="割点"><a class="markdownIt-Anchor" href="#割点"></a> 割点</h3>
+<ul>
+<li>无向图中，删去该点后连通分量数增加</li>
+<li><strong>判定</strong>：
+<ul>
+<li>根节点：子树数量 ≥ 2</li>
+<li>非根节点 u：存在子节点 v 满足 <code>low[v] ≥ dfn[u]</code></li>
+</ul>
+</li>
+<li><strong>注意</strong>：不能用 <code>fa</code> 简单跳过父边，要用边编号避免重边</li>
+</ul>
+<h3 id="桥割边"><a class="markdownIt-Anchor" href="#桥割边"></a> 桥（割边）</h3>
+<ul>
+<li>删去后边数连通分量增加</li>
+<li><strong>判定</strong>：边 (u,v) 为桥 ⟺ <code>low[v] &gt; dfn[u]</code></li>
+<li><strong>重边处理</strong>：必须用边的编号判重，不能只看父节点</li>
+</ul>
+<h3 id="应用"><a class="markdownIt-Anchor" href="#应用"></a> 应用</h3>
+<ul>
+<li>边双连通分量（E-BCC）：删去所有桥后每个连通块</li>
+<li>点双连通分量（V-BCC）：用栈存边，割点处弹栈</li>
+<li>圆方树：点双缩点建图，处理路径必经点问题</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+    
+</article>
+
+
+
 
     
 
@@ -317,158 +445,6 @@
 <ul>
 <li>倍增可同时维护路径上的最大值/最小值/和</li>
 <li>树上第 k 大祖先、树上差分配合 LCA</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-    
-</article>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://hkb150429.github.io/posts/8ca4d567/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="hkb">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="HKB Blog">
-      <meta itemprop="description" content="HKB的博客">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content=" | HKB Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/posts/8ca4d567/" class="post-title-link" itemprop="url">【信息】知识点-线段树</a>
-        </h2>
-
-        <div class="post-meta-container">
-
-
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2026-08-12 22:45:59 / 修改时间：23:01:53" itemprop="dateCreated datePublished" datetime="2026-08-12T22:45:59+08:00">2026-08-12</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/information-technology/" itemprop="url" rel="index"><span itemprop="name">information-technology</span></a>
-        </span>
-    </span>
-
-  
-    <span id="/posts/8ca4d567/" class="post-meta-item twikoo_visitors" data-flag-title="【信息】知识点-线段树" title="阅读次数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-eye"></i>
-      </span>
-      <span class="post-meta-item-text">阅读次数：</span>
-      <span id="twikoo_visitors"></span>
-    </span>
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>182</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>1 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h3 id="基本结构"><a class="markdownIt-Anchor" href="#基本结构"></a> 基本结构</h3>
-<ul>
-<li>数组开 <strong>4 倍</strong>空间</li>
-<li>支持区间修改、区间查询，单点修改更简单</li>
-<li><strong>懒标记（lazy tag）</strong>：区间修改时不下传，查询/修改子区间时再 pushdown</li>
-</ul>
-<h3 id="常见变体"><a class="markdownIt-Anchor" href="#常见变体"></a> 常见变体</h3>
-<table>
-<thead>
-<tr>
-<th>类型</th>
-<th>维护信息</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>区间加 + 区间和</td>
-<td>sum, lazy</td>
-</tr>
-<tr>
-<td>区间乘 + 区间加</td>
-<td>sum, mul, add（先乘后加）</td>
-</tr>
-<tr>
-<td>区间最值</td>
-<td>mx/mn, lazy</td>
-</tr>
-<tr>
-<td>区间赋值</td>
-<td>val, lazy（用特殊值标记无标记）</td>
-</tr>
-<tr>
-<td>最大子段和</td>
-<td>sum, mx, pre, suf</td>
-</tr>
-<tr>
-<td>吉司机线段树</td>
-<td>区间取 min/max，维护最大值、次大值、计数</td>
-</tr>
-</tbody>
-</table>
-<h3 id="易错点"><a class="markdownIt-Anchor" href="#易错点"></a> 易错点</h3>
-<ul>
-<li><code>pushdown</code> 后必须清空父节点标记</li>
-<li>区间修改时标记叠加顺序（先乘后加：<code>add = add*mul + new_add</code>）</li>
-<li>边界：<code>l &gt; r</code> 直接返回，完全覆盖再操作</li>
 </ul>
 
       
@@ -717,6 +693,158 @@
 <ul>
 <li>树状数组常数小、代码短，但只能做满足<strong>可逆、可差分</strong>的操作（和、异或）</li>
 <li>最值、最大子段和等不可差分操作必须用线段树</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+    
+</article>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://hkb150429.github.io/posts/8ca4d567/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="hkb">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="HKB Blog">
+      <meta itemprop="description" content="HKB的博客">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | HKB Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/posts/8ca4d567/" class="post-title-link" itemprop="url">【信息】知识点-线段树</a>
+        </h2>
+
+        <div class="post-meta-container">
+
+
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2026-08-12 22:45:59 / 修改时间：23:01:53" itemprop="dateCreated datePublished" datetime="2026-08-12T22:45:59+08:00">2026-08-12</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/information-technology/" itemprop="url" rel="index"><span itemprop="name">information-technology</span></a>
+        </span>
+    </span>
+
+  
+    <span id="/posts/8ca4d567/" class="post-meta-item twikoo_visitors" data-flag-title="【信息】知识点-线段树" title="阅读次数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="twikoo_visitors"></span>
+    </span>
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>182</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>1 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="基本结构"><a class="markdownIt-Anchor" href="#基本结构"></a> 基本结构</h3>
+<ul>
+<li>数组开 <strong>4 倍</strong>空间</li>
+<li>支持区间修改、区间查询，单点修改更简单</li>
+<li><strong>懒标记（lazy tag）</strong>：区间修改时不下传，查询/修改子区间时再 pushdown</li>
+</ul>
+<h3 id="常见变体"><a class="markdownIt-Anchor" href="#常见变体"></a> 常见变体</h3>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>维护信息</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>区间加 + 区间和</td>
+<td>sum, lazy</td>
+</tr>
+<tr>
+<td>区间乘 + 区间加</td>
+<td>sum, mul, add（先乘后加）</td>
+</tr>
+<tr>
+<td>区间最值</td>
+<td>mx/mn, lazy</td>
+</tr>
+<tr>
+<td>区间赋值</td>
+<td>val, lazy（用特殊值标记无标记）</td>
+</tr>
+<tr>
+<td>最大子段和</td>
+<td>sum, mx, pre, suf</td>
+</tr>
+<tr>
+<td>吉司机线段树</td>
+<td>区间取 min/max，维护最大值、次大值、计数</td>
+</tr>
+</tbody>
+</table>
+<h3 id="易错点"><a class="markdownIt-Anchor" href="#易错点"></a> 易错点</h3>
+<ul>
+<li><code>pushdown</code> 后必须清空父节点标记</li>
+<li>区间修改时标记叠加顺序（先乘后加：<code>add = add*mul + new_add</code>）</li>
+<li>边界：<code>l &gt; r</code> 直接返回，完全覆盖再操作</li>
 </ul>
 
       
@@ -1262,124 +1390,6 @@
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://hkb150429.github.io/posts/19a536e5/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="hkb">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="HKB Blog">
-      <meta itemprop="description" content="HKB的博客">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content=" | HKB Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/posts/19a536e5/" class="post-title-link" itemprop="url">洛谷P1000题解</a>
-        </h2>
-
-        <div class="post-meta-container">
-
-
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2026-07-04 13:57:41" itemprop="dateCreated datePublished" datetime="2026-07-04T13:57:41+08:00">2026-07-04</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-07-14 11:26:50" itemprop="dateModified" datetime="2026-07-14T11:26:50+08:00">2026-07-14</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E9%A2%98%E8%A7%A3/" itemprop="url" rel="index"><span itemprop="name">题解</span></a>
-        </span>
-    </span>
-
-  
-    <span id="/posts/19a536e5/" class="post-meta-item twikoo_visitors" data-flag-title="洛谷P1000题解" title="阅读次数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-eye"></i>
-      </span>
-      <span class="post-meta-item-text">阅读次数：</span>
-      <span id="twikoo_visitors"></span>
-    </span>
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>96</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>1 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="题意"><a class="markdownIt-Anchor" href="#题意"></a> 题意</h1>
-<p>输出以下内容：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">                ********</span><br><span class="line">               ************</span><br><span class="line">               ####....#.</span><br><span class="line">             #..###.....##....</span><br><span class="line">             ###.......######              ###            ###</span><br><span class="line">                ...........               #...#          #...#</span><br><span class="line">               ##*#######                 #.#.#          #.#.#</span><br><span class="line">            ####*******######             #.#.#          #.#.#</span><br><span class="line">           ...#***.****.*###....          #...#          #...#</span><br><span class="line">           ....**********##.....           ###            ###</span><br><span class="line">           ....****    *****....</span><br><span class="line">             ####        ####</span><br><span class="line">           ######        ######</span><br><span class="line">##############################################################</span><br><span class="line">#...#......#.##...#......#.##...#......#.##------------------#</span><br><span class="line">###########################################------------------#</span><br><span class="line">#..#....#....##..#....#....##..#....#....#####################</span><br><span class="line">##########################################    #----------#</span><br><span class="line">#.....#......##.....#......##.....#......#    #----------#</span><br><span class="line">##########################################    #----------#</span><br><span class="line">#.#..#....#..##.#..#....#..##.#..#....#..#    #----------#</span><br><span class="line">##########################################    ############</span><br></pre></td></tr></table></figure>
-<h1 id="思路"><a class="markdownIt-Anchor" href="#思路"></a> 思路</h1>
-<p>直接输出即可。</p>
-<p><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn></mrow><annotation encoding="application/x-tex">2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span></span></span></span> 种方式，第一种是一行一行的输出，但是一下子手就废了，第二种是使用 ‘printf’，每行后面 ‘\n’ 加双引号，代码给出第二种。</p>
-<h1 id="ac-code"><a class="markdownIt-Anchor" href="#ac-code"></a> AC CODE</h1>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;bits/stdc++.h&gt;</span><br><span class="line">int main()&#123;</span><br><span class="line">    printf(</span><br><span class="line">    &quot;                ********\n&quot;</span><br><span class="line">    &quot;               ************\n&quot;</span><br><span class="line">    &quot;               ####....#.\n&quot;</span><br><span class="line">    &quot;             #..###.....##....\n&quot;</span><br><span class="line">    &quot;             ###.......######              ###            ###\n&quot;</span><br><span class="line">    &quot;                ...........               #...#          #...#\n&quot;</span><br><span class="line">    &quot;               ##*#######                 #.#.#          #.#.#\n&quot;</span><br><span class="line">    &quot;            ####*******######             #.#.#          #.#.#\n&quot;</span><br><span class="line">    &quot;           ...#***.****.*###....          #...#          #...#\n&quot;</span><br><span class="line">    &quot;           ....**********##.....           ###            ###\n&quot;</span><br><span class="line">    &quot;           ....****    *****....\n&quot;</span><br><span class="line">    &quot;             ####        ####\n&quot;</span><br><span class="line">    &quot;           ######        ######\n&quot;</span><br><span class="line">    &quot;##############################################################\n&quot;</span><br><span class="line">    &quot;#...#......#.##...#......#.##...#......#.##------------------#\n&quot;</span><br><span class="line">    &quot;###########################################------------------#\n&quot;</span><br><span class="line">    &quot;#..#....#....##..#....#....##..#....#....#####################\n&quot;</span><br><span class="line">    &quot;##########################################    #----------#\n&quot;</span><br><span class="line">    &quot;#.....#......##.....#......##.....#......#    #----------#\n&quot;</span><br><span class="line">    &quot;##########################################    #----------#\n&quot;</span><br><span class="line">    &quot;#.#..#....#..##.#..#....#..##.#..#....#..#    #----------#\n&quot;</span><br><span class="line">    &quot;##########################################    ############\n&quot;</span><br><span class="line">    );</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-    
-</article>
-
-
-
-
   <nav class="pagination">
     <a class="extend prev" rel="prev" title="上一页" aria-label="上一页" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/3/"><i class="fa fa-angle-right"></i></a>
   </nav>
@@ -1404,14 +1414,14 @@
       <i class="fa fa-chart-line"></i>
     </span>
       <span>站点总字数：</span>
-    <span title="站点总字数">6k</span>
+    <span title="站点总字数">7k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span>站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">21 分钟</span>
+    <span title="站点阅读时长">22 分钟</span>
   </span>
 </div>
 
