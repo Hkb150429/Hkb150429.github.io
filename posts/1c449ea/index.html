@@ -21,15 +21,15 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"hkb150429.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.27.0","exturl":false,"sidebar":{"position":"right","width_expanded":320,"width_dual_column":240,"display":"hide","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"default"},"prism":{"light":"prism","dark":"prism"},"copy_button":{"enable":true,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"valine","storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js" defer></script>
 
-    <meta name="description" content="题目大意 使用 Floyd 求最短路请移步此处 使用 Dijkstra 求最短路请移步此处 使用 SPFA 求最短路请移步此处  思路 SPFA 模版题  AC CODE 12345678910111213141516171819202122232425262728#include&lt;bits&#x2F;stdc++.h&gt;using namespace std;const int N&#x3D;50000">
+    <meta name="description" content="题目大意 求最短路 使用 Floyd 求最短路请移步此处 使用 Dijkstra 求最短路请移步此处 使用 SPFA 求最短路请移步此处  思路 SPFA 模版题  AC CODE 12345678910111213141516171819202122232425262728#include&lt;bits&#x2F;stdc++.h&gt;using namespace std;const int N&#x3D;">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【信息】题解-洛谷P3371（单源最短路径（弱化版））">
 <meta property="og:url" content="https://hkb150429.github.io/posts/1c449ea/index.html">
 <meta property="og:site_name" content="HKB Blog">
-<meta property="og:description" content="题目大意 使用 Floyd 求最短路请移步此处 使用 Dijkstra 求最短路请移步此处 使用 SPFA 求最短路请移步此处  思路 SPFA 模版题  AC CODE 12345678910111213141516171819202122232425262728#include&lt;bits&#x2F;stdc++.h&gt;using namespace std;const int N&#x3D;50000">
+<meta property="og:description" content="题目大意 求最短路 使用 Floyd 求最短路请移步此处 使用 Dijkstra 求最短路请移步此处 使用 SPFA 求最短路请移步此处  思路 SPFA 模版题  AC CODE 12345678910111213141516171819202122232425262728#include&lt;bits&#x2F;stdc++.h&gt;using namespace std;const int N&#x3D;">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2026-08-12T15:30:24.000Z">
-<meta property="article:modified_time" content="2026-08-12T15:44:59.442Z">
+<meta property="article:modified_time" content="2026-08-13T15:27:00.993Z">
 <meta property="article:author" content="hkb">
 <meta property="article:tag" content="answer">
 <meta name="twitter:card" content="summary">
@@ -178,7 +178,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">30</span>
+          <span class="site-state-item-count">35</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -257,9 +257,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2026-08-12 23:30:24 / 修改时间：23:44:59" itemprop="dateCreated datePublished" datetime="2026-08-12T23:30:24+08:00">2026-08-12</time>
+      <time title="创建时间：2026-08-12 23:30:24" itemprop="dateCreated datePublished" datetime="2026-08-12T23:30:24+08:00">2026-08-12</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2026-08-13 23:27:00" itemprop="dateModified" datetime="2026-08-13T23:27:00+08:00">2026-08-13</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -286,7 +292,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>178</span>
+      <span>182</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -304,6 +310,7 @@
     
     
     <div class="post-body" itemprop="articleBody"><h3 id="题目大意"><a class="markdownIt-Anchor" href="#题目大意"></a> 题目大意</h3>
+<p>求最短路</p>
 <p>使用 <code>Floyd</code> 求最短路请移步<a href="https://hkb150429.github.io/posts/d396f260/">此处</a></p>
 <p>使用 <code>Dijkstra</code> 求最短路请移步<a href="https://hkb150429.github.io/posts/62e1e4a8/">此处</a></p>
 <p>使用 <code>SPFA</code> 求最短路请移步<a href="https://hkb150429.github.io/posts/1c449ea/">此处</a></p>
@@ -375,14 +382,14 @@
       <i class="fa fa-chart-line"></i>
     </span>
       <span>站点总字数：</span>
-    <span title="站点总字数">9k</span>
+    <span title="站点总字数">12k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span>站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">30 分钟</span>
+    <span title="站点阅读时长">40 分钟</span>
   </span>
 </div>
 
@@ -405,6 +412,26 @@
 <noscript>
   <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
 </noscript>
+<script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
+
+<script>
+var options = {
+  bottom: '64px',
+  right: '32px',
+  left: '32px',
+  time: '0.5s',
+  mixColor: 'transparent',
+  backgroundColor: 'transparent',
+  buttonColorDark: '#100f2c',
+  buttonColorLight: '#fff',
+  saveInCookies: true,
+  label: '🌓',
+  autoMatchOsTheme: true
+}
+const darkmode = new Darkmode(options);
+window.darkmode = darkmode;
+darkmode.showWidget();
+</script>
 <script class="next-config" data-name="twikoo" type="application/json">{"enable":true,"visitor":true,"envId":"hkb150429.github.io","el":"#twikoo-comments"}</script>
 <script>
 document.addEventListener('page:loaded', () => {
@@ -426,26 +453,6 @@ document.addEventListener('page:loaded', () => {
   display: inline-block;
 }
 </style>
-<script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
-
-<script>
-var options = {
-  bottom: '64px',
-  right: '32px',
-  left: '32px',
-  time: '0.5s',
-  mixColor: 'transparent',
-  backgroundColor: 'transparent',
-  buttonColorDark: '#100f2c',
-  buttonColorLight: '#fff',
-  saveInCookies: true,
-  label: '🌓',
-  autoMatchOsTheme: true
-}
-const darkmode = new Darkmode(options);
-window.darkmode = darkmode;
-darkmode.showWidget();
-</script>
 
   
 
@@ -455,6 +462,26 @@ darkmode.showWidget();
 
 
   
+<script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
+
+<script>
+var options = {
+  bottom: '64px',
+  right: '32px',
+  left: '32px',
+  time: '0.5s',
+  mixColor: 'transparent',
+  backgroundColor: 'transparent',
+  buttonColorDark: '#100f2c',
+  buttonColorLight: '#fff',
+  saveInCookies: true,
+  label: '🌓',
+  autoMatchOsTheme: true
+}
+const darkmode = new Darkmode(options);
+window.darkmode = darkmode;
+darkmode.showWidget();
+</script>
 <script class="next-config" data-name="twikoo" type="application/json">{"enable":true,"visitor":true,"envId":"hkb150429.github.io","el":"#twikoo-comments"}</script>
 <script>
 document.addEventListener('page:loaded', () => {
@@ -476,26 +503,6 @@ document.addEventListener('page:loaded', () => {
   display: inline-block;
 }
 </style>
-<script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
-
-<script>
-var options = {
-  bottom: '64px',
-  right: '32px',
-  left: '32px',
-  time: '0.5s',
-  mixColor: 'transparent',
-  backgroundColor: 'transparent',
-  buttonColorDark: '#100f2c',
-  buttonColorLight: '#fff',
-  saveInCookies: true,
-  label: '🌓',
-  autoMatchOsTheme: true
-}
-const darkmode = new Darkmode(options);
-window.darkmode = darkmode;
-darkmode.showWidget();
-</script>
 
   
 

@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/themes/blue/pace-theme-minimal.css">
+  <script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous" defer></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"hkb150429.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.27.0","exturl":false,"sidebar":{"position":"right","width_expanded":320,"width_dual_column":240,"display":"hide","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"default"},"prism":{"light":"prism","dark":"prism"},"copy_button":{"enable":true,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"valine","storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="树形DP 核心知识点  一、本质 树形DP &#x3D; DFS后序遍历DP  先递归算所有子树 再用子树答案更新当前节点 必须记录父节点，防止回溯   二、通用状态定义  dp[u][0]：不选当前节点 u 的子树最优解 dp[u][1]：选当前节点 u 的子树最优解   三、最核心转移（80% 基础树DP通用） 适用于：没有上司的舞会、最大独立集等   选 u → 所有子节点不能选 dp[u][1]">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【信息】知识点-树形DP">
+<meta property="og:url" content="https://hkb150429.github.io/posts/77885892/index.html">
+<meta property="og:site_name" content="HKB Blog">
+<meta property="og:description" content="树形DP 核心知识点  一、本质 树形DP &#x3D; DFS后序遍历DP  先递归算所有子树 再用子树答案更新当前节点 必须记录父节点，防止回溯   二、通用状态定义  dp[u][0]：不选当前节点 u 的子树最优解 dp[u][1]：选当前节点 u 的子树最优解   三、最核心转移（80% 基础树DP通用） 适用于：没有上司的舞会、最大独立集等   选 u → 所有子节点不能选 dp[u][1]">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-08-13T15:01:12.000Z">
+<meta property="article:modified_time" content="2026-08-13T15:27:20.670Z">
+<meta property="article:author" content="hkb">
+<meta property="article:tag" content="knowledge">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://hkb150429.github.io/posts/77885892/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://hkb150429.github.io/posts/77885892/","path":"posts/77885892/","title":"【信息】知识点-树形DP"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>【信息】知识点-树形DP | HKB Blog</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.5.0/dist/search.js" integrity="sha256-xFC6PJ82SL9b3WkGjFavNiA9gm5z6UBxWPiu4CYjptg=" crossorigin="anonymous" defer></script>
+<script src="/js/third-party/search/local-search.js" defer></script>
+
+
+
+
+
+  <script src="/js/third-party/pace.js" defer></script>
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" integrity="sha256-UF1fgpAiu3tPJN/uCqEUHNe7pnr+QR0SQDNfgglgtcM=" crossorigin="anonymous">
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<style>.darkmode--activated{--body-bg-color:#282828;--content-bg-color:#333;--card-bg-color:#555;--text-color:#ccc;--blockquote-color:#bbb;--link-color:#ccc;--link-hover-color:#eee;--brand-color:#ddd;--brand-hover-color:#ddd;--table-row-odd-bg-color:#282828;--table-row-hover-bg-color:#363636;--menu-item-bg-color:#555;--btn-default-bg:#222;--btn-default-color:#ccc;--btn-default-border-color:#555;--btn-default-hover-bg:#666;--btn-default-hover-color:#ccc;--btn-default-hover-border-color:#666;--highlight-background:#282b2e;--highlight-foreground:#a9b7c6;--highlight-gutter-background:#34393d;--highlight-gutter-foreground:#9ca9b6}.darkmode--activated img{opacity:.75}.darkmode--activated img:hover{opacity:.9}.darkmode--activated code{color:#69dbdc;background:0 0}button.darkmode-toggle{z-index:9999}.darkmode-ignore,img{display:flex!important}.beian img{display:inline-block!important}</style></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">HKB Blog</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%A0%91%E5%BD%A2dp-%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86%E7%82%B9"><span class="nav-number">1.</span> <span class="nav-text"> 树形DP 核心知识点</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80-%E6%9C%AC%E8%B4%A8"><span class="nav-number">1.1.</span> <span class="nav-text"> 一、本质</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C-%E9%80%9A%E7%94%A8%E7%8A%B6%E6%80%81%E5%AE%9A%E4%B9%89"><span class="nav-number">1.2.</span> <span class="nav-text"> 二、通用状态定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89-%E6%9C%80%E6%A0%B8%E5%BF%83%E8%BD%AC%E7%A7%BB80-%E5%9F%BA%E7%A1%80%E6%A0%91dp%E9%80%9A%E7%94%A8"><span class="nav-number">1.3.</span> <span class="nav-text"> 三、最核心转移（80% 基础树DP通用）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B-%E4%B8%89%E5%A4%A7%E6%A0%91%E5%BD%A2dp%E9%A2%98%E5%9E%8B"><span class="nav-number">1.4.</span> <span class="nav-text"> 四、三大树形DP题型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E5%9F%BA%E7%A1%80%E6%A0%91%E5%BD%A2dp%E4%BA%8C%E5%85%83%E7%8A%B6%E6%80%81"><span class="nav-number">1.4.1.</span> <span class="nav-text"> 1. 基础树形DP（二元状态）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E6%A0%91%E4%B8%8A%E8%83%8C%E5%8C%85%E6%A0%91%E5%BD%A2%E5%88%86%E7%BB%84%E8%83%8C%E5%8C%85"><span class="nav-number">1.4.2.</span> <span class="nav-text"> 2. 树上背包（树形分组背包）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E6%8D%A2%E6%A0%B9dp%E4%BA%8C%E6%AC%A1dfs"><span class="nav-number">1.4.3.</span> <span class="nav-text"> 3. 换根DP（二次DFS）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%94-%E5%88%B7%E9%A2%98%E5%9B%BA%E5%AE%9A%E5%A5%97%E8%B7%AF"><span class="nav-number">1.5.</span> <span class="nav-text"> 五、刷题固定套路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%AD-%E6%98%93%E9%94%99%E7%82%B9%E5%BF%85%E8%80%83%E5%9D%91"><span class="nav-number">1.6.</span> <span class="nav-text"> 六、易错点（必考坑）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%83-%E6%9C%80%E7%AE%80%E6%A8%A1%E6%9D%BF%E5%92%8C%E4%BD%A0%E4%BB%A3%E7%A0%81%E9%A3%8E%E6%A0%BC%E4%B8%80%E8%87%B4"><span class="nav-number">1.7.</span> <span class="nav-text"> 七、最简模板（和你代码风格一致）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E7%A1%80%E6%A0%91dp%E6%A8%A1%E6%9D%BF"><span class="nav-number">1.7.1.</span> <span class="nav-text"> 基础树DP模板</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">hkb</p>
+  <div class="site-description" itemprop="description">HKB的博客</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">35</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/Hkb150429" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Hkb150429" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://blog.csdn.net/Hkb_nhzx_2015?spm=1010.2135.3001.5343" title="CSDN → https:&#x2F;&#x2F;blog.csdn.net&#x2F;Hkb_nhzx_2015?spm&#x3D;1010.2135.3001.5343" rel="noopener me" target="_blank"><i class="fas fa-book fa-fw"></i>CSDN</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.luogu.com.cn/user/432226" title="Luogu → https:&#x2F;&#x2F;www.luogu.com.cn&#x2F;user&#x2F;432226" rel="noopener me" target="_blank"><i class="fas fa-trophy fa-fw"></i>Luogu</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://hkb150429.github.io/posts/77885892/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="hkb">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="HKB Blog">
+      <meta itemprop="description" content="HKB的博客">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="【信息】知识点-树形DP | HKB Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          【信息】知识点-树形DP
+        </h1>
+
+        <div class="post-meta-container">
+
+
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2026-08-13 23:01:12 / 修改时间：23:27:20" itemprop="dateCreated datePublished" datetime="2026-08-13T23:01:12+08:00">2026-08-13</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/information-technology/" itemprop="url" rel="index"><span itemprop="name">information-technology</span></a>
+        </span>
+    </span>
+
+  
+    <span id="/posts/77885892/" class="post-meta-item twikoo_visitors" data-flag-title="【信息】知识点-树形DP" title="阅读次数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="twikoo_visitors"></span>
+    </span>
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>589</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>2 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="树形dp-核心知识点"><a class="markdownIt-Anchor" href="#树形dp-核心知识点"></a> 树形DP 核心知识点</h1>
+<h2 id="一-本质"><a class="markdownIt-Anchor" href="#一-本质"></a> 一、本质</h2>
+<p>树形DP = <strong>DFS后序遍历DP</strong></p>
+<ol>
+<li>先递归算所有子树</li>
+<li>再用子树答案更新当前节点</li>
+<li>必须记录父节点，防止回溯</li>
+</ol>
+<h2 id="二-通用状态定义"><a class="markdownIt-Anchor" href="#二-通用状态定义"></a> 二、通用状态定义</h2>
+<ul>
+<li><code>dp[u][0]</code>：不选当前节点 <code>u</code> 的子树最优解</li>
+<li><code>dp[u][1]</code>：选当前节点 <code>u</code> 的子树最优解</li>
+</ul>
+<h2 id="三-最核心转移80-基础树dp通用"><a class="markdownIt-Anchor" href="#三-最核心转移80-基础树dp通用"></a> 三、最核心转移（80% 基础树DP通用）</h2>
+<p>适用于：没有上司的舞会、最大独立集等</p>
+<ol>
+<li>
+<p><strong>选 u</strong> → 所有子节点不能选<br />
+<code>dp[u][1] += dp[v][0]</code></p>
+</li>
+<li>
+<p><strong>不选 u</strong> → 子节点可选/可不选，取最大值<br />
+<code>dp[u][0] += max(dp[v][0], dp[v][1])</code></p>
+</li>
+</ol>
+<h2 id="四-三大树形dp题型"><a class="markdownIt-Anchor" href="#四-三大树形dp题型"></a> 四、三大树形DP题型</h2>
+<h3 id="1-基础树形dp二元状态"><a class="markdownIt-Anchor" href="#1-基础树形dp二元状态"></a> 1. 基础树形DP（二元状态）</h3>
+<p><strong>适用场景</strong>：每个点选或不选，存在父子限制<br />
+<strong>遍历方式</strong>：一次DFS<br />
+<strong>答案</strong>：<code>max(dp[root][0], dp[root][1])</code></p>
+<h3 id="2-树上背包树形分组背包"><a class="markdownIt-Anchor" href="#2-树上背包树形分组背包"></a> 2. 树上背包（树形分组背包）</h3>
+<p><strong>适用场景</strong>：子树选若干个点、有数量/权值限制<br />
+<strong>关键点</strong></p>
+<ul>
+<li>必须<strong>倒序枚举容量</strong>（同01背包）</li>
+<li>复杂度：<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>n</mi><msup><mi>k</mi><mn>2</mn></msup><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(nk^2)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.064108em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathnormal">n</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03148em;">k</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span></li>
+<li><code>sz[u]</code> 记录子树大小，优化循环边界</li>
+</ul>
+<h3 id="3-换根dp二次dfs"><a class="markdownIt-Anchor" href="#3-换根dp二次dfs"></a> 3. 换根DP（二次DFS）</h3>
+<p><strong>适用场景</strong>：求<strong>每个点作为根</strong>的答案<br />
+<strong>流程</strong></p>
+<ol>
+<li><code>dfs1</code>：以1为根，求所有子树信息</li>
+<li><code>dfs2</code>：从上往下推，把根从父节点换到子节点<br />
+<strong>核心</strong>：利用父树信息 + 子树信息快速推导，不用每次重跑DP</li>
+</ol>
+<h2 id="五-刷题固定套路"><a class="markdownIt-Anchor" href="#五-刷题固定套路"></a> 五、刷题固定套路</h2>
+<ol>
+<li>邻接表存树</li>
+<li>全局开dp数组（和你代码风格一致）</li>
+<li>DFS(u,fa)</li>
+<li>先递归所有子节点</li>
+<li>再状态转移</li>
+</ol>
+<h2 id="六-易错点必考坑"><a class="markdownIt-Anchor" href="#六-易错点必考坑"></a> 六、易错点（必考坑）</h2>
+<ol>
+<li><strong>忘记写 fa 判断</strong> → 死循环</li>
+<li>树上背包 <strong>正序枚举</strong> → 重复选点WA</li>
+<li>换根DP <strong>两次DFS顺序不能反</strong></li>
+<li>初始值没清零/没赋值</li>
+</ol>
+<h2 id="七-最简模板和你代码风格一致"><a class="markdownIt-Anchor" href="#七-最简模板和你代码风格一致"></a> 七、最简模板（和你代码风格一致）</h2>
+<h3 id="基础树dp模板"><a class="markdownIt-Anchor" href="#基础树dp模板"></a> 基础树DP模板</h3>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N=<span class="number">6005</span>;</span><br><span class="line">vector&lt;<span class="type">int</span>&gt;g[N];</span><br><span class="line"><span class="type">int</span> dp[N][<span class="number">2</span>],h[N];</span><br><span class="line"><span class="type">int</span> n;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">dfs</span><span class="params">(<span class="type">int</span> u,<span class="type">int</span> fa)</span></span>&#123;</span><br><span class="line">    dp[u][<span class="number">1</span>]=h[u];</span><br><span class="line">    dp[u][<span class="number">0</span>]=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> v:g[u])&#123;</span><br><span class="line">        <span class="keyword">if</span>(v==fa)<span class="keyword">continue</span>;</span><br><span class="line">        <span class="built_in">dfs</span>(v,u);</span><br><span class="line">        dp[u][<span class="number">1</span>]+=dp[v][<span class="number">0</span>];</span><br><span class="line">        dp[u][<span class="number">0</span>]+=<span class="built_in">max</span>(dp[v][<span class="number">0</span>],dp[v][<span class="number">1</span>]);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    cin&gt;&gt;n;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++)cin&gt;&gt;h[i];</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;n;i++)&#123;</span><br><span class="line">        <span class="type">int</span> a,b;cin&gt;&gt;a&gt;&gt;b;</span><br><span class="line">        g[a].<span class="built_in">push_back</span>(b);</span><br><span class="line">        g[b].<span class="built_in">push_back</span>(a);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">dfs</span>(<span class="number">1</span>,<span class="number">-1</span>);</span><br><span class="line">    cout&lt;&lt;<span class="built_in">max</span>(dp[<span class="number">1</span>][<span class="number">0</span>],dp[<span class="number">1</span>][<span class="number">1</span>]);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/knowledge/" rel="tag"># knowledge</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/posts/926e3fdc/" rel="prev" title="【信息】题解-洛谷P3379（LCA）">
+                  <i class="fa fa-angle-left"></i> 【信息】题解-洛谷P3379（LCA）
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/posts/680537e8/" rel="next" title="【信息】题解-洛谷P1352（没有上司的舞会）">
+                  【信息】题解-洛谷P1352（没有上司的舞会） <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+  
+  <div><center>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+  <div class="social-share" data-sites="weibo, qq, qzone,wechat"></div>
+  <script src="http://apps.bdimg.com/libs/jquery/1.8.2/jquery.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
+  </center></div>  
+</article>
+
+
+
+
+
+
+    <div class="comments"><div id="twikoo-comments"></div></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">hkb</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+      <span>站点总字数：</span>
+    <span title="站点总字数">12k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span>站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">40 分钟</span>
+  </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+<script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
+
+<script>
+var options = {
+  bottom: '64px',
+  right: '32px',
+  left: '32px',
+  time: '0.5s',
+  mixColor: 'transparent',
+  backgroundColor: 'transparent',
+  buttonColorDark: '#100f2c',
+  buttonColorLight: '#fff',
+  saveInCookies: true,
+  label: '🌓',
+  autoMatchOsTheme: true
+}
+const darkmode = new Darkmode(options);
+window.darkmode = darkmode;
+darkmode.showWidget();
+</script>
+<script class="next-config" data-name="twikoo" type="application/json">{"enable":true,"visitor":true,"envId":"hkb150429.github.io","el":"#twikoo-comments"}</script>
+<script>
+document.addEventListener('page:loaded', () => {
+  NexT.utils.loadComments(CONFIG.twikoo.el)
+    .then(() => NexT.utils.getScript(
+      CONFIG.twikoo.jsUrl || 'https://cdn.jsdelivr.net/npm/twikoo/dist/twikoo.all.min.js',
+      { condition: window.twikoo }
+    ))
+    .then(() => {
+      twikoo.init(CONFIG.twikoo);
+    });
+});
+</script>
+<style>
+.post-block, .comments {
+  overflow: visible;
+}
+.tk-owo-emotion {
+  display: inline-block;
+}
+</style>
+
+  
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" integrity="sha256-UF1fgpAiu3tPJN/uCqEUHNe7pnr+QR0SQDNfgglgtcM=" crossorigin="anonymous">
+
+
+  
+<script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
+
+<script>
+var options = {
+  bottom: '64px',
+  right: '32px',
+  left: '32px',
+  time: '0.5s',
+  mixColor: 'transparent',
+  backgroundColor: 'transparent',
+  buttonColorDark: '#100f2c',
+  buttonColorLight: '#fff',
+  saveInCookies: true,
+  label: '🌓',
+  autoMatchOsTheme: true
+}
+const darkmode = new Darkmode(options);
+window.darkmode = darkmode;
+darkmode.showWidget();
+</script>
+<script class="next-config" data-name="twikoo" type="application/json">{"enable":true,"visitor":true,"envId":"hkb150429.github.io","el":"#twikoo-comments"}</script>
+<script>
+document.addEventListener('page:loaded', () => {
+  NexT.utils.loadComments(CONFIG.twikoo.el)
+    .then(() => NexT.utils.getScript(
+      CONFIG.twikoo.jsUrl || 'https://cdn.jsdelivr.net/npm/twikoo/dist/twikoo.all.min.js',
+      { condition: window.twikoo }
+    ))
+    .then(() => {
+      twikoo.init(CONFIG.twikoo);
+    });
+});
+</script>
+<style>
+.post-block, .comments {
+  overflow: visible;
+}
+.tk-owo-emotion {
+  display: inline-block;
+}
+</style>
+
+  
+
+  <script async src="/js/cursor/fireworks.js"></script>
+
+
+</body>
+</html>

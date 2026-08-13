@@ -174,7 +174,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">30</span>
+          <span class="site-state-item-count">35</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -342,6 +342,738 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://hkb150429.github.io/posts/c9fe8bbf/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="hkb">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="HKB Blog">
+      <meta itemprop="description" content="HKB的博客">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | HKB Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/posts/c9fe8bbf/" class="post-title-link" itemprop="url">【信息】题解-洛谷P3478（STA-Station）</a>
+        </h2>
+
+        <div class="post-meta-container">
+
+
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2026-08-13 23:35:15 / 修改时间：23:38:56" itemprop="dateCreated datePublished" datetime="2026-08-13T23:35:15+08:00">2026-08-13</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/information-technology/" itemprop="url" rel="index"><span itemprop="name">information-technology</span></a>
+        </span>
+    </span>
+
+  
+    <span id="/posts/c9fe8bbf/" class="post-meta-item twikoo_visitors" data-flag-title="【信息】题解-洛谷P3478（STA-Station）" title="阅读次数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="twikoo_visitors"></span>
+    </span>
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>217</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>1 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="题意"><a class="markdownIt-Anchor" href="#题意"></a> 题意</h3>
+<p>求出一个结点，使得以这个结点为根时，所有结点的深度之和最大</p>
+<h3 id="思路"><a class="markdownIt-Anchor" href="#思路"></a> 思路</h3>
+<p>换根 DP 模版</p>
+<h3 id="ac-code"><a class="markdownIt-Anchor" href="#ac-code"></a> AC CODE</h3>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N=<span class="number">1e6</span><span class="number">+10</span>;</span><br><span class="line"></span><br><span class="line">vector&lt;<span class="type">int</span>&gt; g[N];</span><br><span class="line"><span class="type">long</span> <span class="type">long</span> dp[N],f[N];</span><br><span class="line"><span class="type">int</span> sz[N];</span><br><span class="line"><span class="type">int</span> n;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">int</span> <span class="title">read</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="type">int</span> x=<span class="number">0</span>,f=<span class="number">1</span>;<span class="type">char</span> ch=<span class="built_in">getchar</span>();</span><br><span class="line">    <span class="keyword">while</span>(!<span class="built_in">isdigit</span>(ch))&#123;<span class="keyword">if</span>(ch==<span class="string">&#x27;-&#x27;</span>)f=<span class="number">-1</span>;ch=<span class="built_in">getchar</span>();&#125;</span><br><span class="line">    <span class="keyword">while</span>(<span class="built_in">isdigit</span>(ch))&#123;x=x*<span class="number">10</span>+ch-<span class="string">&#x27;0&#x27;</span>;ch=<span class="built_in">getchar</span>();&#125;</span><br><span class="line">    <span class="keyword">return</span> x*f;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">dfs1</span><span class="params">(<span class="type">int</span> u,<span class="type">int</span> fa)</span></span>&#123;</span><br><span class="line">    sz[u]=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> v:g[u])&#123;</span><br><span class="line">        <span class="keyword">if</span>(v==fa) <span class="keyword">continue</span>;</span><br><span class="line">        <span class="built_in">dfs1</span>(v,u);</span><br><span class="line">        sz[u]+=sz[v];</span><br><span class="line">        dp[u]+=dp[v]+sz[v];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">dfs2</span><span class="params">(<span class="type">int</span> u,<span class="type">int</span> fa)</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> v:g[u])&#123;</span><br><span class="line">        <span class="keyword">if</span>(v==fa) <span class="keyword">continue</span>;</span><br><span class="line">        f[v]=f[u]-sz[v]+(n-sz[v]);</span><br><span class="line">        <span class="built_in">dfs2</span>(v,u);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    n=<span class="built_in">read</span>();</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n<span class="number">-1</span>;i++)&#123;</span><br><span class="line">        <span class="type">int</span> u=<span class="built_in">read</span>(),v=<span class="built_in">read</span>();</span><br><span class="line">        g[u].<span class="built_in">push_back</span>(v);</span><br><span class="line">        g[v].<span class="built_in">push_back</span>(u);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">dfs1</span>(<span class="number">1</span>,<span class="number">-1</span>);</span><br><span class="line">    f[<span class="number">1</span>]=dp[<span class="number">1</span>];</span><br><span class="line">    <span class="built_in">dfs2</span>(<span class="number">1</span>,<span class="number">-1</span>);</span><br><span class="line"></span><br><span class="line">    <span class="type">long</span> <span class="type">long</span> maxval=<span class="number">-1</span>;</span><br><span class="line">    <span class="type">int</span> ans=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(f[i]&gt;maxval)&#123;</span><br><span class="line">            maxval=f[i];</span><br><span class="line">            ans=i;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    cout&lt;&lt;ans;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+    
+</article>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://hkb150429.github.io/posts/0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="hkb">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="HKB Blog">
+      <meta itemprop="description" content="HKB的博客">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | HKB Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/posts/0/" class="post-title-link" itemprop="url">未命名</a>
+        </h2>
+
+        <div class="post-meta-container">
+
+
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2026-08-13 23:22:54 / 修改时间：23:34:30" itemprop="dateCreated datePublished" datetime="2026-08-13T23:22:54+08:00">2026-08-13</time>
+    </span>
+
+  
+    <span id="/posts/0/" class="post-meta-item twikoo_visitors" data-flag-title="" title="阅读次数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="twikoo_visitors"></span>
+    </span>
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>1k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>3 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <blockquote>
+<p>例题：P3478 STA‑Statistics，求每个点到所有点距离和</p>
+</blockquote>
+<h2 id="1什么是换根dp"><a class="markdownIt-Anchor" href="#1什么是换根dp"></a> 1.什么是换根DP</h2>
+<p>普通树形DP：只算<strong>以1为根</strong>的答案。<br />
+换根DP：求树上<strong>每一个点当作根</strong>的答案。</p>
+<p>暴力：每个点跑一遍dfs，O(n²)，n=1e5直接超时。</p>
+<p>换根DP思路：</p>
+<ol>
+<li>dfs1：任选一个根（一般取1），算出子树信息。</li>
+<li>dfs2：把根从父节点u挪到子节点v，利用u的全局答案直接算出v的全局答案，不用重遍历。<br />
+总复杂度 O(n)。</li>
+</ol>
+<blockquote>
+<p>核心：找到「根从u换到v」时答案的变化量。</p>
+</blockquote>
+<h2 id="2例题求每个点到全部点的距离总和"><a class="markdownIt-Anchor" href="#2例题求每个点到全部点的距离总和"></a> 2.例题：求每个点到全部点的距离总和</h2>
+<p>定义：</p>
+<ul>
+<li>sz[u]：以u为根的子树节点数量</li>
+<li>dp[u]：以u为根时，u子树内部所有点到u的距离总和（只看子树）</li>
+<li>f[u]：整棵树以u为根，全树所有点到u的距离总和（题目要求输出的答案）</li>
+</ul>
+<h3 id="dfs11-1-后序求子树信息"><a class="markdownIt-Anchor" href="#dfs11-1-后序求子树信息"></a> dfs1(1,-1) 后序求子树信息</h3>
+<p>对于子节点v：</p>
+<ol>
+<li>sz[u] += sz[v]</li>
+<li>u到v子树所有点的距离 = v到那些点距离 + 1；一共sz[v]个点，所以 dp[u] += dp[v] + sz[v]</li>
+</ol>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">dfs1</span><span class="params">(<span class="type">int</span> u,<span class="type">int</span> fa)</span></span>&#123;</span><br><span class="line">    sz[u]=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> v:g[u])&#123;</span><br><span class="line">        <span class="keyword">if</span>(v==fa) <span class="keyword">continue</span>;</span><br><span class="line">        <span class="built_in">dfs1</span>(v,u);</span><br><span class="line">        sz[u] += sz[v];</span><br><span class="line">        dp[u] += dp[v] + sz[v];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>跑完dfs1，f[1] = dp[1]，1号点作为全局根的答案。</p>
+<h3 id="dfs2换根推导最重要"><a class="markdownIt-Anchor" href="#dfs2换根推导最重要"></a> dfs2：换根推导（最重要）</h3>
+<p>把根从u移动到儿子v，只改变u‑v这条边：</p>
+<ol>
+<li>v的子树一共有 sz[v] 个点：这些点距离根全部减1，总距离减少 sz[v]。</li>
+<li>剩下外面 n‑sz[v] 个点：这些点距离根全部加1，总距离增加 (n‑sz[v])。</li>
+</ol>
+<p>转移等式（单行，无换行）：<br />
+<code>f[v] = f[u] - sz[v] + (n - sz[v])</code></p>
+<blockquote>
+<p>注意：先算出f[v]，再递归v的子节点。顺序不能颠倒。</p>
+</blockquote>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">dfs2</span><span class="params">(<span class="type">int</span> u,<span class="type">int</span> fa)</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> v:g[u])&#123;</span><br><span class="line">        <span class="keyword">if</span>(v==fa) <span class="keyword">continue</span>;</span><br><span class="line">        f[v] = f[u] - sz[v] + (n - sz[v]);</span><br><span class="line">        <span class="built_in">dfs2</span>(v,u);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>完整AC代码</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N=<span class="number">100005</span>;</span><br><span class="line">vector&lt;<span class="type">int</span>&gt;g[N];</span><br><span class="line"><span class="type">long</span> <span class="type">long</span> dp[N],f[N];</span><br><span class="line"><span class="type">int</span> sz[N];</span><br><span class="line"><span class="type">int</span> n;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">dfs1</span><span class="params">(<span class="type">int</span> u,<span class="type">int</span> fa)</span></span>&#123;</span><br><span class="line">    sz[u]=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> v:g[u])&#123;</span><br><span class="line">        <span class="keyword">if</span>(v==fa)<span class="keyword">continue</span>;</span><br><span class="line">        <span class="built_in">dfs1</span>(v,u);</span><br><span class="line">        sz[u]+=sz[v];</span><br><span class="line">        dp[u]+=dp[v]+sz[v];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">dfs2</span><span class="params">(<span class="type">int</span> u,<span class="type">int</span> fa)</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> v:g[u])&#123;</span><br><span class="line">        <span class="keyword">if</span>(v==fa)<span class="keyword">continue</span>;</span><br><span class="line">        f[v]=f[u]-sz[v]+(n-sz[v]);</span><br><span class="line">        <span class="built_in">dfs2</span>(v,u);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    cin&gt;&gt;n;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;n;i++)&#123;</span><br><span class="line">        <span class="type">int</span> a,b;cin&gt;&gt;a&gt;&gt;b;</span><br><span class="line">        g[a].<span class="built_in">push_back</span>(b);</span><br><span class="line">        g[b].<span class="built_in">push_back</span>(a);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">dfs1</span>(<span class="number">1</span>,<span class="number">-1</span>);</span><br><span class="line">    f[<span class="number">1</span>]=dp[<span class="number">1</span>];</span><br><span class="line">    <span class="built_in">dfs2</span>(<span class="number">1</span>,<span class="number">-1</span>);</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++) cout&lt;&lt;f[i]&lt;&lt;<span class="string">&quot; &quot;</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="3换根dp通用做题步骤"><a class="markdownIt-Anchor" href="#3换根dp通用做题步骤"></a> 3.换根DP通用做题步骤</h2>
+<ol>
+<li>选定初始根，一般选1。</li>
+<li>dfs1(u,fa)：后序遍历，求子树信息 sz、dp。只处理u的子树，不处理u上方部分。</li>
+<li>给初始根赋值：<code>f[root]=dp[root]</code>。</li>
+<li>dfs2(u,fa)：从上到下，父推子，算出f[v]。</li>
+</ol>
+<blockquote>
+<p>⚠️顺序：<strong>先算f[v]，再递归dfs2(v)</strong>。</p>
+</blockquote>
+<ol start="5">
+<li>输出f数组。</li>
+</ol>
+<blockquote>
+<p>dfs1：子 → 父（后序）<br />
+dfs2：父 → 子（先序）</p>
+</blockquote>
+<h2 id="4怎么推导换根公式思考模板"><a class="markdownIt-Anchor" href="#4怎么推导换根公式思考模板"></a> 4.怎么推导换根公式（思考模板）</h2>
+<ol>
+<li>u是父，v是儿子，画图；</li>
+<li>根从u移到v，只有u‑v这条边反转；</li>
+<li>树切两块：
+<ul>
+<li>A块：v的子树，点数 sz[v]</li>
+<li>B块：其余所有点，点数 n‑sz[v]</li>
+</ul>
+</li>
+<li>判断A块、B块总答案分别加多少、减多少，合并得到f[v]。</li>
+</ol>
+<blockquote>
+<p>提醒：<code>f[v]=f[u]-sz[v]+(n‑sz[v])</code>只是距离和专用，别的题目要重新推。</p>
+</blockquote>
+<h2 id="5易错点"><a class="markdownIt-Anchor" href="#5易错点"></a> 5.易错点</h2>
+<ol>
+<li>漏写fa判断，dfs死循环爆栈。</li>
+<li>dfs2递归顺序错：先递归子节点再算f[v]，结果全错。</li>
+<li>答案很大，必须用long long，int会溢出。</li>
+<li>分清两个数组：
+<ul>
+<li>dp[u]：仅u子树内部答案，dfs1求出</li>
+<li>f[u]：整棵树以u为根的全局答案，dfs2求出</li>
+</ul>
+</li>
+<li>忘记写 <code>f[1]=dp[1]</code>。</li>
+</ol>
+<h2 id="6什么时候想到换根dp"><a class="markdownIt-Anchor" href="#6什么时候想到换根dp"></a> 6.什么时候想到换根DP</h2>
+<p>题目要求：<strong>树上每一个点作为根，求某个代价/权值/距离，输出全部点的结果</strong>。</p>
+<blockquote>
+<p>只求一个点答案，普通树形DP就够，不用换根。</p>
+</blockquote>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+    
+</article>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://hkb150429.github.io/posts/506a553/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="hkb">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="HKB Blog">
+      <meta itemprop="description" content="HKB的博客">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | HKB Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/posts/506a553/" class="post-title-link" itemprop="url">【信息】题解-洛谷P2014（选课）</a>
+        </h2>
+
+        <div class="post-meta-container">
+
+
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2026-08-13 23:17:40 / 修改时间：23:27:20" itemprop="dateCreated datePublished" datetime="2026-08-13T23:17:40+08:00">2026-08-13</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/information-technology/" itemprop="url" rel="index"><span itemprop="name">information-technology</span></a>
+        </span>
+    </span>
+
+  
+    <span id="/posts/506a553/" class="post-meta-item twikoo_visitors" data-flag-title="【信息】题解-洛谷P2014（选课）" title="阅读次数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="twikoo_visitors"></span>
+    </span>
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>183</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>1 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="题目大意"><a class="markdownIt-Anchor" href="#题目大意"></a> 题目大意</h3>
+<p>课程之间存在先修关系，构成森林。要选 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi></mrow><annotation encoding="application/x-tex">M</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.10903em;">M</span></span></span></span> 门课，选一门课必须选它的直接先修课。求最大总学分。</p>
+<h3 id="思路"><a class="markdownIt-Anchor" href="#思路"></a> 思路</h3>
+<p>树形DP即可</p>
+<h3 id="ac-code"><a class="markdownIt-Anchor" href="#ac-code"></a> AC CODE</h3>
+<pre class="highlight"><code class="cpp"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span>
+<span class="keyword">using</span> <span class="keyword">namespace</span> std;
+
+<span class="type">const</span> <span class="type">int</span> N=<span class="number">305</span>;
+vector&lt;<span class="type">int</span>&gt; g[N];
+<span class="type">int</span> dp[N][N];
+<span class="type">int</span> sz[N];
+<span class="type">int</span> val[N];
+<span class="type">int</span> n,m;
+
+<span class="function"><span class="type">void</span> <span class="title">dfs</span><span class="params">(<span class="type">int</span> u,<span class="type">int</span> fa)</span></span>&#123;
+    sz[u]=<span class="number">1</span>;
+    dp[u][<span class="number">1</span>]=val[u]; <span class="comment">//必须选自己</span>
+    <span class="keyword">for</span>(<span class="type">int</span> v:g[u])&#123;
+        <span class="keyword">if</span>(v==fa) <span class="keyword">continue</span>;
+        <span class="built_in">dfs</span>(v,u);
+        <span class="comment">//树上背包倒序</span>
+        <span class="keyword">for</span>(<span class="type">int</span> j=sz[u];j&gt;=<span class="number">1</span>;j--)&#123;
+            <span class="keyword">for</span>(<span class="type">int</span> t=<span class="number">1</span>;t&lt;=sz[v];t++)&#123;
+                dp[u][j+t]=<span class="built_in">max</span>(dp[u][j+t],dp[u][j]+dp[v][t]);
+            &#125;
+        &#125;
+        sz[u]+=sz[v];
+    &#125;
+&#125;
+
+<span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;
+    cin&gt;&gt;n&gt;&gt;m;
+    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;
+        <span class="type">int</span> k;
+        cin&gt;&gt;k&gt;&gt;val[i];
+        g[k].<span class="built_in">push_back</span>(i);
+    &#125;
+    <span class="built_in">dfs</span>(<span class="number">0</span>,<span class="number">-1</span>);
+    cout&lt;&lt;dp[<span class="number">0</span>][m];
+    <span class="keyword">return</span> <span class="number">0</span>;
+&#125;
+``
+
+</code></pre>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+    
+</article>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://hkb150429.github.io/posts/680537e8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="hkb">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="HKB Blog">
+      <meta itemprop="description" content="HKB的博客">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | HKB Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/posts/680537e8/" class="post-title-link" itemprop="url">【信息】题解-洛谷P1352（没有上司的舞会）</a>
+        </h2>
+
+        <div class="post-meta-container">
+
+
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2026-08-13 23:10:18 / 修改时间：23:27:20" itemprop="dateCreated datePublished" datetime="2026-08-13T23:10:18+08:00">2026-08-13</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/information-technology/" itemprop="url" rel="index"><span itemprop="name">information-technology</span></a>
+        </span>
+    </span>
+
+  
+    <span id="/posts/680537e8/" class="post-meta-item twikoo_visitors" data-flag-title="【信息】题解-洛谷P1352（没有上司的舞会）" title="阅读次数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="twikoo_visitors"></span>
+    </span>
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>178</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>1 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="题目大意"><a class="markdownIt-Anchor" href="#题目大意"></a> 题目大意</h3>
+<p>一棵公司树，每个点有快乐值。不能同时选一对直接上下级。求最大快乐总和</p>
+<h3 id="思路"><a class="markdownIt-Anchor" href="#思路"></a> 思路</h3>
+<p><code>dp[u][1]</code>：选 <code>u</code>，<code>u</code> 子树最大快乐<br />
+<code>dp[u][0]</code>：不选 <code>u</code>，<code>u</code> 子树最大快乐</p>
+<h3 id="ac-code"><a class="markdownIt-Anchor" href="#ac-code"></a> AC CODE</h3>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N=<span class="number">6005</span>;</span><br><span class="line">vector&lt;<span class="type">int</span>&gt;g[N];</span><br><span class="line"><span class="type">int</span> dp[N][<span class="number">2</span>],h[N];</span><br><span class="line"><span class="type">int</span> n;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">dfs</span><span class="params">(<span class="type">int</span> u,<span class="type">int</span> fa)</span></span>&#123;</span><br><span class="line">    dp[u][<span class="number">1</span>]=h[u];</span><br><span class="line">    dp[u][<span class="number">0</span>]=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> v:g[u])&#123;</span><br><span class="line">        <span class="keyword">if</span>(v==fa)<span class="keyword">continue</span>;</span><br><span class="line">        <span class="built_in">dfs</span>(v,u);</span><br><span class="line">        dp[u][<span class="number">1</span>]+=dp[v][<span class="number">0</span>];</span><br><span class="line">        dp[u][<span class="number">0</span>]+=<span class="built_in">max</span>(dp[v][<span class="number">0</span>],dp[v][<span class="number">1</span>]);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    cin&gt;&gt;n;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++) cin&gt;&gt;h[i];</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;n;i++)&#123;</span><br><span class="line">        <span class="type">int</span> a,b;cin&gt;&gt;a&gt;&gt;b;</span><br><span class="line">        g[a].<span class="built_in">push_back</span>(b);</span><br><span class="line">        g[b].<span class="built_in">push_back</span>(a);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">dfs</span>(<span class="number">1</span>,<span class="number">-1</span>);</span><br><span class="line">    cout&lt;&lt;<span class="built_in">max</span>(dp[<span class="number">1</span>][<span class="number">0</span>],dp[<span class="number">1</span>][<span class="number">1</span>]);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+    
+</article>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://hkb150429.github.io/posts/77885892/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="hkb">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="HKB Blog">
+      <meta itemprop="description" content="HKB的博客">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | HKB Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/posts/77885892/" class="post-title-link" itemprop="url">【信息】知识点-树形DP</a>
+        </h2>
+
+        <div class="post-meta-container">
+
+
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2026-08-13 23:01:12 / 修改时间：23:27:20" itemprop="dateCreated datePublished" datetime="2026-08-13T23:01:12+08:00">2026-08-13</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/information-technology/" itemprop="url" rel="index"><span itemprop="name">information-technology</span></a>
+        </span>
+    </span>
+
+  
+    <span id="/posts/77885892/" class="post-meta-item twikoo_visitors" data-flag-title="【信息】知识点-树形DP" title="阅读次数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="twikoo_visitors"></span>
+    </span>
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>589</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>2 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="树形dp-核心知识点"><a class="markdownIt-Anchor" href="#树形dp-核心知识点"></a> 树形DP 核心知识点</h1>
+<h2 id="一-本质"><a class="markdownIt-Anchor" href="#一-本质"></a> 一、本质</h2>
+<p>树形DP = <strong>DFS后序遍历DP</strong></p>
+<ol>
+<li>先递归算所有子树</li>
+<li>再用子树答案更新当前节点</li>
+<li>必须记录父节点，防止回溯</li>
+</ol>
+<h2 id="二-通用状态定义"><a class="markdownIt-Anchor" href="#二-通用状态定义"></a> 二、通用状态定义</h2>
+<ul>
+<li><code>dp[u][0]</code>：不选当前节点 <code>u</code> 的子树最优解</li>
+<li><code>dp[u][1]</code>：选当前节点 <code>u</code> 的子树最优解</li>
+</ul>
+<h2 id="三-最核心转移80-基础树dp通用"><a class="markdownIt-Anchor" href="#三-最核心转移80-基础树dp通用"></a> 三、最核心转移（80% 基础树DP通用）</h2>
+<p>适用于：没有上司的舞会、最大独立集等</p>
+<ol>
+<li>
+<p><strong>选 u</strong> → 所有子节点不能选<br />
+<code>dp[u][1] += dp[v][0]</code></p>
+</li>
+<li>
+<p><strong>不选 u</strong> → 子节点可选/可不选，取最大值<br />
+<code>dp[u][0] += max(dp[v][0], dp[v][1])</code></p>
+</li>
+</ol>
+<h2 id="四-三大树形dp题型"><a class="markdownIt-Anchor" href="#四-三大树形dp题型"></a> 四、三大树形DP题型</h2>
+<h3 id="1-基础树形dp二元状态"><a class="markdownIt-Anchor" href="#1-基础树形dp二元状态"></a> 1. 基础树形DP（二元状态）</h3>
+<p><strong>适用场景</strong>：每个点选或不选，存在父子限制<br />
+<strong>遍历方式</strong>：一次DFS<br />
+<strong>答案</strong>：<code>max(dp[root][0], dp[root][1])</code></p>
+<h3 id="2-树上背包树形分组背包"><a class="markdownIt-Anchor" href="#2-树上背包树形分组背包"></a> 2. 树上背包（树形分组背包）</h3>
+<p><strong>适用场景</strong>：子树选若干个点、有数量/权值限制<br />
+<strong>关键点</strong></p>
+<ul>
+<li>必须<strong>倒序枚举容量</strong>（同01背包）</li>
+<li>复杂度：<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>n</mi><msup><mi>k</mi><mn>2</mn></msup><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(nk^2)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.064108em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathnormal">n</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03148em;">k</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span></li>
+<li><code>sz[u]</code> 记录子树大小，优化循环边界</li>
+</ul>
+<h3 id="3-换根dp二次dfs"><a class="markdownIt-Anchor" href="#3-换根dp二次dfs"></a> 3. 换根DP（二次DFS）</h3>
+<p><strong>适用场景</strong>：求<strong>每个点作为根</strong>的答案<br />
+<strong>流程</strong></p>
+<ol>
+<li><code>dfs1</code>：以1为根，求所有子树信息</li>
+<li><code>dfs2</code>：从上往下推，把根从父节点换到子节点<br />
+<strong>核心</strong>：利用父树信息 + 子树信息快速推导，不用每次重跑DP</li>
+</ol>
+<h2 id="五-刷题固定套路"><a class="markdownIt-Anchor" href="#五-刷题固定套路"></a> 五、刷题固定套路</h2>
+<ol>
+<li>邻接表存树</li>
+<li>全局开dp数组（和你代码风格一致）</li>
+<li>DFS(u,fa)</li>
+<li>先递归所有子节点</li>
+<li>再状态转移</li>
+</ol>
+<h2 id="六-易错点必考坑"><a class="markdownIt-Anchor" href="#六-易错点必考坑"></a> 六、易错点（必考坑）</h2>
+<ol>
+<li><strong>忘记写 fa 判断</strong> → 死循环</li>
+<li>树上背包 <strong>正序枚举</strong> → 重复选点WA</li>
+<li>换根DP <strong>两次DFS顺序不能反</strong></li>
+<li>初始值没清零/没赋值</li>
+</ol>
+<h2 id="七-最简模板和你代码风格一致"><a class="markdownIt-Anchor" href="#七-最简模板和你代码风格一致"></a> 七、最简模板（和你代码风格一致）</h2>
+<h3 id="基础树dp模板"><a class="markdownIt-Anchor" href="#基础树dp模板"></a> 基础树DP模板</h3>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N=<span class="number">6005</span>;</span><br><span class="line">vector&lt;<span class="type">int</span>&gt;g[N];</span><br><span class="line"><span class="type">int</span> dp[N][<span class="number">2</span>],h[N];</span><br><span class="line"><span class="type">int</span> n;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">dfs</span><span class="params">(<span class="type">int</span> u,<span class="type">int</span> fa)</span></span>&#123;</span><br><span class="line">    dp[u][<span class="number">1</span>]=h[u];</span><br><span class="line">    dp[u][<span class="number">0</span>]=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> v:g[u])&#123;</span><br><span class="line">        <span class="keyword">if</span>(v==fa)<span class="keyword">continue</span>;</span><br><span class="line">        <span class="built_in">dfs</span>(v,u);</span><br><span class="line">        dp[u][<span class="number">1</span>]+=dp[v][<span class="number">0</span>];</span><br><span class="line">        dp[u][<span class="number">0</span>]+=<span class="built_in">max</span>(dp[v][<span class="number">0</span>],dp[v][<span class="number">1</span>]);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    cin&gt;&gt;n;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++)cin&gt;&gt;h[i];</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;n;i++)&#123;</span><br><span class="line">        <span class="type">int</span> a,b;cin&gt;&gt;a&gt;&gt;b;</span><br><span class="line">        g[a].<span class="built_in">push_back</span>(b);</span><br><span class="line">        g[b].<span class="built_in">push_back</span>(a);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">dfs</span>(<span class="number">1</span>,<span class="number">-1</span>);</span><br><span class="line">    cout&lt;&lt;<span class="built_in">max</span>(dp[<span class="number">1</span>][<span class="number">0</span>],dp[<span class="number">1</span>][<span class="number">1</span>]);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+    
+</article>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="https://hkb150429.github.io/posts/926e3fdc/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -372,8 +1104,18 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
+      
 
-      <time title="创建时间：2026-08-13 08:20:44" itemprop="dateCreated datePublished" datetime="2026-08-13T08:20:44+08:00">2026-08-13</time>
+      <time title="创建时间：2026-08-13 08:20:44 / 修改时间：19:30:43" itemprop="dateCreated datePublished" datetime="2026-08-13T08:20:44+08:00">2026-08-13</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/information-technology/" itemprop="url" rel="index"><span itemprop="name">information-technology</span></a>
+        </span>
     </span>
 
   
@@ -391,7 +1133,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>0</span>
+      <span>211</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -409,7 +1151,12 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          
+          <h3 id="题目大意"><a class="markdownIt-Anchor" href="#题目大意"></a> 题目大意</h3>
+<p>求两个叶的最近公共根</p>
+<h3 id="思路"><a class="markdownIt-Anchor" href="#思路"></a> 思路</h3>
+<p><code>LCA</code> 模版</p>
+<h3 id="ac-code"><a class="markdownIt-Anchor" href="#ac-code"></a> AC CODE</h3>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N=<span class="number">500005</span>,LOG=<span class="number">20</span>;</span><br><span class="line">vector&lt;<span class="type">int</span>&gt; g[N];</span><br><span class="line"><span class="type">int</span> fa[N][LOG],dep[N];</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">dfs</span><span class="params">(<span class="type">int</span> u,<span class="type">int</span> f)</span></span>&#123;</span><br><span class="line">	fa[u][<span class="number">0</span>]=f;dep[u]=dep[f]<span class="number">+1</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> k=<span class="number">1</span>;k&lt;LOG;k++) fa[u][k]=fa[fa[u][k<span class="number">-1</span>]][k<span class="number">-1</span>];</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> v:g[u]) <span class="keyword">if</span>(v!=f) <span class="built_in">dfs</span>(v,u);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">lca</span><span class="params">(<span class="type">int</span> u,<span class="type">int</span> v)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(dep[u]&lt;dep[v]) <span class="built_in">swap</span>(u,v);</span><br><span class="line">	<span class="type">int</span> d=dep[u]-dep[v];</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> k=<span class="number">0</span>;k&lt;LOG;k++) <span class="keyword">if</span>(d&gt;&gt;k&amp;<span class="number">1</span>) u=fa[u][k];</span><br><span class="line">	<span class="keyword">if</span>(u==v) <span class="keyword">return</span> u;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> k=LOG<span class="number">-1</span>;k&gt;=<span class="number">0</span>;k--)</span><br><span class="line">		<span class="keyword">if</span>(fa[u][k]!=fa[v][k]) u=fa[u][k],v=fa[v][k];</span><br><span class="line">	<span class="keyword">return</span> fa[u][<span class="number">0</span>];</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="type">int</span> n,m,s;<span class="built_in">scanf</span>(<span class="string">&quot;%d%d%d&quot;</span>,&amp;n,&amp;m,&amp;s);</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;n;i++)&#123;</span><br><span class="line">		<span class="type">int</span> x,y;<span class="built_in">scanf</span>(<span class="string">&quot;%d%d&quot;</span>,&amp;x,&amp;y);</span><br><span class="line">		g[x].<span class="built_in">push_back</span>(y);g[y].<span class="built_in">push_back</span>(x);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">dfs</span>(s,<span class="number">0</span>);</span><br><span class="line">	<span class="keyword">while</span>(m--)&#123;</span><br><span class="line">		<span class="type">int</span> a,b;<span class="built_in">scanf</span>(<span class="string">&quot;%d%d&quot;</span>,&amp;a,&amp;b);</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>,<span class="built_in">lca</span>(a,b));</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
     </div>
 
@@ -467,8 +1214,18 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
+      
 
-      <time title="创建时间：2026-08-13 08:19:11" itemprop="dateCreated datePublished" datetime="2026-08-13T08:19:11+08:00">2026-08-13</time>
+      <time title="创建时间：2026-08-13 08:19:11 / 修改时间：22:30:48" itemprop="dateCreated datePublished" datetime="2026-08-13T08:19:11+08:00">2026-08-13</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/information-technology/" itemprop="url" rel="index"><span itemprop="name">information-technology</span></a>
+        </span>
     </span>
 
   
@@ -486,14 +1243,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>0</span>
+      <span>747</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>1 分钟</span>
+      <span>2 分钟</span>
     </span>
 </div>
 
@@ -504,7 +1261,18 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          
+          <h3 id="题目大意"><a class="markdownIt-Anchor" href="#题目大意"></a> 题目大意</h3>
+<p>需要处理的问题：</p>
+<ul>
+<li>将树从x到y结点最短路径上所有节点的值都加上z</li>
+<li>求树从x到y结点最短路径上所有节点的值之和</li>
+<li>将以x为根节点的子树内所有节点值都加上z</li>
+<li>求以x为根节点的子树内所有节点值之和</li>
+</ul>
+<h3 id="思路"><a class="markdownIt-Anchor" href="#思路"></a> 思路</h3>
+<p>树链剖分模版</p>
+<h3 id="ac-code"><a class="markdownIt-Anchor" href="#ac-code"></a> AC CODE</h3>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">typedef</span> <span class="type">long</span> <span class="type">long</span> ll;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N=<span class="number">100005</span>;</span><br><span class="line"><span class="type">int</span> mod;</span><br><span class="line">vector&lt;<span class="type">int</span>&gt; g[N];</span><br><span class="line"><span class="type">int</span> a[N],val[N],siz[N],dep[N],fa[N],son[N],top[N],dfn[N],timer;</span><br><span class="line">ll sum[N&lt;&lt;<span class="number">2</span>],lazy[N&lt;&lt;<span class="number">2</span>];</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">pushup</span><span class="params">(<span class="type">int</span> p)</span></span>&#123;sum[p]=(sum[p&lt;&lt;<span class="number">1</span>]+sum[p&lt;&lt;<span class="number">1</span>|<span class="number">1</span>])%mod;&#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">pushdown</span><span class="params">(<span class="type">int</span> p,<span class="type">int</span> l,<span class="type">int</span> r)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(!lazy[p]) <span class="keyword">return</span>;</span><br><span class="line">	<span class="type">int</span> mid=(l+r)&gt;&gt;<span class="number">1</span>;</span><br><span class="line">	sum[p&lt;&lt;<span class="number">1</span>]=(sum[p&lt;&lt;<span class="number">1</span>]+lazy[p]*(mid-l<span class="number">+1</span>))%mod;</span><br><span class="line">	sum[p&lt;&lt;<span class="number">1</span>|<span class="number">1</span>]=(sum[p&lt;&lt;<span class="number">1</span>|<span class="number">1</span>]+lazy[p]*(r-mid))%mod;</span><br><span class="line">	lazy[p&lt;&lt;<span class="number">1</span>]=(lazy[p&lt;&lt;<span class="number">1</span>]+lazy[p])%mod;</span><br><span class="line">	lazy[p&lt;&lt;<span class="number">1</span>|<span class="number">1</span>]=(lazy[p&lt;&lt;<span class="number">1</span>|<span class="number">1</span>]+lazy[p])%mod;</span><br><span class="line">	lazy[p]=<span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">build</span><span class="params">(<span class="type">int</span> p,<span class="type">int</span> l,<span class="type">int</span> r)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(l==r)&#123;sum[p]=val[l]%mod;<span class="keyword">return</span>;&#125;</span><br><span class="line">	<span class="type">int</span> mid=(l+r)&gt;&gt;<span class="number">1</span>;</span><br><span class="line">	<span class="built_in">build</span>(p&lt;&lt;<span class="number">1</span>,l,mid);<span class="built_in">build</span>(p&lt;&lt;<span class="number">1</span>|<span class="number">1</span>,mid<span class="number">+1</span>,r);</span><br><span class="line">	<span class="built_in">pushup</span>(p);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">update</span><span class="params">(<span class="type">int</span> p,<span class="type">int</span> l,<span class="type">int</span> r,<span class="type">int</span> ql,<span class="type">int</span> qr,ll d)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(ql&lt;=l&amp;&amp;r&lt;=qr)&#123;sum[p]=(sum[p]+d*(r-l<span class="number">+1</span>))%mod;lazy[p]=(lazy[p]+d)%mod;<span class="keyword">return</span>;&#125;</span><br><span class="line">	<span class="built_in">pushdown</span>(p,l,r);</span><br><span class="line">	<span class="type">int</span> mid=(l+r)&gt;&gt;<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">if</span>(ql&lt;=mid) <span class="built_in">update</span>(p&lt;&lt;<span class="number">1</span>,l,mid,ql,qr,d);</span><br><span class="line">	<span class="keyword">if</span>(qr&gt;mid) <span class="built_in">update</span>(p&lt;&lt;<span class="number">1</span>|<span class="number">1</span>,mid<span class="number">+1</span>,r,ql,qr,d);</span><br><span class="line">	<span class="built_in">pushup</span>(p);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function">ll <span class="title">query</span><span class="params">(<span class="type">int</span> p,<span class="type">int</span> l,<span class="type">int</span> r,<span class="type">int</span> ql,<span class="type">int</span> qr)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(ql&lt;=l&amp;&amp;r&lt;=qr) <span class="keyword">return</span> sum[p];</span><br><span class="line">	<span class="built_in">pushdown</span>(p,l,r);</span><br><span class="line">	<span class="type">int</span> mid=(l+r)&gt;&gt;<span class="number">1</span>;ll res=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">if</span>(ql&lt;=mid) res=(res+<span class="built_in">query</span>(p&lt;&lt;<span class="number">1</span>,l,mid,ql,qr))%mod;</span><br><span class="line">	<span class="keyword">if</span>(qr&gt;mid) res=(res+<span class="built_in">query</span>(p&lt;&lt;<span class="number">1</span>|<span class="number">1</span>,mid<span class="number">+1</span>,r,ql,qr))%mod;</span><br><span class="line">	<span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">dfs1</span><span class="params">(<span class="type">int</span> u,<span class="type">int</span> f)</span></span>&#123;</span><br><span class="line">	siz[u]=<span class="number">1</span>;fa[u]=f;dep[u]=dep[f]<span class="number">+1</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> v:g[u])&#123;</span><br><span class="line">		<span class="keyword">if</span>(v==f) <span class="keyword">continue</span>;</span><br><span class="line">		<span class="built_in">dfs1</span>(v,u);siz[u]+=siz[v];</span><br><span class="line">		<span class="keyword">if</span>(siz[v]&gt;siz[son[u]]) son[u]=v;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">dfs2</span><span class="params">(<span class="type">int</span> u,<span class="type">int</span> t)</span></span>&#123;</span><br><span class="line">	top[u]=t;dfn[u]=++timer;val[timer]=a[u];</span><br><span class="line">	<span class="keyword">if</span>(son[u]) <span class="built_in">dfs2</span>(son[u],t);</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> v:g[u]) <span class="keyword">if</span>(v!=fa[u]&amp;&amp;v!=son[u]) <span class="built_in">dfs2</span>(v,v);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">path_update</span><span class="params">(<span class="type">int</span> u,<span class="type">int</span> v,ll d)</span></span>&#123;</span><br><span class="line">	<span class="keyword">while</span>(top[u]!=top[v])&#123;</span><br><span class="line">		<span class="keyword">if</span>(dep[top[u]]&lt;dep[top[v]]) <span class="built_in">swap</span>(u,v);</span><br><span class="line">		<span class="built_in">update</span>(<span class="number">1</span>,<span class="number">1</span>,timer,dfn[top[u]],dfn[u],d);</span><br><span class="line">		u=fa[top[u]];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span>(dep[u]&gt;dep[v]) <span class="built_in">swap</span>(u,v);</span><br><span class="line">	<span class="built_in">update</span>(<span class="number">1</span>,<span class="number">1</span>,timer,dfn[u],dfn[v],d);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function">ll <span class="title">path_query</span><span class="params">(<span class="type">int</span> u,<span class="type">int</span> v)</span></span>&#123;</span><br><span class="line">	ll res=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">while</span>(top[u]!=top[v])&#123;</span><br><span class="line">		<span class="keyword">if</span>(dep[top[u]]&lt;dep[top[v]]) <span class="built_in">swap</span>(u,v);</span><br><span class="line">		res=(res+<span class="built_in">query</span>(<span class="number">1</span>,<span class="number">1</span>,timer,dfn[top[u]],dfn[u]))%mod;</span><br><span class="line">		u=fa[top[u]];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span>(dep[u]&gt;dep[v]) <span class="built_in">swap</span>(u,v);</span><br><span class="line">	<span class="keyword">return</span> (res+<span class="built_in">query</span>(<span class="number">1</span>,<span class="number">1</span>,timer,dfn[u],dfn[v]))%mod;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">subtree_update</span><span class="params">(<span class="type">int</span> u,ll d)</span></span>&#123;<span class="built_in">update</span>(<span class="number">1</span>,<span class="number">1</span>,timer,dfn[u],dfn[u]+siz[u]<span class="number">-1</span>,d);&#125;</span><br><span class="line"><span class="function">ll <span class="title">subtree_query</span><span class="params">(<span class="type">int</span> u)</span></span>&#123;<span class="keyword">return</span> <span class="built_in">query</span>(<span class="number">1</span>,<span class="number">1</span>,timer,dfn[u],dfn[u]+siz[u]<span class="number">-1</span>);&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="type">int</span> n,m,rt;<span class="built_in">scanf</span>(<span class="string">&quot;%d%d%d%d&quot;</span>,&amp;n,&amp;m,&amp;rt,&amp;mod);</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++) <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;a[i]);</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;n;i++)&#123;</span><br><span class="line">		<span class="type">int</span> x,y;<span class="built_in">scanf</span>(<span class="string">&quot;%d%d&quot;</span>,&amp;x,&amp;y);</span><br><span class="line">		g[x].<span class="built_in">push_back</span>(y);g[y].<span class="built_in">push_back</span>(x);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">dfs1</span>(rt,<span class="number">0</span>);<span class="built_in">dfs2</span>(rt,rt);<span class="built_in">build</span>(<span class="number">1</span>,<span class="number">1</span>,n);</span><br><span class="line">	<span class="keyword">while</span>(m--)&#123;</span><br><span class="line">		<span class="type">int</span> op;<span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;op);</span><br><span class="line">		<span class="keyword">if</span>(op==<span class="number">1</span>)&#123;<span class="type">int</span> x,y;ll z;<span class="built_in">scanf</span>(<span class="string">&quot;%d%d%lld&quot;</span>,&amp;x,&amp;y,&amp;z);<span class="built_in">path_update</span>(x,y,z);&#125;</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span>(op==<span class="number">2</span>)&#123;<span class="type">int</span> x,y;<span class="built_in">scanf</span>(<span class="string">&quot;%d%d&quot;</span>,&amp;x,&amp;y);<span class="built_in">printf</span>(<span class="string">&quot;%lld\n&quot;</span>,<span class="built_in">path_query</span>(x,y));&#125;</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span>(op==<span class="number">3</span>)&#123;<span class="type">int</span> x;ll z;<span class="built_in">scanf</span>(<span class="string">&quot;%d%lld&quot;</span>,&amp;x,&amp;z);<span class="built_in">subtree_update</span>(x,z);&#125;</span><br><span class="line">		<span class="keyword">else</span>&#123;<span class="type">int</span> x;<span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;x);<span class="built_in">printf</span>(<span class="string">&quot;%lld\n&quot;</span>,<span class="built_in">subtree_query</span>(x));&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
     </div>
 
@@ -564,7 +1332,7 @@
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2026-08-13 08:17:16 / 修改时间：08:18:09" itemprop="dateCreated datePublished" datetime="2026-08-13T08:17:16+08:00">2026-08-13</time>
+      <time title="创建时间：2026-08-13 08:17:16 / 修改时间：08:21:07" itemprop="dateCreated datePublished" datetime="2026-08-13T08:17:16+08:00">2026-08-13</time>
     </span>
 
   
@@ -665,7 +1433,7 @@
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2026-08-13 08:12:38 / 修改时间：08:16:01" itemprop="dateCreated datePublished" datetime="2026-08-13T08:12:38+08:00">2026-08-13</time>
+      <time title="创建时间：2026-08-13 08:12:38 / 修改时间：08:21:07" itemprop="dateCreated datePublished" datetime="2026-08-13T08:12:38+08:00">2026-08-13</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -735,544 +1503,8 @@
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://hkb150429.github.io/posts/79d8e785/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="hkb">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="HKB Blog">
-      <meta itemprop="description" content="HKB的博客">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content=" | HKB Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/posts/79d8e785/" class="post-title-link" itemprop="url">【信息】题解-洛谷P3372（线段树1）</a>
-        </h2>
-
-        <div class="post-meta-container">
-
-
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2026-08-13 08:11:40 / 修改时间：08:15:59" itemprop="dateCreated datePublished" datetime="2026-08-13T08:11:40+08:00">2026-08-13</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/information-technology/" itemprop="url" rel="index"><span itemprop="name">information-technology</span></a>
-        </span>
-    </span>
-
-  
-    <span id="/posts/79d8e785/" class="post-meta-item twikoo_visitors" data-flag-title="【信息】题解-洛谷P3372（线段树1）" title="阅读次数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-eye"></i>
-      </span>
-      <span class="post-meta-item-text">阅读次数：</span>
-      <span id="twikoo_visitors"></span>
-    </span>
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>326</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>1 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h3 id="题目大意"><a class="markdownIt-Anchor" href="#题目大意"></a> 题目大意</h3>
-<p>区间修改区间求和</p>
-<h3 id="思路"><a class="markdownIt-Anchor" href="#思路"></a> 思路</h3>
-<p>线段树模版题</p>
-<h3 id="ac-code"><a class="markdownIt-Anchor" href="#ac-code"></a> AC CODE</h3>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">typedef</span> <span class="type">long</span> <span class="type">long</span> ll;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N=<span class="number">100005</span>;</span><br><span class="line">ll a[N],sum[N&lt;&lt;<span class="number">2</span>],lazy[N&lt;&lt;<span class="number">2</span>];</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">pushup</span><span class="params">(<span class="type">int</span> p)</span></span>&#123;sum[p]=sum[p&lt;&lt;<span class="number">1</span>]+sum[p&lt;&lt;<span class="number">1</span>|<span class="number">1</span>];&#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">pushdown</span><span class="params">(<span class="type">int</span> p,<span class="type">int</span> l,<span class="type">int</span> r)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(!lazy[p]) <span class="keyword">return</span>;</span><br><span class="line">	<span class="type">int</span> mid=(l+r)&gt;&gt;<span class="number">1</span>;</span><br><span class="line">	sum[p&lt;&lt;<span class="number">1</span>]+=lazy[p]*(mid-l<span class="number">+1</span>);lazy[p&lt;&lt;<span class="number">1</span>]+=lazy[p];</span><br><span class="line">	sum[p&lt;&lt;<span class="number">1</span>|<span class="number">1</span>]+=lazy[p]*(r-mid);lazy[p&lt;&lt;<span class="number">1</span>|<span class="number">1</span>]+=lazy[p];</span><br><span class="line">	lazy[p]=<span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">build</span><span class="params">(<span class="type">int</span> p,<span class="type">int</span> l,<span class="type">int</span> r)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(l==r)&#123;sum[p]=a[l];<span class="keyword">return</span>;&#125;</span><br><span class="line">	<span class="type">int</span> mid=(l+r)&gt;&gt;<span class="number">1</span>;</span><br><span class="line">	<span class="built_in">build</span>(p&lt;&lt;<span class="number">1</span>,l,mid);<span class="built_in">build</span>(p&lt;&lt;<span class="number">1</span>|<span class="number">1</span>,mid<span class="number">+1</span>,r);</span><br><span class="line">	<span class="built_in">pushup</span>(p);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">update</span><span class="params">(<span class="type">int</span> p,<span class="type">int</span> l,<span class="type">int</span> r,<span class="type">int</span> ql,<span class="type">int</span> qr,ll d)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(ql&lt;=l&amp;&amp;r&lt;=qr)&#123;sum[p]+=d*(r-l<span class="number">+1</span>);lazy[p]+=d;<span class="keyword">return</span>;&#125;</span><br><span class="line">	<span class="built_in">pushdown</span>(p,l,r);</span><br><span class="line">	<span class="type">int</span> mid=(l+r)&gt;&gt;<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">if</span>(ql&lt;=mid) <span class="built_in">update</span>(p&lt;&lt;<span class="number">1</span>,l,mid,ql,qr,d);</span><br><span class="line">	<span class="keyword">if</span>(qr&gt;mid) <span class="built_in">update</span>(p&lt;&lt;<span class="number">1</span>|<span class="number">1</span>,mid<span class="number">+1</span>,r,ql,qr,d);</span><br><span class="line">	<span class="built_in">pushup</span>(p);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function">ll <span class="title">query</span><span class="params">(<span class="type">int</span> p,<span class="type">int</span> l,<span class="type">int</span> r,<span class="type">int</span> ql,<span class="type">int</span> qr)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(ql&lt;=l&amp;&amp;r&lt;=qr) <span class="keyword">return</span> sum[p];</span><br><span class="line">	<span class="built_in">pushdown</span>(p,l,r);</span><br><span class="line">	<span class="type">int</span> mid=(l+r)&gt;&gt;<span class="number">1</span>;ll res=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">if</span>(ql&lt;=mid) res+=<span class="built_in">query</span>(p&lt;&lt;<span class="number">1</span>,l,mid,ql,qr);</span><br><span class="line">	<span class="keyword">if</span>(qr&gt;mid) res+=<span class="built_in">query</span>(p&lt;&lt;<span class="number">1</span>|<span class="number">1</span>,mid<span class="number">+1</span>,r,ql,qr);</span><br><span class="line">	<span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="type">int</span> n,m;<span class="built_in">scanf</span>(<span class="string">&quot;%d%d&quot;</span>,&amp;n,&amp;m);</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++) <span class="built_in">scanf</span>(<span class="string">&quot;%lld&quot;</span>,&amp;a[i]);</span><br><span class="line">	<span class="built_in">build</span>(<span class="number">1</span>,<span class="number">1</span>,n);</span><br><span class="line">	<span class="keyword">while</span>(m--)&#123;</span><br><span class="line">		<span class="type">int</span> op,x,y;<span class="built_in">scanf</span>(<span class="string">&quot;%d%d%d&quot;</span>,&amp;op,&amp;x,&amp;y);</span><br><span class="line">		<span class="keyword">if</span>(op==<span class="number">1</span>)&#123;ll k;<span class="built_in">scanf</span>(<span class="string">&quot;%lld&quot;</span>,&amp;k);<span class="built_in">update</span>(<span class="number">1</span>,<span class="number">1</span>,n,x,y,k);&#125;</span><br><span class="line">		<span class="keyword">else</span> <span class="built_in">printf</span>(<span class="string">&quot;%lld\n&quot;</span>,<span class="built_in">query</span>(<span class="number">1</span>,<span class="number">1</span>,n,x,y));</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-    
-</article>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://hkb150429.github.io/posts/82b4d543/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="hkb">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="HKB Blog">
-      <meta itemprop="description" content="HKB的博客">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content=" | HKB Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/posts/82b4d543/" class="post-title-link" itemprop="url">【信息】题解-洛谷P13825（线段树1.5）</a>
-        </h2>
-
-        <div class="post-meta-container">
-
-
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2026-08-13 08:09:17 / 修改时间：08:16:10" itemprop="dateCreated datePublished" datetime="2026-08-13T08:09:17+08:00">2026-08-13</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/information-technology/" itemprop="url" rel="index"><span itemprop="name">information-technology</span></a>
-        </span>
-    </span>
-
-  
-    <span id="/posts/82b4d543/" class="post-meta-item twikoo_visitors" data-flag-title="【信息】题解-洛谷P13825（线段树1.5）" title="阅读次数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-eye"></i>
-      </span>
-      <span class="post-meta-item-text">阅读次数：</span>
-      <span id="twikoo_visitors"></span>
-    </span>
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>303</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>1 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h3 id="题目大意"><a class="markdownIt-Anchor" href="#题目大意"></a> 题目大意</h3>
-<p>区间修改区间求和</p>
-<h3 id="思路"><a class="markdownIt-Anchor" href="#思路"></a> 思路</h3>
-<p>线段树模版题</p>
-<h3 id="ac-code"><a class="markdownIt-Anchor" href="#ac-code"></a> AC CODE</h3>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">typedef</span> <span class="type">long</span> <span class="type">long</span> ll;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> M=<span class="number">6000005</span>;</span><br><span class="line"><span class="type">int</span> ls[M],rs[M],tot;</span><br><span class="line">ll sum[M],lazy[M];</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">pushdown</span><span class="params">(<span class="type">int</span> p,<span class="type">int</span> l,<span class="type">int</span> r)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(!lazy[p]) <span class="keyword">return</span>;</span><br><span class="line">	<span class="type">int</span> mid=(l+r)&gt;&gt;<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">if</span>(!ls[p]) ls[p]=++tot;</span><br><span class="line">	<span class="keyword">if</span>(!rs[p]) rs[p]=++tot;</span><br><span class="line">	sum[ls[p]]+=lazy[p]*(mid-l<span class="number">+1</span>);lazy[ls[p]]+=lazy[p];</span><br><span class="line">	sum[rs[p]]+=lazy[p]*(r-mid);lazy[rs[p]]+=lazy[p];</span><br><span class="line">	lazy[p]=<span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">update</span><span class="params">(<span class="type">int</span> &amp;p,<span class="type">int</span> l,<span class="type">int</span> r,<span class="type">int</span> ql,<span class="type">int</span> qr,ll d)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(!p) p=++tot;</span><br><span class="line">	<span class="keyword">if</span>(ql&lt;=l&amp;&amp;r&lt;=qr)&#123;sum[p]+=d*(r-l<span class="number">+1</span>);lazy[p]+=d;<span class="keyword">return</span>;&#125;</span><br><span class="line">	<span class="built_in">pushdown</span>(p,l,r);</span><br><span class="line">	<span class="type">int</span> mid=(l+r)&gt;&gt;<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">if</span>(ql&lt;=mid) <span class="built_in">update</span>(ls[p],l,mid,ql,qr,d);</span><br><span class="line">	<span class="keyword">if</span>(qr&gt;mid) <span class="built_in">update</span>(rs[p],mid<span class="number">+1</span>,r,ql,qr,d);</span><br><span class="line">	sum[p]=sum[ls[p]]+sum[rs[p]];</span><br><span class="line">&#125;</span><br><span class="line"><span class="function">ll <span class="title">query</span><span class="params">(<span class="type">int</span> p,<span class="type">int</span> l,<span class="type">int</span> r,<span class="type">int</span> ql,<span class="type">int</span> qr)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(!p) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">if</span>(ql&lt;=l&amp;&amp;r&lt;=qr) <span class="keyword">return</span> sum[p];</span><br><span class="line">	<span class="built_in">pushdown</span>(p,l,r);</span><br><span class="line">	<span class="type">int</span> mid=(l+r)&gt;&gt;<span class="number">1</span>;ll res=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">if</span>(ql&lt;=mid) res+=<span class="built_in">query</span>(ls[p],l,mid,ql,qr);</span><br><span class="line">	<span class="keyword">if</span>(qr&gt;mid) res+=<span class="built_in">query</span>(rs[p],mid<span class="number">+1</span>,r,ql,qr);</span><br><span class="line">	<span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="type">int</span> n,m;<span class="built_in">scanf</span>(<span class="string">&quot;%d%d&quot;</span>,&amp;n,&amp;m);</span><br><span class="line">	<span class="type">int</span> root=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">while</span>(m--)&#123;</span><br><span class="line">		<span class="type">int</span> op,l,r;<span class="built_in">scanf</span>(<span class="string">&quot;%d%d%d&quot;</span>,&amp;op,&amp;l,&amp;r);</span><br><span class="line">		<span class="keyword">if</span>(op==<span class="number">1</span>)&#123;</span><br><span class="line">			ll k;<span class="built_in">scanf</span>(<span class="string">&quot;%lld&quot;</span>,&amp;k);</span><br><span class="line">			<span class="built_in">update</span>(root,<span class="number">1</span>,n,l,r,k);</span><br><span class="line">		&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">			ll base=(ll)(l+r)*(r-l<span class="number">+1</span>)/<span class="number">2</span>;</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">&quot;%lld\n&quot;</span>,base+<span class="built_in">query</span>(root,<span class="number">1</span>,n,l,r));</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-    
-</article>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://hkb150429.github.io/posts/4e781d34/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="hkb">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="HKB Blog">
-      <meta itemprop="description" content="HKB的博客">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content=" | HKB Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/posts/4e781d34/" class="post-title-link" itemprop="url">【信息】知识点-桥的写法</a>
-        </h2>
-
-        <div class="post-meta-container">
-
-
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2026-08-13 08:04:56 / 修改时间：08:07:32" itemprop="dateCreated datePublished" datetime="2026-08-13T08:04:56+08:00">2026-08-13</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/information-technology/" itemprop="url" rel="index"><span itemprop="name">information-technology</span></a>
-        </span>
-    </span>
-
-  
-    <span id="/posts/4e781d34/" class="post-meta-item twikoo_visitors" data-flag-title="【信息】知识点-桥的写法" title="阅读次数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-eye"></i>
-      </span>
-      <span class="post-meta-item-text">阅读次数：</span>
-      <span id="twikoo_visitors"></span>
-    </span>
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>164</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>1 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N=<span class="number">500005</span>,M=<span class="number">500005</span>;</span><br><span class="line">vector&lt;pair&lt;<span class="type">int</span>,<span class="type">int</span>&gt;&gt; g[N];</span><br><span class="line"><span class="type">int</span> dfn[N],low[N],bridge[M],timer;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">tarjan</span><span class="params">(<span class="type">int</span> u,<span class="type">int</span> fa_edge)</span></span>&#123;</span><br><span class="line">	dfn[u]=low[u]=++timer;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">auto</span> [v,id]:g[u])&#123;</span><br><span class="line">		<span class="keyword">if</span>(id==fa_edge) <span class="keyword">continue</span>;</span><br><span class="line">		<span class="keyword">if</span>(!dfn[v])&#123;</span><br><span class="line">			<span class="built_in">tarjan</span>(v,id);</span><br><span class="line">			low[u]=<span class="built_in">min</span>(low[u],low[v]);</span><br><span class="line">			<span class="keyword">if</span>(low[v]&gt;dfn[u]) bridge[id]=<span class="number">1</span>;</span><br><span class="line">		&#125;<span class="keyword">else</span> low[u]=<span class="built_in">min</span>(low[u],dfn[v]);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="type">int</span> n,m;<span class="built_in">scanf</span>(<span class="string">&quot;%d%d&quot;</span>,&amp;n,&amp;m);</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=m;i++)&#123;</span><br><span class="line">		<span class="type">int</span> u,v;<span class="built_in">scanf</span>(<span class="string">&quot;%d%d&quot;</span>,&amp;u,&amp;v);</span><br><span class="line">		g[u].<span class="built_in">push_back</span>(&#123;v,i&#125;);g[v].<span class="built_in">push_back</span>(&#123;u,i&#125;);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++) <span class="keyword">if</span>(!dfn[i]) <span class="built_in">tarjan</span>(i,<span class="number">0</span>);</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=m;i++) <span class="keyword">if</span>(bridge[i]) <span class="built_in">printf</span>(<span class="string">&quot;%d &quot;</span>,i);</span><br><span class="line">	<span class="comment">// 边双连通分量：删去所有桥后DFS，每个连通块即一个E-BCC</span></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-    
-</article>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://hkb150429.github.io/posts/24709002/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="hkb">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="HKB Blog">
-      <meta itemprop="description" content="HKB的博客">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content=" | HKB Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/posts/24709002/" class="post-title-link" itemprop="url">【信息】题解-洛谷P3388（割点（割顶）</a>
-        </h2>
-
-        <div class="post-meta-container">
-
-
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2026-08-13 08:04:36 / 修改时间：08:06:23" itemprop="dateCreated datePublished" datetime="2026-08-13T08:04:36+08:00">2026-08-13</time>
-    </span>
-
-  
-    <span id="/posts/24709002/" class="post-meta-item twikoo_visitors" data-flag-title="【信息】题解-洛谷P3388（割点（割顶）" title="阅读次数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-eye"></i>
-      </span>
-      <span class="post-meta-item-text">阅读次数：</span>
-      <span id="twikoo_visitors"></span>
-    </span>
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>185</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>1 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h3 id="题意"><a class="markdownIt-Anchor" href="#题意"></a> 题意</h3>
-<p>求每个连通块割点</p>
-<h3 id="思路"><a class="markdownIt-Anchor" href="#思路"></a> 思路</h3>
-<p>割点模版题，连通块要找全即可</p>
-<h3 id="ac-code"><a class="markdownIt-Anchor" href="#ac-code"></a> AC CODE</h3>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N=<span class="number">20005</span>;</span><br><span class="line">vector&lt;<span class="type">int</span>&gt; g[N];</span><br><span class="line"><span class="type">int</span> dfn[N],low[N],cut[N],timer;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">tarjan</span><span class="params">(<span class="type">int</span> u,<span class="type">int</span> fa)</span></span>&#123;</span><br><span class="line">	dfn[u]=low[u]=++timer;</span><br><span class="line">	<span class="type">int</span> child=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> v:g[u])&#123;</span><br><span class="line">		<span class="keyword">if</span>(v==fa) <span class="keyword">continue</span>;</span><br><span class="line">		<span class="keyword">if</span>(!dfn[v])&#123;</span><br><span class="line">			child++;</span><br><span class="line">			<span class="built_in">tarjan</span>(v,u);</span><br><span class="line">			low[u]=<span class="built_in">min</span>(low[u],low[v]);</span><br><span class="line">			<span class="keyword">if</span>(fa&amp;&amp;low[v]&gt;=dfn[u]) cut[u]=<span class="number">1</span>;</span><br><span class="line">		&#125;<span class="keyword">else</span> low[u]=<span class="built_in">min</span>(low[u],dfn[v]);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span>(!fa&amp;&amp;child&gt;=<span class="number">2</span>) cut[u]=<span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="type">int</span> n,m;<span class="built_in">scanf</span>(<span class="string">&quot;%d%d&quot;</span>,&amp;n,&amp;m);</span><br><span class="line">	<span class="keyword">while</span>(m--)&#123;</span><br><span class="line">		<span class="type">int</span> x,y;<span class="built_in">scanf</span>(<span class="string">&quot;%d%d&quot;</span>,&amp;x,&amp;y);</span><br><span class="line">		g[x].<span class="built_in">push_back</span>(y);g[y].<span class="built_in">push_back</span>(x);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++) <span class="keyword">if</span>(!dfn[i]) <span class="built_in">tarjan</span>(i,<span class="number">0</span>);</span><br><span class="line">	<span class="type">int</span> cnt=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++) <span class="keyword">if</span>(cut[i]) cnt++;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>,cnt);</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++) <span class="keyword">if</span>(cut[i]) <span class="built_in">printf</span>(<span class="string">&quot;%d &quot;</span>,i);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-    
-</article>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://hkb150429.github.io/posts/7389a98/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="hkb">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="HKB Blog">
-      <meta itemprop="description" content="HKB的博客">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content=" | HKB Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/posts/7389a98/" class="post-title-link" itemprop="url">【信息】题解-洛谷P3387（缩点 / 强连通分量）</a>
-        </h2>
-
-        <div class="post-meta-container">
-
-
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2026-08-13 07:57:01 / 修改时间：08:00:27" itemprop="dateCreated datePublished" datetime="2026-08-13T07:57:01+08:00">2026-08-13</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/information-technology/" itemprop="url" rel="index"><span itemprop="name">information-technology</span></a>
-        </span>
-    </span>
-
-  
-    <span id="/posts/7389a98/" class="post-meta-item twikoo_visitors" data-flag-title="【信息】题解-洛谷P3387（缩点 / 强连通分量）" title="阅读次数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-eye"></i>
-      </span>
-      <span class="post-meta-item-text">阅读次数：</span>
-      <span id="twikoo_visitors"></span>
-    </span>
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>192</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>1 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h3 id="题目大意"><a class="markdownIt-Anchor" href="#题目大意"></a> 题目大意</h3>
-<p>求两点之间最大权值路径</p>
-<h3 id="思路"><a class="markdownIt-Anchor" href="#思路"></a> 思路</h3>
-<p>强连通分量模版题</p>
-<h3 id="ac-code"><a class="markdownIt-Anchor" href="#ac-code"></a> AC CODE</h3>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N=<span class="number">500005</span>;</span><br><span class="line">vector&lt;<span class="type">int</span>&gt; g[N];</span><br><span class="line"><span class="type">int</span> dfn[N],low[N],stk[N],instk[N],scc[N];</span><br><span class="line"><span class="type">int</span> top,timer,scc_cnt;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">tarjan</span><span class="params">(<span class="type">int</span> u)</span></span>&#123;</span><br><span class="line">	dfn[u]=low[u]=++timer;</span><br><span class="line">	stk[++top]=u;instk[u]=<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> v:g[u])&#123;</span><br><span class="line">		<span class="keyword">if</span>(!dfn[v])&#123;<span class="built_in">tarjan</span>(v);low[u]=<span class="built_in">min</span>(low[u],low[v]);&#125;</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span>(instk[v]) low[u]=<span class="built_in">min</span>(low[u],dfn[v]);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span>(low[u]==dfn[u])&#123;</span><br><span class="line">		scc_cnt++;</span><br><span class="line">		<span class="keyword">while</span>(<span class="literal">true</span>)&#123;</span><br><span class="line">			<span class="type">int</span> v=stk[top--];instk[v]=<span class="number">0</span>;scc[v]=scc_cnt;</span><br><span class="line">			<span class="keyword">if</span>(v==u) <span class="keyword">break</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="type">int</span> n,m;<span class="built_in">scanf</span>(<span class="string">&quot;%d%d&quot;</span>,&amp;n,&amp;m);</span><br><span class="line">	<span class="keyword">while</span>(m--)&#123;</span><br><span class="line">		<span class="type">int</span> u,v;<span class="built_in">scanf</span>(<span class="string">&quot;%d%d&quot;</span>,&amp;u,&amp;v);</span><br><span class="line">		g[u].<span class="built_in">push_back</span>(v);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++) <span class="keyword">if</span>(!dfn[i]) <span class="built_in">tarjan</span>(i);</span><br><span class="line">	<span class="comment">// scc[i]为i所属分量，共scc_cnt个</span></span><br><span class="line">	<span class="comment">// 缩点：遍历边u-&gt;v，若scc[u]!=scc[v]则新图加边</span></span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>,scc_cnt);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-    
-</article>
-
-
-
-
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 </div>
@@ -1295,14 +1527,14 @@
       <i class="fa fa-chart-line"></i>
     </span>
       <span>站点总字数：</span>
-    <span title="站点总字数">9k</span>
+    <span title="站点总字数">12k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span>站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">30 分钟</span>
+    <span title="站点阅读时长">40 分钟</span>
   </span>
 </div>
 
@@ -1325,6 +1557,26 @@
 <noscript>
   <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
 </noscript>
+<script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
+
+<script>
+var options = {
+  bottom: '64px',
+  right: '32px',
+  left: '32px',
+  time: '0.5s',
+  mixColor: 'transparent',
+  backgroundColor: 'transparent',
+  buttonColorDark: '#100f2c',
+  buttonColorLight: '#fff',
+  saveInCookies: true,
+  label: '🌓',
+  autoMatchOsTheme: true
+}
+const darkmode = new Darkmode(options);
+window.darkmode = darkmode;
+darkmode.showWidget();
+</script>
 <script class="next-config" data-name="twikoo" type="application/json">{"enable":true,"visitor":true,"envId":"hkb150429.github.io","el":"#twikoo-comments"}</script>
 <script>
 document.addEventListener('page:loaded', () => {
@@ -1346,26 +1598,6 @@ document.addEventListener('page:loaded', () => {
   display: inline-block;
 }
 </style>
-<script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
-
-<script>
-var options = {
-  bottom: '64px',
-  right: '32px',
-  left: '32px',
-  time: '0.5s',
-  mixColor: 'transparent',
-  backgroundColor: 'transparent',
-  buttonColorDark: '#100f2c',
-  buttonColorLight: '#fff',
-  saveInCookies: true,
-  label: '🌓',
-  autoMatchOsTheme: true
-}
-const darkmode = new Darkmode(options);
-window.darkmode = darkmode;
-darkmode.showWidget();
-</script>
 
   
 
@@ -1375,6 +1607,26 @@ darkmode.showWidget();
 
 
   
+<script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
+
+<script>
+var options = {
+  bottom: '64px',
+  right: '32px',
+  left: '32px',
+  time: '0.5s',
+  mixColor: 'transparent',
+  backgroundColor: 'transparent',
+  buttonColorDark: '#100f2c',
+  buttonColorLight: '#fff',
+  saveInCookies: true,
+  label: '🌓',
+  autoMatchOsTheme: true
+}
+const darkmode = new Darkmode(options);
+window.darkmode = darkmode;
+darkmode.showWidget();
+</script>
 <script class="next-config" data-name="twikoo" type="application/json">{"enable":true,"visitor":true,"envId":"hkb150429.github.io","el":"#twikoo-comments"}</script>
 <script>
 document.addEventListener('page:loaded', () => {
@@ -1396,26 +1648,6 @@ document.addEventListener('page:loaded', () => {
   display: inline-block;
 }
 </style>
-<script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
-
-<script>
-var options = {
-  bottom: '64px',
-  right: '32px',
-  left: '32px',
-  time: '0.5s',
-  mixColor: 'transparent',
-  backgroundColor: 'transparent',
-  buttonColorDark: '#100f2c',
-  buttonColorLight: '#fff',
-  saveInCookies: true,
-  label: '🌓',
-  autoMatchOsTheme: true
-}
-const darkmode = new Darkmode(options);
-window.darkmode = darkmode;
-darkmode.showWidget();
-</script>
 
   
 

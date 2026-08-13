@@ -21,16 +21,17 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"hkb150429.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.27.0","exturl":false,"sidebar":{"position":"right","width_expanded":320,"width_dual_column":240,"display":"hide","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"default"},"prism":{"light":"prism","dark":"prism"},"copy_button":{"enable":true,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"valine","storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js" defer></script>
 
-    <meta name="description" content="HKB的博客">
+    <meta name="description" content="题目大意 需要处理的问题：  将树从x到y结点最短路径上所有节点的值都加上z 求树从x到y结点最短路径上所有节点的值之和 将以x为根节点的子树内所有节点值都加上z 求以x为根节点的子树内所有节点值之和   思路 树链剖分模版  AC CODE 12345678910111213141516171819202122232425262728293031323334353637383940414243">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【信息】题解-洛谷P3384（重链剖分 &#x2F; 树链剖分）">
 <meta property="og:url" content="https://hkb150429.github.io/posts/83843d80/index.html">
 <meta property="og:site_name" content="HKB Blog">
-<meta property="og:description" content="HKB的博客">
+<meta property="og:description" content="题目大意 需要处理的问题：  将树从x到y结点最短路径上所有节点的值都加上z 求树从x到y结点最短路径上所有节点的值之和 将以x为根节点的子树内所有节点值都加上z 求以x为根节点的子树内所有节点值之和   思路 树链剖分模版  AC CODE 12345678910111213141516171819202122232425262728293031323334353637383940414243">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2026-08-13T00:19:11.000Z">
-<meta property="article:modified_time" content="2026-08-13T00:19:11.093Z">
+<meta property="article:modified_time" content="2026-08-13T14:30:48.709Z">
 <meta property="article:author" content="hkb">
+<meta property="article:tag" content="answer">
 <meta name="twitter:card" content="summary">
 
 
@@ -151,7 +152,7 @@
   
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
@@ -164,6 +165,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE%E5%A4%A7%E6%84%8F"><span class="nav-number">1.</span> <span class="nav-text"> 题目大意</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%9D%E8%B7%AF"><span class="nav-number">2.</span> <span class="nav-text"> 思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ac-code"><span class="nav-number">3.</span> <span class="nav-text"> AC CODE</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -176,7 +178,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">30</span>
+          <span class="site-state-item-count">35</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -255,8 +257,18 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
+      
 
-      <time title="创建时间：2026-08-13 08:19:11" itemprop="dateCreated datePublished" datetime="2026-08-13T08:19:11+08:00">2026-08-13</time>
+      <time title="创建时间：2026-08-13 08:19:11 / 修改时间：22:30:48" itemprop="dateCreated datePublished" datetime="2026-08-13T08:19:11+08:00">2026-08-13</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/information-technology/" itemprop="url" rel="index"><span itemprop="name">information-technology</span></a>
+        </span>
     </span>
 
   
@@ -274,14 +286,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>0</span>
+      <span>747</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>1 分钟</span>
+      <span>2 分钟</span>
     </span>
 </div>
 
@@ -291,7 +303,18 @@
     
     
     
-    <div class="post-body" itemprop="articleBody">
+    <div class="post-body" itemprop="articleBody"><h3 id="题目大意"><a class="markdownIt-Anchor" href="#题目大意"></a> 题目大意</h3>
+<p>需要处理的问题：</p>
+<ul>
+<li>将树从x到y结点最短路径上所有节点的值都加上z</li>
+<li>求树从x到y结点最短路径上所有节点的值之和</li>
+<li>将以x为根节点的子树内所有节点值都加上z</li>
+<li>求以x为根节点的子树内所有节点值之和</li>
+</ul>
+<h3 id="思路"><a class="markdownIt-Anchor" href="#思路"></a> 思路</h3>
+<p>树链剖分模版</p>
+<h3 id="ac-code"><a class="markdownIt-Anchor" href="#ac-code"></a> AC CODE</h3>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">typedef</span> <span class="type">long</span> <span class="type">long</span> ll;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N=<span class="number">100005</span>;</span><br><span class="line"><span class="type">int</span> mod;</span><br><span class="line">vector&lt;<span class="type">int</span>&gt; g[N];</span><br><span class="line"><span class="type">int</span> a[N],val[N],siz[N],dep[N],fa[N],son[N],top[N],dfn[N],timer;</span><br><span class="line">ll sum[N&lt;&lt;<span class="number">2</span>],lazy[N&lt;&lt;<span class="number">2</span>];</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">pushup</span><span class="params">(<span class="type">int</span> p)</span></span>&#123;sum[p]=(sum[p&lt;&lt;<span class="number">1</span>]+sum[p&lt;&lt;<span class="number">1</span>|<span class="number">1</span>])%mod;&#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">pushdown</span><span class="params">(<span class="type">int</span> p,<span class="type">int</span> l,<span class="type">int</span> r)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(!lazy[p]) <span class="keyword">return</span>;</span><br><span class="line">	<span class="type">int</span> mid=(l+r)&gt;&gt;<span class="number">1</span>;</span><br><span class="line">	sum[p&lt;&lt;<span class="number">1</span>]=(sum[p&lt;&lt;<span class="number">1</span>]+lazy[p]*(mid-l<span class="number">+1</span>))%mod;</span><br><span class="line">	sum[p&lt;&lt;<span class="number">1</span>|<span class="number">1</span>]=(sum[p&lt;&lt;<span class="number">1</span>|<span class="number">1</span>]+lazy[p]*(r-mid))%mod;</span><br><span class="line">	lazy[p&lt;&lt;<span class="number">1</span>]=(lazy[p&lt;&lt;<span class="number">1</span>]+lazy[p])%mod;</span><br><span class="line">	lazy[p&lt;&lt;<span class="number">1</span>|<span class="number">1</span>]=(lazy[p&lt;&lt;<span class="number">1</span>|<span class="number">1</span>]+lazy[p])%mod;</span><br><span class="line">	lazy[p]=<span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">build</span><span class="params">(<span class="type">int</span> p,<span class="type">int</span> l,<span class="type">int</span> r)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(l==r)&#123;sum[p]=val[l]%mod;<span class="keyword">return</span>;&#125;</span><br><span class="line">	<span class="type">int</span> mid=(l+r)&gt;&gt;<span class="number">1</span>;</span><br><span class="line">	<span class="built_in">build</span>(p&lt;&lt;<span class="number">1</span>,l,mid);<span class="built_in">build</span>(p&lt;&lt;<span class="number">1</span>|<span class="number">1</span>,mid<span class="number">+1</span>,r);</span><br><span class="line">	<span class="built_in">pushup</span>(p);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">update</span><span class="params">(<span class="type">int</span> p,<span class="type">int</span> l,<span class="type">int</span> r,<span class="type">int</span> ql,<span class="type">int</span> qr,ll d)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(ql&lt;=l&amp;&amp;r&lt;=qr)&#123;sum[p]=(sum[p]+d*(r-l<span class="number">+1</span>))%mod;lazy[p]=(lazy[p]+d)%mod;<span class="keyword">return</span>;&#125;</span><br><span class="line">	<span class="built_in">pushdown</span>(p,l,r);</span><br><span class="line">	<span class="type">int</span> mid=(l+r)&gt;&gt;<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">if</span>(ql&lt;=mid) <span class="built_in">update</span>(p&lt;&lt;<span class="number">1</span>,l,mid,ql,qr,d);</span><br><span class="line">	<span class="keyword">if</span>(qr&gt;mid) <span class="built_in">update</span>(p&lt;&lt;<span class="number">1</span>|<span class="number">1</span>,mid<span class="number">+1</span>,r,ql,qr,d);</span><br><span class="line">	<span class="built_in">pushup</span>(p);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function">ll <span class="title">query</span><span class="params">(<span class="type">int</span> p,<span class="type">int</span> l,<span class="type">int</span> r,<span class="type">int</span> ql,<span class="type">int</span> qr)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(ql&lt;=l&amp;&amp;r&lt;=qr) <span class="keyword">return</span> sum[p];</span><br><span class="line">	<span class="built_in">pushdown</span>(p,l,r);</span><br><span class="line">	<span class="type">int</span> mid=(l+r)&gt;&gt;<span class="number">1</span>;ll res=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">if</span>(ql&lt;=mid) res=(res+<span class="built_in">query</span>(p&lt;&lt;<span class="number">1</span>,l,mid,ql,qr))%mod;</span><br><span class="line">	<span class="keyword">if</span>(qr&gt;mid) res=(res+<span class="built_in">query</span>(p&lt;&lt;<span class="number">1</span>|<span class="number">1</span>,mid<span class="number">+1</span>,r,ql,qr))%mod;</span><br><span class="line">	<span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">dfs1</span><span class="params">(<span class="type">int</span> u,<span class="type">int</span> f)</span></span>&#123;</span><br><span class="line">	siz[u]=<span class="number">1</span>;fa[u]=f;dep[u]=dep[f]<span class="number">+1</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> v:g[u])&#123;</span><br><span class="line">		<span class="keyword">if</span>(v==f) <span class="keyword">continue</span>;</span><br><span class="line">		<span class="built_in">dfs1</span>(v,u);siz[u]+=siz[v];</span><br><span class="line">		<span class="keyword">if</span>(siz[v]&gt;siz[son[u]]) son[u]=v;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">dfs2</span><span class="params">(<span class="type">int</span> u,<span class="type">int</span> t)</span></span>&#123;</span><br><span class="line">	top[u]=t;dfn[u]=++timer;val[timer]=a[u];</span><br><span class="line">	<span class="keyword">if</span>(son[u]) <span class="built_in">dfs2</span>(son[u],t);</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> v:g[u]) <span class="keyword">if</span>(v!=fa[u]&amp;&amp;v!=son[u]) <span class="built_in">dfs2</span>(v,v);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">path_update</span><span class="params">(<span class="type">int</span> u,<span class="type">int</span> v,ll d)</span></span>&#123;</span><br><span class="line">	<span class="keyword">while</span>(top[u]!=top[v])&#123;</span><br><span class="line">		<span class="keyword">if</span>(dep[top[u]]&lt;dep[top[v]]) <span class="built_in">swap</span>(u,v);</span><br><span class="line">		<span class="built_in">update</span>(<span class="number">1</span>,<span class="number">1</span>,timer,dfn[top[u]],dfn[u],d);</span><br><span class="line">		u=fa[top[u]];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span>(dep[u]&gt;dep[v]) <span class="built_in">swap</span>(u,v);</span><br><span class="line">	<span class="built_in">update</span>(<span class="number">1</span>,<span class="number">1</span>,timer,dfn[u],dfn[v],d);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function">ll <span class="title">path_query</span><span class="params">(<span class="type">int</span> u,<span class="type">int</span> v)</span></span>&#123;</span><br><span class="line">	ll res=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">while</span>(top[u]!=top[v])&#123;</span><br><span class="line">		<span class="keyword">if</span>(dep[top[u]]&lt;dep[top[v]]) <span class="built_in">swap</span>(u,v);</span><br><span class="line">		res=(res+<span class="built_in">query</span>(<span class="number">1</span>,<span class="number">1</span>,timer,dfn[top[u]],dfn[u]))%mod;</span><br><span class="line">		u=fa[top[u]];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span>(dep[u]&gt;dep[v]) <span class="built_in">swap</span>(u,v);</span><br><span class="line">	<span class="keyword">return</span> (res+<span class="built_in">query</span>(<span class="number">1</span>,<span class="number">1</span>,timer,dfn[u],dfn[v]))%mod;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">subtree_update</span><span class="params">(<span class="type">int</span> u,ll d)</span></span>&#123;<span class="built_in">update</span>(<span class="number">1</span>,<span class="number">1</span>,timer,dfn[u],dfn[u]+siz[u]<span class="number">-1</span>,d);&#125;</span><br><span class="line"><span class="function">ll <span class="title">subtree_query</span><span class="params">(<span class="type">int</span> u)</span></span>&#123;<span class="keyword">return</span> <span class="built_in">query</span>(<span class="number">1</span>,<span class="number">1</span>,timer,dfn[u],dfn[u]+siz[u]<span class="number">-1</span>);&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="type">int</span> n,m,rt;<span class="built_in">scanf</span>(<span class="string">&quot;%d%d%d%d&quot;</span>,&amp;n,&amp;m,&amp;rt,&amp;mod);</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++) <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;a[i]);</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;n;i++)&#123;</span><br><span class="line">		<span class="type">int</span> x,y;<span class="built_in">scanf</span>(<span class="string">&quot;%d%d&quot;</span>,&amp;x,&amp;y);</span><br><span class="line">		g[x].<span class="built_in">push_back</span>(y);g[y].<span class="built_in">push_back</span>(x);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">dfs1</span>(rt,<span class="number">0</span>);<span class="built_in">dfs2</span>(rt,rt);<span class="built_in">build</span>(<span class="number">1</span>,<span class="number">1</span>,n);</span><br><span class="line">	<span class="keyword">while</span>(m--)&#123;</span><br><span class="line">		<span class="type">int</span> op;<span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;op);</span><br><span class="line">		<span class="keyword">if</span>(op==<span class="number">1</span>)&#123;<span class="type">int</span> x,y;ll z;<span class="built_in">scanf</span>(<span class="string">&quot;%d%d%lld&quot;</span>,&amp;x,&amp;y,&amp;z);<span class="built_in">path_update</span>(x,y,z);&#125;</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span>(op==<span class="number">2</span>)&#123;<span class="type">int</span> x,y;<span class="built_in">scanf</span>(<span class="string">&quot;%d%d&quot;</span>,&amp;x,&amp;y);<span class="built_in">printf</span>(<span class="string">&quot;%lld\n&quot;</span>,<span class="built_in">path_query</span>(x,y));&#125;</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span>(op==<span class="number">3</span>)&#123;<span class="type">int</span> x;ll z;<span class="built_in">scanf</span>(<span class="string">&quot;%d%lld&quot;</span>,&amp;x,&amp;z);<span class="built_in">subtree_update</span>(x,z);&#125;</span><br><span class="line">		<span class="keyword">else</span>&#123;<span class="type">int</span> x;<span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;x);<span class="built_in">printf</span>(<span class="string">&quot;%lld\n&quot;</span>,<span class="built_in">subtree_query</span>(x));&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
     </div>
 
     
@@ -299,6 +322,9 @@
     
 
     <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/answer/" rel="tag"># answer</a>
+          </div>
 
         
 
@@ -352,14 +378,14 @@
       <i class="fa fa-chart-line"></i>
     </span>
       <span>站点总字数：</span>
-    <span title="站点总字数">9k</span>
+    <span title="站点总字数">12k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span>站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">30 分钟</span>
+    <span title="站点阅读时长">40 分钟</span>
   </span>
 </div>
 
@@ -382,6 +408,26 @@
 <noscript>
   <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
 </noscript>
+<script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
+
+<script>
+var options = {
+  bottom: '64px',
+  right: '32px',
+  left: '32px',
+  time: '0.5s',
+  mixColor: 'transparent',
+  backgroundColor: 'transparent',
+  buttonColorDark: '#100f2c',
+  buttonColorLight: '#fff',
+  saveInCookies: true,
+  label: '🌓',
+  autoMatchOsTheme: true
+}
+const darkmode = new Darkmode(options);
+window.darkmode = darkmode;
+darkmode.showWidget();
+</script>
 <script class="next-config" data-name="twikoo" type="application/json">{"enable":true,"visitor":true,"envId":"hkb150429.github.io","el":"#twikoo-comments"}</script>
 <script>
 document.addEventListener('page:loaded', () => {
@@ -403,26 +449,6 @@ document.addEventListener('page:loaded', () => {
   display: inline-block;
 }
 </style>
-<script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
-
-<script>
-var options = {
-  bottom: '64px',
-  right: '32px',
-  left: '32px',
-  time: '0.5s',
-  mixColor: 'transparent',
-  backgroundColor: 'transparent',
-  buttonColorDark: '#100f2c',
-  buttonColorLight: '#fff',
-  saveInCookies: true,
-  label: '🌓',
-  autoMatchOsTheme: true
-}
-const darkmode = new Darkmode(options);
-window.darkmode = darkmode;
-darkmode.showWidget();
-</script>
 
   
 
@@ -432,6 +458,26 @@ darkmode.showWidget();
 
 
   
+<script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
+
+<script>
+var options = {
+  bottom: '64px',
+  right: '32px',
+  left: '32px',
+  time: '0.5s',
+  mixColor: 'transparent',
+  backgroundColor: 'transparent',
+  buttonColorDark: '#100f2c',
+  buttonColorLight: '#fff',
+  saveInCookies: true,
+  label: '🌓',
+  autoMatchOsTheme: true
+}
+const darkmode = new Darkmode(options);
+window.darkmode = darkmode;
+darkmode.showWidget();
+</script>
 <script class="next-config" data-name="twikoo" type="application/json">{"enable":true,"visitor":true,"envId":"hkb150429.github.io","el":"#twikoo-comments"}</script>
 <script>
 document.addEventListener('page:loaded', () => {
@@ -453,26 +499,6 @@ document.addEventListener('page:loaded', () => {
   display: inline-block;
 }
 </style>
-<script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
-
-<script>
-var options = {
-  bottom: '64px',
-  right: '32px',
-  left: '32px',
-  time: '0.5s',
-  mixColor: 'transparent',
-  backgroundColor: 'transparent',
-  buttonColorDark: '#100f2c',
-  buttonColorLight: '#fff',
-  saveInCookies: true,
-  label: '🌓',
-  autoMatchOsTheme: true
-}
-const darkmode = new Darkmode(options);
-window.darkmode = darkmode;
-darkmode.showWidget();
-</script>
 
   
 
