@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/themes/blue/pace-theme-minimal.css">
+  <script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous" defer></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"hkb150429.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.27.0","exturl":false,"sidebar":{"position":"right","width_expanded":320,"width_dual_column":240,"display":"hide","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"default"},"prism":{"light":"prism","dark":"prism"},"copy_button":{"enable":true,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"valine","storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="SLF优化 SLF 优化，即 Small Label First 策略，使用 STL 中的双端队列 deque 容器来实现，较为常用。 这个顾名思义就是在原有的SPFA算法中每次出队进行判断扩展出的点与队头元素进行判断，若小于进队头，否则入队尾。即：对要加入队列的点 u，如果 dist[u] 小于队头元素 v 的 dist[v]，将其插入到队头，否则插入到队尾。 注：队列为空时直接插入队尾。 1">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【信息】知识点-SPFA优化的写法">
+<meta property="og:url" content="https://hkb150429.github.io/posts/7fd36359/index.html">
+<meta property="og:site_name" content="HKB Blog">
+<meta property="og:description" content="SLF优化 SLF 优化，即 Small Label First 策略，使用 STL 中的双端队列 deque 容器来实现，较为常用。 这个顾名思义就是在原有的SPFA算法中每次出队进行判断扩展出的点与队头元素进行判断，若小于进队头，否则入队尾。即：对要加入队列的点 u，如果 dist[u] 小于队头元素 v 的 dist[v]，将其插入到队头，否则插入到队尾。 注：队列为空时直接插入队尾。 1">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-08-12T23:47:13.000Z">
+<meta property="article:modified_time" content="2026-08-12T23:54:31.635Z">
+<meta property="article:author" content="hkb">
+<meta property="article:tag" content="knowledge">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://hkb150429.github.io/posts/7fd36359/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://hkb150429.github.io/posts/7fd36359/","path":"posts/7fd36359/","title":"【信息】知识点-SPFA优化的写法"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>【信息】知识点-SPFA优化的写法 | HKB Blog</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.5.0/dist/search.js" integrity="sha256-xFC6PJ82SL9b3WkGjFavNiA9gm5z6UBxWPiu4CYjptg=" crossorigin="anonymous" defer></script>
+<script src="/js/third-party/search/local-search.js" defer></script>
+
+
+
+
+
+  <script src="/js/third-party/pace.js" defer></script>
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" integrity="sha256-UF1fgpAiu3tPJN/uCqEUHNe7pnr+QR0SQDNfgglgtcM=" crossorigin="anonymous">
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<style>.darkmode--activated{--body-bg-color:#282828;--content-bg-color:#333;--card-bg-color:#555;--text-color:#ccc;--blockquote-color:#bbb;--link-color:#ccc;--link-hover-color:#eee;--brand-color:#ddd;--brand-hover-color:#ddd;--table-row-odd-bg-color:#282828;--table-row-hover-bg-color:#363636;--menu-item-bg-color:#555;--btn-default-bg:#222;--btn-default-color:#ccc;--btn-default-border-color:#555;--btn-default-hover-bg:#666;--btn-default-hover-color:#ccc;--btn-default-hover-border-color:#666;--highlight-background:#282b2e;--highlight-foreground:#a9b7c6;--highlight-gutter-background:#34393d;--highlight-gutter-foreground:#9ca9b6}.darkmode--activated img{opacity:.75}.darkmode--activated img:hover{opacity:.9}.darkmode--activated code{color:#69dbdc;background:0 0}button.darkmode-toggle{z-index:9999}.darkmode-ignore,img{display:flex!important}.beian img{display:inline-block!important}</style></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">HKB Blog</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#slf%E4%BC%98%E5%8C%96"><span class="nav-number">1.</span> <span class="nav-text"> SLF优化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#lll%E4%BC%98%E5%8C%96"><span class="nav-number">2.</span> <span class="nav-text"> LLL优化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#slflll%E4%BC%98%E5%8C%96"><span class="nav-number">3.</span> <span class="nav-text"> SLF+LLL优化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#dfs%E4%BC%98%E5%8C%96"><span class="nav-number">4.</span> <span class="nav-text"> DFS优化</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">hkb</p>
+  <div class="site-description" itemprop="description">HKB的博客</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">30</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/Hkb150429" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Hkb150429" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://blog.csdn.net/Hkb_nhzx_2015?spm=1010.2135.3001.5343" title="CSDN → https:&#x2F;&#x2F;blog.csdn.net&#x2F;Hkb_nhzx_2015?spm&#x3D;1010.2135.3001.5343" rel="noopener me" target="_blank"><i class="fas fa-book fa-fw"></i>CSDN</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.luogu.com.cn/user/432226" title="Luogu → https:&#x2F;&#x2F;www.luogu.com.cn&#x2F;user&#x2F;432226" rel="noopener me" target="_blank"><i class="fas fa-trophy fa-fw"></i>Luogu</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://hkb150429.github.io/posts/7fd36359/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="hkb">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="HKB Blog">
+      <meta itemprop="description" content="HKB的博客">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="【信息】知识点-SPFA优化的写法 | HKB Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          【信息】知识点-SPFA优化的写法
+        </h1>
+
+        <div class="post-meta-container">
+
+
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2026-08-13 07:47:13 / 修改时间：07:54:31" itemprop="dateCreated datePublished" datetime="2026-08-13T07:47:13+08:00">2026-08-13</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/information-technology/" itemprop="url" rel="index"><span itemprop="name">information-technology</span></a>
+        </span>
+    </span>
+
+  
+    <span id="/posts/7fd36359/" class="post-meta-item twikoo_visitors" data-flag-title="【信息】知识点-SPFA优化的写法" title="阅读次数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="twikoo_visitors"></span>
+    </span>
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>1.2k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>4 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h3 id="slf优化"><a class="markdownIt-Anchor" href="#slf优化"></a> SLF优化</h3>
+<p><code>SLF</code> 优化，即 <code>Small Label First</code> 策略，使用 <code>STL</code> 中的双端队列 <code>deque</code> 容器来实现，较为常用。</p>
+<p>这个顾名思义就是在原有的SPFA算法中每次出队进行判断扩展出的点与队头元素进行判断，若小于进队头，否则入队尾。即：对要加入队列的点 u，如果 <code>dist[u]</code> 小于队头元素 <code>v</code> 的 <code>dist[v]</code>，将其插入到队头，否则插入到队尾。</p>
+<p>注：队列为空时直接插入队尾。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">spfa_slf</span><span class="params">(<span class="type">int</span> S)</span></span>&#123;</span><br><span class="line">	deque&lt;<span class="type">int</span>&gt; q;</span><br><span class="line">	dis[S]=<span class="number">0</span>;</span><br><span class="line">	<span class="type">int</span> temp;</span><br><span class="line">	q.<span class="built_in">push_back</span>(S);</span><br><span class="line">	cnt[S]++;</span><br><span class="line">	visited[S]=<span class="literal">true</span>; <span class="comment">//入队即true。</span></span><br><span class="line">	<span class="type">int</span> flag=<span class="number">0</span>;         <span class="comment">//标志，若为真，则表示存在负环。</span></span><br><span class="line">	<span class="keyword">while</span>(!q.<span class="built_in">empty</span>())&#123;</span><br><span class="line">		temp=q.<span class="built_in">front</span>();</span><br><span class="line">		q.<span class="built_in">pop_front</span>();</span><br><span class="line">		visited[temp]=<span class="literal">false</span>; <span class="comment">//出队则false。</span></span><br><span class="line">		<span class="type">int</span> v,w;</span><br><span class="line">		<span class="type">int</span> t=graph[temp].<span class="built_in">size</span>();<span class="comment">//避免多次调用此函数。</span></span><br><span class="line">        <span class="comment">//松弛操作</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;t;i++)&#123;</span><br><span class="line">			v=graph[temp][i].to;</span><br><span class="line">			w=graph[temp][i].w;</span><br><span class="line">			<span class="keyword">if</span>(dis[v]&gt;dis[temp]+w)&#123;</span><br><span class="line">				dis[v]=dis[temp]+w;<span class="comment">//更新最短路径</span></span><br><span class="line">				<span class="keyword">if</span>(!visited[v])&#123;</span><br><span class="line">					<span class="comment">//判断是否在队列中</span></span><br><span class="line">					<span class="keyword">if</span>(!q.<span class="built_in">empty</span>()&amp;&amp;dis[v]&gt;dis[q.<span class="built_in">front</span>()])&#123;</span><br><span class="line">						<span class="comment">//和队头元素进行比较。</span></span><br><span class="line">						q.<span class="built_in">push_back</span>(v);</span><br><span class="line">					&#125;</span><br><span class="line">					<span class="keyword">else</span> q.<span class="built_in">push_front</span>(v);</span><br><span class="line">					cnt[v]++;</span><br><span class="line">					<span class="keyword">if</span>(cnt[v]&gt;n)&#123;flag=<span class="number">1</span>;<span class="keyword">return</span> flag;&#125;</span><br><span class="line">					visited[v]=<span class="literal">true</span>;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">        &#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> flag;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="lll优化"><a class="markdownIt-Anchor" href="#lll优化"></a> LLL优化</h3>
+<p><code>LLL</code> 优化即：<code>Large Label Last</code> 策略。顾名思义就是大的放后面，这个不是针对要入队的元素，而是针对要出队的元素，我们是这样子来处理的：设队首元素为 <code>temp</code> ，每次松弛时进行判断，队列中所有 <code>dis</code> 值的和为<code>sum</code>，队列元素为<code>num</code> 。</p>
+<p>若 <code>dist[ temp] *num&gt;sum</code> ，则将 <code>temp</code> 取出插入到队尾，查找下一元素，直到找到某一个 <code>temp</code> 使得 <code>dis[ temp ]*sum &lt;= x </code>，则将 <code>temp</code> 出队进行松弛操作。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">spfa_lll</span><span class="params">(<span class="type">int</span> S)</span></span>&#123;</span><br><span class="line">	queue&lt;<span class="type">int</span>&gt; q;</span><br><span class="line">	<span class="type">int</span> sum,num;<span class="comment">//队列中dis总和和顶点数</span></span><br><span class="line">	dis[S]=<span class="number">0</span>;</span><br><span class="line">	<span class="type">int</span> temp;</span><br><span class="line">	q.<span class="built_in">push</span>(S);</span><br><span class="line">	sum=S,num=<span class="number">1</span>;</span><br><span class="line">	cnt[S]++;</span><br><span class="line">	visited[S]=<span class="literal">true</span>; <span class="comment">//入队即true。</span></span><br><span class="line">	<span class="type">int</span> flag=<span class="number">0</span>;         <span class="comment">//标志，若为真，则表示存在负环。</span></span><br><span class="line">	<span class="keyword">while</span>(!q.<span class="built_in">empty</span>())&#123;</span><br><span class="line">		temp=q.<span class="built_in">front</span>();</span><br><span class="line">		<span class="keyword">while</span>(dis[temp]*num&gt;sum)&#123;</span><br><span class="line">			<span class="comment">//LLL优化关键在这。</span></span><br><span class="line">			q.<span class="built_in">pop</span>();</span><br><span class="line">			q.<span class="built_in">push</span>(temp);</span><br><span class="line">			temp=q.<span class="built_in">front</span>();</span><br><span class="line">		&#125;</span><br><span class="line">		q.<span class="built_in">pop</span>();</span><br><span class="line">		<span class="comment">//更新队列中dis总和和顶点数目。</span></span><br><span class="line">		num--;</span><br><span class="line">		sum-=dis[temp];</span><br><span class="line">		visited[temp]=<span class="literal">false</span>; <span class="comment">//出队则false。</span></span><br><span class="line">		<span class="type">int</span> v,w;</span><br><span class="line">		<span class="type">int</span> t=graph[temp].<span class="built_in">size</span>();<span class="comment">//避免多次调用此函数。</span></span><br><span class="line">        <span class="comment">//松弛操作</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;t;i++)&#123;</span><br><span class="line">			v=graph[temp][i].to;</span><br><span class="line">			w=graph[temp][i].w;</span><br><span class="line">			<span class="keyword">if</span>(dis[v]&gt;dis[temp]+w)&#123;</span><br><span class="line">				dis[v]=dis[temp]+w;<span class="comment">//更新最短路径</span></span><br><span class="line">				<span class="keyword">if</span>(!visited[v])&#123;</span><br><span class="line">					<span class="comment">//判断是否在队列中</span></span><br><span class="line">					q.<span class="built_in">push</span>(v);</span><br><span class="line">					<span class="comment">//更新队列中dis总和和顶点数目。</span></span><br><span class="line">					sum+=dis[v];</span><br><span class="line">					num++;</span><br><span class="line">					cnt[v]++;</span><br><span class="line">					<span class="keyword">if</span>(cnt[v]&gt;n)&#123;flag=<span class="number">1</span>;<span class="keyword">return</span> flag;&#125;</span><br><span class="line">					visited[v]=<span class="literal">true</span>;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">        &#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> flag;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="slflll优化"><a class="markdownIt-Anchor" href="#slflll优化"></a> SLF+LLL优化</h3>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">spfa_slf_lll</span><span class="params">(<span class="type">int</span> S)</span></span>&#123;</span><br><span class="line">	deque&lt;<span class="type">int</span>&gt; q;</span><br><span class="line">	dis[S]=<span class="number">0</span>;</span><br><span class="line">	<span class="type">int</span> temp;</span><br><span class="line">	q.<span class="built_in">push_back</span>(S);</span><br><span class="line">	<span class="type">int</span> sum=dis[S];<span class="type">int</span> num=<span class="number">1</span>;</span><br><span class="line">	cnt[S]++;</span><br><span class="line">	visited[S]=<span class="literal">true</span>; <span class="comment">//入队即true。</span></span><br><span class="line">	<span class="type">int</span> flag=<span class="number">0</span>;         <span class="comment">//标志，若为真，则表示存在负环。</span></span><br><span class="line">	<span class="keyword">while</span>(!q.<span class="built_in">empty</span>())&#123;</span><br><span class="line">		temp=q.<span class="built_in">front</span>();</span><br><span class="line">		<span class="keyword">while</span>(dis[temp]*num&gt;sum)&#123;</span><br><span class="line">			<span class="comment">//lll优化</span></span><br><span class="line">			q.<span class="built_in">pop_front</span>();</span><br><span class="line">			q.<span class="built_in">push_back</span>(temp);</span><br><span class="line">			temp=q.<span class="built_in">front</span>();</span><br><span class="line">		&#125;</span><br><span class="line">		q.<span class="built_in">pop_front</span>();</span><br><span class="line">		sum-=dis[temp];</span><br><span class="line">		num--;</span><br><span class="line">		visited[temp]=<span class="literal">false</span>; <span class="comment">//出队则false。</span></span><br><span class="line">		<span class="type">int</span> v,w;</span><br><span class="line">		<span class="type">int</span> t=graph[temp].<span class="built_in">size</span>();<span class="comment">//避免多次调用此函数。</span></span><br><span class="line">        <span class="comment">//松弛操作</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;t;i++)&#123;</span><br><span class="line">			v=graph[temp][i].to;</span><br><span class="line">			w=graph[temp][i].w;</span><br><span class="line">			<span class="keyword">if</span>(dis[v]&gt;dis[temp]+w)&#123;</span><br><span class="line">				dis[v]=dis[temp]+w;<span class="comment">//更新最短路径</span></span><br><span class="line">				<span class="keyword">if</span>(!visited[v])&#123;</span><br><span class="line">					<span class="comment">//判断是否在队列中</span></span><br><span class="line">					<span class="keyword">if</span>(!q.<span class="built_in">empty</span>()&amp;&amp;dis[v]&gt;dis[q.<span class="built_in">front</span>()])&#123;</span><br><span class="line">						<span class="comment">//和队头元素进行比较。</span></span><br><span class="line">						q.<span class="built_in">push_back</span>(v);<span class="comment">//大于入队尾</span></span><br><span class="line">					&#125;</span><br><span class="line">					<span class="keyword">else</span> q.<span class="built_in">push_front</span>(v); <span class="comment">//小于入队头</span></span><br><span class="line">					sum+=dis[v];</span><br><span class="line">					num++;</span><br><span class="line">					cnt[v]++;</span><br><span class="line">					<span class="keyword">if</span>(cnt[v]&gt;n)&#123;flag=<span class="number">1</span>;<span class="keyword">return</span> flag;&#125;</span><br><span class="line">					visited[v]=<span class="literal">true</span>;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">        &#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> flag;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="dfs优化"><a class="markdownIt-Anchor" href="#dfs优化"></a> DFS优化</h3>
+<p>我们知道 <code>SPFA</code> 算法是利用<code>BFS</code>的思想的，由于采用广度优先的思想，每当我们扩展出一个新的节点，总是把它放到队列的末尾，其缺点是中断了迭代的连续性。而实际上如果采用深度优先的思想，我们可以直接从这个新节点继续往下扩展，则我们就可以不断递归进行求解。我们用 <code>DFS</code> 的思想来代替 <code>BFS</code>，这就是 <code>DFS</code> 优化。可这样优化真的好吗？这种优化常常用于判断正/负环，时间复杂度可以达到<code>O(m)</code>（<code>m</code>是边）。思路是，我们每一次<code>dfs</code>的时候如果走回之前<code>dfs</code>过的点，那就是有环，除了这个<code>dfs</code>的标记，我们还可以打另一个<code>vis</code>数组记录更新过权值的节点，以后就不必重复更新，大大降低复杂度。如果只是要求最短路径，还是使用前三种优化吧。用<code>DFS</code>优化我们要使用一个访问数组来判断一个点是否再次走过，不同于上面的<code>visited</code>。</p>
+<p>我们先要进行初始化，注意：绝对不能放在 <code>spfa_dfs</code> 函数中。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">bool</span> visited[maxn];<span class="comment">//判断是否访问过。</span></span><br><span class="line">dis[S]=<span class="number">0</span>;</span><br><span class="line"><span class="built_in">memset</span>(visited,<span class="literal">false</span>,<span class="built_in">sizeof</span>(visited));</span><br><span class="line"><span class="type">int</span> flag=<span class="number">0</span>;<span class="comment">//标志位，判断是否存在负环。</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">spfa_dfs</span><span class="params">(<span class="type">int</span> temp)</span></span>&#123;</span><br><span class="line">	<span class="type">int</span> v,w;</span><br><span class="line">	<span class="type">int</span> t=graph[temp].<span class="built_in">size</span>();</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;t;i++)&#123;</span><br><span class="line">		v=graph[temp][i].to;</span><br><span class="line">		w=graph[temp][i].w;</span><br><span class="line">		<span class="keyword">if</span>(dis[v]&gt;dis[temp]+w)&#123;</span><br><span class="line">			<span class="keyword">if</span>(visited[v])&#123;</span><br><span class="line">				<span class="comment">//判断是否在一条路径上出现了多次。</span></span><br><span class="line">				flag=<span class="literal">true</span>;</span><br><span class="line">				<span class="keyword">return</span>;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">else</span>&#123;</span><br><span class="line">				dis[v]=dis[temp]+w;</span><br><span class="line">				visited[v]=<span class="literal">true</span>;</span><br><span class="line">				<span class="built_in">spfa_dfs</span>(v);<span class="comment">//顺着这条路继续扩展。</span></span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/knowledge/" rel="tag"># knowledge</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/posts/62e1e4a8/" rel="prev" title="【信息】题解-洛谷P4779（单源最短路径（标准版））">
+                  <i class="fa fa-angle-left"></i> 【信息】题解-洛谷P4779（单源最短路径（标准版））
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/posts/7389a98/" rel="next" title="【信息】题解-洛谷P3387（缩点 &#x2F; 强连通分量）">
+                  【信息】题解-洛谷P3387（缩点 / 强连通分量） <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+  
+  <div><center>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+  <div class="social-share" data-sites="weibo, qq, qzone,wechat"></div>
+  <script src="http://apps.bdimg.com/libs/jquery/1.8.2/jquery.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
+  </center></div>  
+</article>
+
+
+
+
+
+
+    <div class="comments"><div id="twikoo-comments"></div></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">hkb</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+      <span>站点总字数：</span>
+    <span title="站点总字数">9k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span>站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">30 分钟</span>
+  </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+<script class="next-config" data-name="twikoo" type="application/json">{"enable":true,"visitor":true,"envId":"hkb150429.github.io","el":"#twikoo-comments"}</script>
+<script>
+document.addEventListener('page:loaded', () => {
+  NexT.utils.loadComments(CONFIG.twikoo.el)
+    .then(() => NexT.utils.getScript(
+      CONFIG.twikoo.jsUrl || 'https://cdn.jsdelivr.net/npm/twikoo/dist/twikoo.all.min.js',
+      { condition: window.twikoo }
+    ))
+    .then(() => {
+      twikoo.init(CONFIG.twikoo);
+    });
+});
+</script>
+<style>
+.post-block, .comments {
+  overflow: visible;
+}
+.tk-owo-emotion {
+  display: inline-block;
+}
+</style>
+<script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
+
+<script>
+var options = {
+  bottom: '64px',
+  right: '32px',
+  left: '32px',
+  time: '0.5s',
+  mixColor: 'transparent',
+  backgroundColor: 'transparent',
+  buttonColorDark: '#100f2c',
+  buttonColorLight: '#fff',
+  saveInCookies: true,
+  label: '🌓',
+  autoMatchOsTheme: true
+}
+const darkmode = new Darkmode(options);
+window.darkmode = darkmode;
+darkmode.showWidget();
+</script>
+
+  
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" integrity="sha256-UF1fgpAiu3tPJN/uCqEUHNe7pnr+QR0SQDNfgglgtcM=" crossorigin="anonymous">
+
+
+  
+<script class="next-config" data-name="twikoo" type="application/json">{"enable":true,"visitor":true,"envId":"hkb150429.github.io","el":"#twikoo-comments"}</script>
+<script>
+document.addEventListener('page:loaded', () => {
+  NexT.utils.loadComments(CONFIG.twikoo.el)
+    .then(() => NexT.utils.getScript(
+      CONFIG.twikoo.jsUrl || 'https://cdn.jsdelivr.net/npm/twikoo/dist/twikoo.all.min.js',
+      { condition: window.twikoo }
+    ))
+    .then(() => {
+      twikoo.init(CONFIG.twikoo);
+    });
+});
+</script>
+<style>
+.post-block, .comments {
+  overflow: visible;
+}
+.tk-owo-emotion {
+  display: inline-block;
+}
+</style>
+<script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
+
+<script>
+var options = {
+  bottom: '64px',
+  right: '32px',
+  left: '32px',
+  time: '0.5s',
+  mixColor: 'transparent',
+  backgroundColor: 'transparent',
+  buttonColorDark: '#100f2c',
+  buttonColorLight: '#fff',
+  saveInCookies: true,
+  label: '🌓',
+  autoMatchOsTheme: true
+}
+const darkmode = new Darkmode(options);
+window.darkmode = darkmode;
+darkmode.showWidget();
+</script>
+
+  
+
+  <script async src="/js/cursor/fireworks.js"></script>
+
+
+</body>
+</html>

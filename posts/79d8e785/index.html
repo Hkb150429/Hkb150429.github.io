@@ -21,26 +21,27 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"hkb150429.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.27.0","exturl":false,"sidebar":{"position":"right","width_expanded":320,"width_dual_column":240,"display":"hide","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"default"},"prism":{"light":"prism","dark":"prism"},"copy_button":{"enable":true,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"valine","storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js" defer></script>
 
-    <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.  Quic">
+    <meta name="description" content="题目大意 区间修改区间求和  思路 线段树模版题  AC CODE 12345678910111213141516171819202122232425262728293031323334353637383940414243444546#include&lt;bits&#x2F;stdc++.h&gt;using namespace std;typedef long long ll;const int N&#x3D;">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="https://hkb150429.github.io/posts/4a17b156/index.html">
+<meta property="og:title" content="【信息】题解-洛谷P3372（线段树1）">
+<meta property="og:url" content="https://hkb150429.github.io/posts/79d8e785/index.html">
 <meta property="og:site_name" content="HKB Blog">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.  Quic">
+<meta property="og:description" content="题目大意 区间修改区间求和  思路 线段树模版题  AC CODE 12345678910111213141516171819202122232425262728293031323334353637383940414243444546#include&lt;bits&#x2F;stdc++.h&gt;using namespace std;typedef long long ll;const int N&#x3D;">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2026-06-06T00:21:46.942Z">
-<meta property="article:modified_time" content="2026-07-05T08:50:39.409Z">
+<meta property="article:published_time" content="2026-08-13T00:11:40.000Z">
+<meta property="article:modified_time" content="2026-08-13T00:15:59.042Z">
 <meta property="article:author" content="hkb">
+<meta property="article:tag" content="answer">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="https://hkb150429.github.io/posts/4a17b156/">
+<link rel="canonical" href="https://hkb150429.github.io/posts/79d8e785/">
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://hkb150429.github.io/posts/4a17b156/","path":"posts/4a17b156/","title":"Hello World"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://hkb150429.github.io/posts/79d8e785/","path":"posts/79d8e785/","title":"【信息】题解-洛谷P3372（线段树1）"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>Hello World | HKB Blog</title>
+<title>【信息】题解-洛谷P3372（线段树1） | HKB Blog</title>
   
 
 
@@ -164,7 +165,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#quick-start"><span class="nav-number">1.</span> <span class="nav-text"> Quick Start</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#create-a-new-post"><span class="nav-number">1.1.</span> <span class="nav-text"> Create a new post</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#run-server"><span class="nav-number">1.2.</span> <span class="nav-text"> Run server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#generate-static-files"><span class="nav-number">1.3.</span> <span class="nav-text"> Generate static files</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#deploy-to-remote-sites"><span class="nav-number">1.4.</span> <span class="nav-text"> Deploy to remote sites</span></a></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE%E5%A4%A7%E6%84%8F"><span class="nav-number">1.</span> <span class="nav-text"> 题目大意</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%9D%E8%B7%AF"><span class="nav-number">2.</span> <span class="nav-text"> 思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ac-code"><span class="nav-number">3.</span> <span class="nav-text"> AC CODE</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -226,7 +227,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://hkb150429.github.io/posts/4a17b156/">
+    <link itemprop="mainEntityOfPage" href="https://hkb150429.github.io/posts/79d8e785/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -239,19 +240,15 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="Hello World | HKB Blog">
+      <meta itemprop="name" content="【信息】题解-洛谷P3372（线段树1） | HKB Blog">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Hello World
+          【信息】题解-洛谷P3372（线段树1）
         </h1>
 
         <div class="post-meta-container">
-
-    <i class="fa fa-thumb-tack"></i>
-    <font color=7D26CD>置顶</font>
-    <span class="post-meta-divider">|</span>
 
 
           <div class="post-meta">
@@ -260,19 +257,22 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
+      
 
-      <time title="创建时间：2026-06-06 08:21:46" itemprop="dateCreated datePublished" datetime="2026-06-06T08:21:46+08:00">2026-06-06</time>
+      <time title="创建时间：2026-08-13 08:11:40 / 修改时间：08:15:59" itemprop="dateCreated datePublished" datetime="2026-08-13T08:11:40+08:00">2026-08-13</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
+        <i class="far fa-folder"></i>
       </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-07-05 16:50:39" itemprop="dateModified" datetime="2026-07-05T16:50:39+08:00">2026-07-05</time>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/information-technology/" itemprop="url" rel="index"><span itemprop="name">information-technology</span></a>
+        </span>
     </span>
 
   
-    <span id="/posts/4a17b156/" class="post-meta-item twikoo_visitors" data-flag-title="Hello World" title="阅读次数">
+    <span id="/posts/79d8e785/" class="post-meta-item twikoo_visitors" data-flag-title="【信息】题解-洛谷P3372（线段树1）" title="阅读次数">
       <span class="post-meta-item-icon">
         <i class="far fa-eye"></i>
       </span>
@@ -286,7 +286,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>78</span>
+      <span>326</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -303,21 +303,12 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="quick-start"><a class="markdownIt-Anchor" href="#quick-start"></a> Quick Start</h2>
-<h3 id="create-a-new-post"><a class="markdownIt-Anchor" href="#create-a-new-post"></a> Create a new post</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="run-server"><a class="markdownIt-Anchor" href="#run-server"></a> Run server</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="generate-static-files"><a class="markdownIt-Anchor" href="#generate-static-files"></a> Generate static files</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="deploy-to-remote-sites"><a class="markdownIt-Anchor" href="#deploy-to-remote-sites"></a> Deploy to remote sites</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-
+    <div class="post-body" itemprop="articleBody"><h3 id="题目大意"><a class="markdownIt-Anchor" href="#题目大意"></a> 题目大意</h3>
+<p>区间修改区间求和</p>
+<h3 id="思路"><a class="markdownIt-Anchor" href="#思路"></a> 思路</h3>
+<p>线段树模版题</p>
+<h3 id="ac-code"><a class="markdownIt-Anchor" href="#ac-code"></a> AC CODE</h3>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">typedef</span> <span class="type">long</span> <span class="type">long</span> ll;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N=<span class="number">100005</span>;</span><br><span class="line">ll a[N],sum[N&lt;&lt;<span class="number">2</span>],lazy[N&lt;&lt;<span class="number">2</span>];</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">pushup</span><span class="params">(<span class="type">int</span> p)</span></span>&#123;sum[p]=sum[p&lt;&lt;<span class="number">1</span>]+sum[p&lt;&lt;<span class="number">1</span>|<span class="number">1</span>];&#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">pushdown</span><span class="params">(<span class="type">int</span> p,<span class="type">int</span> l,<span class="type">int</span> r)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(!lazy[p]) <span class="keyword">return</span>;</span><br><span class="line">	<span class="type">int</span> mid=(l+r)&gt;&gt;<span class="number">1</span>;</span><br><span class="line">	sum[p&lt;&lt;<span class="number">1</span>]+=lazy[p]*(mid-l<span class="number">+1</span>);lazy[p&lt;&lt;<span class="number">1</span>]+=lazy[p];</span><br><span class="line">	sum[p&lt;&lt;<span class="number">1</span>|<span class="number">1</span>]+=lazy[p]*(r-mid);lazy[p&lt;&lt;<span class="number">1</span>|<span class="number">1</span>]+=lazy[p];</span><br><span class="line">	lazy[p]=<span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">build</span><span class="params">(<span class="type">int</span> p,<span class="type">int</span> l,<span class="type">int</span> r)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(l==r)&#123;sum[p]=a[l];<span class="keyword">return</span>;&#125;</span><br><span class="line">	<span class="type">int</span> mid=(l+r)&gt;&gt;<span class="number">1</span>;</span><br><span class="line">	<span class="built_in">build</span>(p&lt;&lt;<span class="number">1</span>,l,mid);<span class="built_in">build</span>(p&lt;&lt;<span class="number">1</span>|<span class="number">1</span>,mid<span class="number">+1</span>,r);</span><br><span class="line">	<span class="built_in">pushup</span>(p);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">update</span><span class="params">(<span class="type">int</span> p,<span class="type">int</span> l,<span class="type">int</span> r,<span class="type">int</span> ql,<span class="type">int</span> qr,ll d)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(ql&lt;=l&amp;&amp;r&lt;=qr)&#123;sum[p]+=d*(r-l<span class="number">+1</span>);lazy[p]+=d;<span class="keyword">return</span>;&#125;</span><br><span class="line">	<span class="built_in">pushdown</span>(p,l,r);</span><br><span class="line">	<span class="type">int</span> mid=(l+r)&gt;&gt;<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">if</span>(ql&lt;=mid) <span class="built_in">update</span>(p&lt;&lt;<span class="number">1</span>,l,mid,ql,qr,d);</span><br><span class="line">	<span class="keyword">if</span>(qr&gt;mid) <span class="built_in">update</span>(p&lt;&lt;<span class="number">1</span>|<span class="number">1</span>,mid<span class="number">+1</span>,r,ql,qr,d);</span><br><span class="line">	<span class="built_in">pushup</span>(p);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function">ll <span class="title">query</span><span class="params">(<span class="type">int</span> p,<span class="type">int</span> l,<span class="type">int</span> r,<span class="type">int</span> ql,<span class="type">int</span> qr)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(ql&lt;=l&amp;&amp;r&lt;=qr) <span class="keyword">return</span> sum[p];</span><br><span class="line">	<span class="built_in">pushdown</span>(p,l,r);</span><br><span class="line">	<span class="type">int</span> mid=(l+r)&gt;&gt;<span class="number">1</span>;ll res=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">if</span>(ql&lt;=mid) res+=<span class="built_in">query</span>(p&lt;&lt;<span class="number">1</span>,l,mid,ql,qr);</span><br><span class="line">	<span class="keyword">if</span>(qr&gt;mid) res+=<span class="built_in">query</span>(p&lt;&lt;<span class="number">1</span>|<span class="number">1</span>,mid<span class="number">+1</span>,r,ql,qr);</span><br><span class="line">	<span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="type">int</span> n,m;<span class="built_in">scanf</span>(<span class="string">&quot;%d%d&quot;</span>,&amp;n,&amp;m);</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++) <span class="built_in">scanf</span>(<span class="string">&quot;%lld&quot;</span>,&amp;a[i]);</span><br><span class="line">	<span class="built_in">build</span>(<span class="number">1</span>,<span class="number">1</span>,n);</span><br><span class="line">	<span class="keyword">while</span>(m--)&#123;</span><br><span class="line">		<span class="type">int</span> op,x,y;<span class="built_in">scanf</span>(<span class="string">&quot;%d%d%d&quot;</span>,&amp;op,&amp;x,&amp;y);</span><br><span class="line">		<span class="keyword">if</span>(op==<span class="number">1</span>)&#123;ll k;<span class="built_in">scanf</span>(<span class="string">&quot;%lld&quot;</span>,&amp;k);<span class="built_in">update</span>(<span class="number">1</span>,<span class="number">1</span>,n,x,y,k);&#125;</span><br><span class="line">		<span class="keyword">else</span> <span class="built_in">printf</span>(<span class="string">&quot;%lld\n&quot;</span>,<span class="built_in">query</span>(<span class="number">1</span>,<span class="number">1</span>,n,x,y));</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
     </div>
 
     
@@ -325,15 +316,21 @@
     
 
     <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/answer/" rel="tag"># answer</a>
+          </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
+                <a href="/posts/82b4d543/" rel="prev" title="【信息】题解-洛谷P13825（线段树1.5）">
+                  <i class="fa fa-angle-left"></i> 【信息】题解-洛谷P13825（线段树1.5）
+                </a>
             </div>
             <div class="post-nav-item">
-                <a href="/posts/ed4d859f/" rel="next" title="地铁1-广州地铁1号线">
-                  地铁1-广州地铁1号线 <i class="fa fa-angle-right"></i>
+                <a href="/posts/eccb8328/" rel="next" title="【信息】题解-洛谷P3373（线段树2）">
+                  【信息】题解-洛谷P3373（线段树2） <i class="fa fa-angle-right"></i>
                 </a>
             </div>
           </div>
