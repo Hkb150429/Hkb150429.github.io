@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/themes/blue/pace-theme-minimal.css">
+  <script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous" defer></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"hkb150429.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.27.0","exturl":false,"sidebar":{"position":"right","width_expanded":320,"width_dual_column":240,"display":"hide","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"default"},"prism":{"light":"prism","dark":"prism"},"copy_button":{"enable":true,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"valine","storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="计数DP知识点超全讲解（零基础易懂）  一、计数DP核心定义 计数DP是动态规划的一大分支，区别于求最值（最大&#x2F;最小）、求和的常规DP，它的核心目标只有一个：统计满足特定条件的方案总数、路径总数、合法状态总数。 简单来说：不找最优解，只算“有多少种合法情况”。 核心本质：将复杂的全局计数问题，拆解为多个可递推的子问题，通过子问题的方案数累加得到当前状态的方案数，避免暴力枚举（超时、重复计算）。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【信息】知识点-计数DP">
+<meta property="og:url" content="https://hkb150429.github.io/posts/bc3bc4f/index.html">
+<meta property="og:site_name" content="HKB Blog">
+<meta property="og:description" content="计数DP知识点超全讲解（零基础易懂）  一、计数DP核心定义 计数DP是动态规划的一大分支，区别于求最值（最大&#x2F;最小）、求和的常规DP，它的核心目标只有一个：统计满足特定条件的方案总数、路径总数、合法状态总数。 简单来说：不找最优解，只算“有多少种合法情况”。 核心本质：将复杂的全局计数问题，拆解为多个可递推的子问题，通过子问题的方案数累加得到当前状态的方案数，避免暴力枚举（超时、重复计算）。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-08-14T15:14:29.000Z">
+<meta property="article:modified_time" content="2026-08-14T15:22:46.263Z">
+<meta property="article:author" content="hkb">
+<meta property="article:tag" content="knowledge">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://hkb150429.github.io/posts/bc3bc4f/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://hkb150429.github.io/posts/bc3bc4f/","path":"posts/bc3bc4f/","title":"【信息】知识点-计数DP"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>【信息】知识点-计数DP | HKB Blog</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.5.0/dist/search.js" integrity="sha256-xFC6PJ82SL9b3WkGjFavNiA9gm5z6UBxWPiu4CYjptg=" crossorigin="anonymous" defer></script>
+<script src="/js/third-party/search/local-search.js" defer></script>
+
+
+
+
+
+  <script src="/js/third-party/pace.js" defer></script>
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" integrity="sha256-UF1fgpAiu3tPJN/uCqEUHNe7pnr+QR0SQDNfgglgtcM=" crossorigin="anonymous">
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<style>.darkmode--activated{--body-bg-color:#282828;--content-bg-color:#333;--card-bg-color:#555;--text-color:#ccc;--blockquote-color:#bbb;--link-color:#ccc;--link-hover-color:#eee;--brand-color:#ddd;--brand-hover-color:#ddd;--table-row-odd-bg-color:#282828;--table-row-hover-bg-color:#363636;--menu-item-bg-color:#555;--btn-default-bg:#222;--btn-default-color:#ccc;--btn-default-border-color:#555;--btn-default-hover-bg:#666;--btn-default-hover-color:#ccc;--btn-default-hover-border-color:#666;--highlight-background:#282b2e;--highlight-foreground:#a9b7c6;--highlight-gutter-background:#34393d;--highlight-gutter-foreground:#9ca9b6}.darkmode--activated img{opacity:.75}.darkmode--activated img:hover{opacity:.9}.darkmode--activated code{color:#69dbdc;background:0 0}button.darkmode-toggle{z-index:9999}.darkmode-ignore,img{display:flex!important}.beian img{display:inline-block!important}</style></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">HKB Blog</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%AE%A1%E6%95%B0dp%E7%9F%A5%E8%AF%86%E7%82%B9%E8%B6%85%E5%85%A8%E8%AE%B2%E8%A7%A3%E9%9B%B6%E5%9F%BA%E7%A1%80%E6%98%93%E6%87%82"><span class="nav-number">1.</span> <span class="nav-text"> 计数DP知识点超全讲解（零基础易懂）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%80-%E8%AE%A1%E6%95%B0dp%E6%A0%B8%E5%BF%83%E5%AE%9A%E4%B9%89"><span class="nav-number">2.</span> <span class="nav-text"> 一、计数DP核心定义</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%8C-%E8%AE%A1%E6%95%B0dp%E9%80%82%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="nav-number">3.</span> <span class="nav-text"> 二、计数DP适用场景</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%89-%E8%AE%A1%E6%95%B0dp%E6%A0%B8%E5%BF%83%E6%80%9D%E6%83%B3%E4%B8%8E%E8%A7%A3%E9%A2%98%E6%A8%A1%E6%9D%BF"><span class="nav-number">4.</span> <span class="nav-text"> 三、计数DP核心思想与解题模板</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E6%A0%B8%E5%BF%83%E5%85%AC%E5%BC%8F%E9%80%9A%E7%94%A8%E9%80%92%E6%8E%A8"><span class="nav-number">4.1.</span> <span class="nav-text"> 1. 核心公式（通用递推）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E6%A0%87%E5%87%86%E8%A7%A3%E9%A2%98%E5%9B%9B%E6%AD%A5%E9%AA%A4"><span class="nav-number">4.2.</span> <span class="nav-text"> 2. 标准解题四步骤</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%AD%A5%E9%AA%A41%E7%8A%B6%E6%80%81%E5%AE%9A%E4%B9%89%E6%9C%80%E5%85%B3%E9%94%AE"><span class="nav-number">4.2.1.</span> <span class="nav-text"> 步骤1：状态定义（最关键）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%AD%A5%E9%AA%A42%E5%88%9D%E5%A7%8B%E5%8C%96%E8%BE%B9%E7%95%8C%E6%9D%A1%E4%BB%B6"><span class="nav-number">4.2.2.</span> <span class="nav-text"> 步骤2：初始化边界条件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%AD%A5%E9%AA%A43%E7%8A%B6%E6%80%81%E8%BD%AC%E7%A7%BB%E6%96%B9%E7%A8%8B"><span class="nav-number">4.2.3.</span> <span class="nav-text"> 步骤3：状态转移方程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%AD%A5%E9%AA%A44%E7%AD%94%E6%A1%88%E8%BE%93%E5%87%BA"><span class="nav-number">4.2.4.</span> <span class="nav-text"> 步骤4：答案输出</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E9%80%9A%E7%94%A8%E4%BB%A3%E7%A0%81%E6%A8%A1%E6%9D%BFc"><span class="nav-number">4.3.</span> <span class="nav-text"> 3. 通用代码模板（C++）</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9B%9B-%E4%BA%94%E5%A4%A7%E7%BB%8F%E5%85%B8%E8%AE%A1%E6%95%B0dp%E6%A8%A1%E5%9E%8B%E5%BF%85%E8%80%83"><span class="nav-number">5.</span> <span class="nav-text"> 四、五大经典计数DP模型（必考）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B1%E5%9F%BA%E7%A1%80%E7%BA%BF%E6%80%A7%E8%AE%A1%E6%95%B0%E7%88%AC%E6%A5%BC%E6%A2%AF%E6%A8%A1%E5%9E%8B"><span class="nav-number">5.1.</span> <span class="nav-text"> 模型1：基础线性计数（爬楼梯模型）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE%E6%8F%8F%E8%BF%B0"><span class="nav-number">5.1.1.</span> <span class="nav-text"> 题目描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%8A%B6%E6%80%81%E5%AE%9A%E4%B9%89"><span class="nav-number">5.1.2.</span> <span class="nav-text"> 状态定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BD%AC%E7%A7%BB%E6%96%B9%E7%A8%8B"><span class="nav-number">5.1.3.</span> <span class="nav-text"> 转移方程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BE%B9%E7%95%8C%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="nav-number">5.1.4.</span> <span class="nav-text"> 边界初始化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%B8%E5%BF%83%E6%80%BB%E7%BB%93"><span class="nav-number">5.1.5.</span> <span class="nav-text"> 核心总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B2%E7%BD%91%E6%A0%BC%E8%B7%AF%E5%BE%84%E8%AE%A1%E6%95%B0"><span class="nav-number">5.2.</span> <span class="nav-text"> 模型2：网格路径计数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE%E6%8F%8F%E8%BF%B0-2"><span class="nav-number">5.2.1.</span> <span class="nav-text"> 题目描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%8A%B6%E6%80%81%E5%AE%9A%E4%B9%89-2"><span class="nav-number">5.2.2.</span> <span class="nav-text"> 状态定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BD%AC%E7%A7%BB%E6%96%B9%E7%A8%8B-2"><span class="nav-number">5.2.3.</span> <span class="nav-text"> 转移方程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BE%B9%E7%95%8C%E5%88%9D%E5%A7%8B%E5%8C%96-2"><span class="nav-number">5.2.4.</span> <span class="nav-text"> 边界初始化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8B%93%E5%B1%95"><span class="nav-number">5.2.5.</span> <span class="nav-text"> 拓展</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B3%E8%83%8C%E5%8C%85%E6%96%B9%E6%A1%88%E6%95%B0%E8%AE%A1%E6%95%B0"><span class="nav-number">5.3.</span> <span class="nav-text"> 模型3：背包方案数计数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE%E6%8F%8F%E8%BF%B0-3"><span class="nav-number">5.3.1.</span> <span class="nav-text"> 题目描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%8A%B6%E6%80%81%E5%AE%9A%E4%B9%89-3"><span class="nav-number">5.3.2.</span> <span class="nav-text"> 状态定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BD%AC%E7%A7%BB%E6%96%B9%E7%A8%8B-3"><span class="nav-number">5.3.3.</span> <span class="nav-text"> 转移方程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BE%B9%E7%95%8C%E5%88%9D%E5%A7%8B%E5%8C%96-3"><span class="nav-number">5.3.4.</span> <span class="nav-text"> 边界初始化</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B4%E7%BA%A6%E6%9D%9F%E5%9E%8B%E5%BA%8F%E5%88%97%E8%AE%A1%E6%95%B0"><span class="nav-number">5.4.</span> <span class="nav-text"> 模型4：约束型序列计数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE%E6%8F%8F%E8%BF%B0-4"><span class="nav-number">5.4.1.</span> <span class="nav-text"> 题目描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%8A%B6%E6%80%81%E5%AE%9A%E4%B9%89%E4%BA%8C%E7%BB%B4%E6%A0%B8%E5%BF%83"><span class="nav-number">5.4.2.</span> <span class="nav-text"> 状态定义（二维核心）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BD%AC%E7%A7%BB%E9%80%BB%E8%BE%91"><span class="nav-number">5.4.3.</span> <span class="nav-text"> 转移逻辑</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B5%E6%95%B4%E6%95%B0%E6%8B%86%E5%88%86%E8%AE%A1%E6%95%B0"><span class="nav-number">5.5.</span> <span class="nav-text"> 模型5：整数拆分计数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE%E6%8F%8F%E8%BF%B0-5"><span class="nav-number">5.5.1.</span> <span class="nav-text"> 题目描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%B8%E5%BF%83%E6%80%9D%E8%B7%AF"><span class="nav-number">5.5.2.</span> <span class="nav-text"> 核心思路</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%94-%E8%AE%A1%E6%95%B0dp%E6%A0%B8%E5%BF%83%E6%98%93%E9%94%99%E7%82%B9%E5%BF%85%E7%9C%8B"><span class="nav-number">6.</span> <span class="nav-text"> 五、计数DP核心易错点（必看）</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">hkb</p>
+  <div class="site-description" itemprop="description">HKB的博客</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">37</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/Hkb150429" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Hkb150429" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://blog.csdn.net/Hkb_nhzx_2015?spm=1010.2135.3001.5343" title="CSDN → https:&#x2F;&#x2F;blog.csdn.net&#x2F;Hkb_nhzx_2015?spm&#x3D;1010.2135.3001.5343" rel="noopener me" target="_blank"><i class="fas fa-book fa-fw"></i>CSDN</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.luogu.com.cn/user/432226" title="Luogu → https:&#x2F;&#x2F;www.luogu.com.cn&#x2F;user&#x2F;432226" rel="noopener me" target="_blank"><i class="fas fa-trophy fa-fw"></i>Luogu</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://hkb150429.github.io/posts/bc3bc4f/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="hkb">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="HKB Blog">
+      <meta itemprop="description" content="HKB的博客">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="【信息】知识点-计数DP | HKB Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          【信息】知识点-计数DP
+        </h1>
+
+        <div class="post-meta-container">
+
+
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2026-08-14 23:14:29 / 修改时间：23:22:46" itemprop="dateCreated datePublished" datetime="2026-08-14T23:14:29+08:00">2026-08-14</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/information-technology/" itemprop="url" rel="index"><span itemprop="name">information-technology</span></a>
+        </span>
+    </span>
+
+  
+    <span id="/posts/bc3bc4f/" class="post-meta-item twikoo_visitors" data-flag-title="【信息】知识点-计数DP" title="阅读次数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="twikoo_visitors"></span>
+    </span>
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>1.6k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>5 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="计数dp知识点超全讲解零基础易懂"><a class="markdownIt-Anchor" href="#计数dp知识点超全讲解零基础易懂"></a> 计数DP知识点超全讲解（零基础易懂）</h1>
+<h1 id="一-计数dp核心定义"><a class="markdownIt-Anchor" href="#一-计数dp核心定义"></a> 一、计数DP核心定义</h1>
+<p>计数DP是<strong>动态规划的一大分支</strong>，区别于求最值（最大/最小）、求和的常规DP，它的核心目标只有一个：<strong>统计满足特定条件的方案总数、路径总数、合法状态总数</strong>。</p>
+<p>简单来说：不找最优解，只算“有多少种合法情况”。</p>
+<p><strong>核心本质</strong>：将复杂的全局计数问题，拆解为多个可递推的子问题，通过子问题的方案数累加得到当前状态的方案数，避免暴力枚举（超时、重复计算）。</p>
+<h1 id="二-计数dp适用场景"><a class="markdownIt-Anchor" href="#二-计数dp适用场景"></a> 二、计数DP适用场景</h1>
+<p>满足以下特征的算法题，优先考虑计数DP：</p>
+<ul>
+<li>题目提问：<strong>一共有多少种方案/路径/选法/排列组合</strong></li>
+<li>存在阶段性决策：每一步选择会影响后续状态，且状态可复用</li>
+<li>直接暴力枚举会超时（数据范围 n≤1000、n≤1e3/1e4 是计数DP常见范围）</li>
+<li>存在合法约束条件（不能连续选、不能重复、数值限制、路径限制等）</li>
+</ul>
+<p><strong>典型题型</strong>：爬楼梯、路径计数、整数拆分、合法括号序列、数位统计、背包方案数、排列组合计数等。</p>
+<h1 id="三-计数dp核心思想与解题模板"><a class="markdownIt-Anchor" href="#三-计数dp核心思想与解题模板"></a> 三、计数DP核心思想与解题模板</h1>
+<h2 id="1-核心公式通用递推"><a class="markdownIt-Anchor" href="#1-核心公式通用递推"></a> 1. 核心公式（通用递推）</h2>
+<p>计数DP的状态转移核心是<strong>方案数累加</strong>，区别于最值DP的取max/min：</p>
+<p><strong>dp[i] = sum dp[前驱合法状态]</strong></p>
+<ul>
+<li><strong>dp[i]</strong>：表示达到状态 i 的合法总方案数</li>
+<li>所有能转移到 i 的合法前置状态，方案数全部累加，就是当前状态的总方案数</li>
+</ul>
+<h2 id="2-标准解题四步骤"><a class="markdownIt-Anchor" href="#2-标准解题四步骤"></a> 2. 标准解题四步骤</h2>
+<h3 id="步骤1状态定义最关键"><a class="markdownIt-Anchor" href="#步骤1状态定义最关键"></a> 步骤1：状态定义（最关键）</h3>
+<p>结合题目约束，定义<strong>无后效性</strong>的状态，常见维度：</p>
+<ul>
+<li>一维：dp[i] 表示前 i 个元素 / 数值为 i 的总方案数</li>
+<li>二维：dp[i][j] 表示前 i 个元素、满足 j 条件的方案数（最常用）</li>
+</ul>
+<p>无后效性：当前状态的方案数，只由前置状态决定，和后续选择无关。</p>
+<h3 id="步骤2初始化边界条件"><a class="markdownIt-Anchor" href="#步骤2初始化边界条件"></a> 步骤2：初始化边界条件</h3>
+<p>计数DP的初始化<strong>极易踩坑</strong>，核心规则：</p>
+<ul>
+<li>空状态、初始原点、起点位置：默认 <strong>方案数为1</strong>（有一种“什么都不做”的合法方案）</li>
+<li>非法状态、不存在的状态：方案数为 0</li>
+</ul>
+<p>例：爬楼梯问题，dp[0]=1（0级台阶，无需爬，1种方案）；网格路径问题，起点dp[0][0]=1。</p>
+<h3 id="步骤3状态转移方程"><a class="markdownIt-Anchor" href="#步骤3状态转移方程"></a> 步骤3：状态转移方程</h3>
+<p>根据题目约束，筛选<strong>合法前置状态</strong>，累加方案数：</p>
+<ul>
+<li>无约束：所有前置状态均可转移，直接累加</li>
+<li>有约束：剔除非法前置状态，只累加合法状态的方案数</li>
+</ul>
+<h3 id="步骤4答案输出"><a class="markdownIt-Anchor" href="#步骤4答案输出"></a> 步骤4：答案输出</h3>
+<p>最终答案通常为：<strong>目标状态对应的dp值</strong>（如dp[n]、dp[n][m]），部分题目需取模（方案数过大）。</p>
+<h2 id="3-通用代码模板c"><a class="markdownIt-Anchor" href="#3-通用代码模板c"></a> 3. 通用代码模板（C++）</h2>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1. 初始化dp数组，默认0</span></span><br><span class="line"><span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">dp</span><span class="params">(n + <span class="number">1</span>, <span class="number">0</span>)</span></span>;</span><br><span class="line"><span class="comment">// 2. 边界初始化</span></span><br><span class="line">dp[<span class="number">0</span>] = <span class="number">1</span>; </span><br><span class="line"><span class="comment">// 3. 递推转移</span></span><br><span class="line"><span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i++) &#123;</span><br><span class="line">    <span class="comment">// 遍历所有合法前驱状态</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> j : 合法前置条件) &#123;</span><br><span class="line">        dp[i] += dp[j];</span><br><span class="line">        dp[i] %= MOD; <span class="comment">// 大数取模，题目要求则加</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 4. 输出答案</span></span><br><span class="line">cout &lt;&lt; dp[n] &lt;&lt; endl;</span><br></pre></td></tr></table></figure>
+<h1 id="四-五大经典计数dp模型必考"><a class="markdownIt-Anchor" href="#四-五大经典计数dp模型必考"></a> 四、五大经典计数DP模型（必考）</h1>
+<h2 id="模型1基础线性计数爬楼梯模型"><a class="markdownIt-Anchor" href="#模型1基础线性计数爬楼梯模型"></a> 模型1：基础线性计数（爬楼梯模型）</h2>
+<h3 id="题目描述"><a class="markdownIt-Anchor" href="#题目描述"></a> 题目描述</h3>
+<p>每次可以爬1级或2级台阶，求爬到n级台阶的总方案数。</p>
+<h3 id="状态定义"><a class="markdownIt-Anchor" href="#状态定义"></a> 状态定义</h3>
+<p>dp[i]：爬到第 i 级台阶的方案总数。</p>
+<h3 id="转移方程"><a class="markdownIt-Anchor" href="#转移方程"></a> 转移方程</h3>
+<p>到达第i级，只能从 i-1（爬1级）、i-2（爬2级）转移而来：</p>
+<p><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>d</mi><mi>p</mi><mo stretchy="false">[</mo><mi>i</mi><mo stretchy="false">]</mo><mo>=</mo><mi>d</mi><mi>p</mi><mo stretchy="false">[</mo><mi>i</mi><mo>−</mo><mn>1</mn><mo stretchy="false">]</mo><mo>+</mo><mi>d</mi><mi>p</mi><mo stretchy="false">[</mo><mi>i</mi><mo>−</mo><mn>2</mn><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">dp[i] = dp[i-1] + dp[i-2]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">d</span><span class="mord mathnormal">p</span><span class="mopen">[</span><span class="mord mathnormal">i</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">d</span><span class="mord mathnormal">p</span><span class="mopen">[</span><span class="mord mathnormal">i</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">d</span><span class="mord mathnormal">p</span><span class="mopen">[</span><span class="mord mathnormal">i</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">2</span><span class="mclose">]</span></span></span></span></p>
+<h3 id="边界初始化"><a class="markdownIt-Anchor" href="#边界初始化"></a> 边界初始化</h3>
+<p>dp[0]=1，dp[1]=1</p>
+<h3 id="核心总结"><a class="markdownIt-Anchor" href="#核心总结"></a> 核心总结</h3>
+<p>线性递推、单维度计数，适用于<strong>分步选择、每步固定可选操作</strong>的计数问题。</p>
+<h2 id="模型2网格路径计数"><a class="markdownIt-Anchor" href="#模型2网格路径计数"></a> 模型2：网格路径计数</h2>
+<h3 id="题目描述-2"><a class="markdownIt-Anchor" href="#题目描述-2"></a> 题目描述</h3>
+<p>n*m网格，从左上角走到右下角，只能向右/向下走，求总路径数（可增加障碍物约束）。</p>
+<h3 id="状态定义-2"><a class="markdownIt-Anchor" href="#状态定义-2"></a> 状态定义</h3>
+<p>dp[i][j]：走到网格 (i,j) 位置的总路径数。</p>
+<h3 id="转移方程-2"><a class="markdownIt-Anchor" href="#转移方程-2"></a> 转移方程</h3>
+<p>当前位置只能从上方(i-1,j)、左方(i,j-1)转移：</p>
+<p><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>d</mi><mi>p</mi><mo stretchy="false">[</mo><mi>i</mi><mo stretchy="false">]</mo><mo stretchy="false">[</mo><mi>j</mi><mo stretchy="false">]</mo><mo>=</mo><mi>d</mi><mi>p</mi><mo stretchy="false">[</mo><mi>i</mi><mo>−</mo><mn>1</mn><mo stretchy="false">]</mo><mo stretchy="false">[</mo><mi>j</mi><mo stretchy="false">]</mo><mo>+</mo><mi>d</mi><mi>p</mi><mo stretchy="false">[</mo><mi>i</mi><mo stretchy="false">]</mo><mo stretchy="false">[</mo><mi>j</mi><mo>−</mo><mn>1</mn><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">dp[i][j] = dp[i-1][j] + dp[i][j-1]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">d</span><span class="mord mathnormal">p</span><span class="mopen">[</span><span class="mord mathnormal">i</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathnormal" style="margin-right:0.05724em;">j</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">d</span><span class="mord mathnormal">p</span><span class="mopen">[</span><span class="mord mathnormal">i</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathnormal" style="margin-right:0.05724em;">j</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">d</span><span class="mord mathnormal">p</span><span class="mopen">[</span><span class="mord mathnormal">i</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathnormal" style="margin-right:0.05724em;">j</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">]</span></span></span></span></p>
+<h3 id="边界初始化-2"><a class="markdownIt-Anchor" href="#边界初始化-2"></a> 边界初始化</h3>
+<p>dp[0][0]=1；第一行、第一列无障碍物时，方案数均为1（只有一条路可走）。</p>
+<h3 id="拓展"><a class="markdownIt-Anchor" href="#拓展"></a> 拓展</h3>
+<p>有障碍物时：障碍物位置 dp[i][j]=0（无合法路径到达）。</p>
+<h2 id="模型3背包方案数计数"><a class="markdownIt-Anchor" href="#模型3背包方案数计数"></a> 模型3：背包方案数计数</h2>
+<h3 id="题目描述-3"><a class="markdownIt-Anchor" href="#题目描述-3"></a> 题目描述</h3>
+<p>给定物品和背包容量，求<strong>恰好装满背包/不超过容量</strong>的选法总数（01背包、完全背包均可计数）。</p>
+<h3 id="状态定义-3"><a class="markdownIt-Anchor" href="#状态定义-3"></a> 状态定义</h3>
+<p>dp[j]：容量为 j 的背包的合法选法总数。</p>
+<h3 id="转移方程-3"><a class="markdownIt-Anchor" href="#转移方程-3"></a> 转移方程</h3>
+<p>01背包（物品只能选1次）：倒序遍历容量</p>
+<p><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>d</mi><mi>p</mi><mo stretchy="false">[</mo><mi>j</mi><mo stretchy="false">]</mo><mo>+</mo><mo>=</mo><mi>d</mi><mi>p</mi><mo stretchy="false">[</mo><mi>j</mi><mo>−</mo><mi>w</mi><mo stretchy="false">[</mo><mi>i</mi><mo stretchy="false">]</mo><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">dp[j] += dp[j - w[i]]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">d</span><span class="mord mathnormal">p</span><span class="mopen">[</span><span class="mord mathnormal" style="margin-right:0.05724em;">j</span><span class="mclose">]</span><span class="mord">+</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">d</span><span class="mord mathnormal">p</span><span class="mopen">[</span><span class="mord mathnormal" style="margin-right:0.05724em;">j</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.02691em;">w</span><span class="mopen">[</span><span class="mord mathnormal">i</span><span class="mclose">]</span><span class="mclose">]</span></span></span></span></p>
+<p>完全背包（物品可选多次）：正序遍历容量</p>
+<p><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>d</mi><mi>p</mi><mo stretchy="false">[</mo><mi>j</mi><mo stretchy="false">]</mo><mo>+</mo><mo>=</mo><mi>d</mi><mi>p</mi><mo stretchy="false">[</mo><mi>j</mi><mo>−</mo><mi>w</mi><mo stretchy="false">[</mo><mi>i</mi><mo stretchy="false">]</mo><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">dp[j] += dp[j - w[i]]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">d</span><span class="mord mathnormal">p</span><span class="mopen">[</span><span class="mord mathnormal" style="margin-right:0.05724em;">j</span><span class="mclose">]</span><span class="mord">+</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">d</span><span class="mord mathnormal">p</span><span class="mopen">[</span><span class="mord mathnormal" style="margin-right:0.05724em;">j</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.02691em;">w</span><span class="mopen">[</span><span class="mord mathnormal">i</span><span class="mclose">]</span><span class="mclose">]</span></span></span></span></p>
+<h3 id="边界初始化-3"><a class="markdownIt-Anchor" href="#边界初始化-3"></a> 边界初始化</h3>
+<p>dp[0]=1（容量为0，不选任何物品，1种方案）。</p>
+<h2 id="模型4约束型序列计数"><a class="markdownIt-Anchor" href="#模型4约束型序列计数"></a> 模型4：约束型序列计数</h2>
+<h3 id="题目描述-4"><a class="markdownIt-Anchor" href="#题目描述-4"></a> 题目描述</h3>
+<p>构造长度为n的序列，满足特定约束（如：不能连续选1、相邻数差值不超过k），求总序列数。</p>
+<h3 id="状态定义二维核心"><a class="markdownIt-Anchor" href="#状态定义二维核心"></a> 状态定义（二维核心）</h3>
+<p>dp[i][j]：长度为 i 的序列，<strong>最后一位为 j</strong> 的合法方案数。</p>
+<h3 id="转移逻辑"><a class="markdownIt-Anchor" href="#转移逻辑"></a> 转移逻辑</h3>
+<p>根据约束条件，筛选上一位合法的数值k，累加所有 dp[i-1][k]。</p>
+<p>示例：不能连续为1，则最后一位是1时，上一位只能是非1的数。</p>
+<h2 id="模型5整数拆分计数"><a class="markdownIt-Anchor" href="#模型5整数拆分计数"></a> 模型5：整数拆分计数</h2>
+<h3 id="题目描述-5"><a class="markdownIt-Anchor" href="#题目描述-5"></a> 题目描述</h3>
+<p>将整数n拆分为若干正整数之和（可有序/无序、可重复/不可重复），求拆分方案总数。</p>
+<h3 id="核心思路"><a class="markdownIt-Anchor" href="#核心思路"></a> 核心思路</h3>
+<p>转化为完全背包计数问题：数字1~n为物品，和为n为背包容量。</p>
+<h1 id="五-计数dp核心易错点必看"><a class="markdownIt-Anchor" href="#五-计数dp核心易错点必看"></a> 五、计数DP核心易错点（必看）</h1>
+<ul>
+<li><strong>初始化错误</strong>：最常见！空状态 dp[0]=1，而非0，否则所有方案数都会算错</li>
+<li><strong>混淆最值DP与计数DP</strong>：计数是累加求和，不是max/min，切勿写混转移方程</li>
+<li><strong>未取模溢出</strong>：计数方案数指数级增长，题目无特殊说明时，默认对 1e9+7 取模</li>
+<li><strong>状态后效性</strong>：状态定义必须干净，不能包含未来的决策信息，否则无法递推</li>
+<li><strong>非法状态未置0</strong>：障碍物、违规状态必须手动置0，避免错误累加</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/knowledge/" rel="tag"># knowledge</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/posts/c9fe8bbf/" rel="prev" title="【信息】题解-洛谷P3478（STA-Station）">
+                  <i class="fa fa-angle-left"></i> 【信息】题解-洛谷P3478（STA-Station）
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/posts/2244ee9b/" rel="next" title="【信息】知识点-计数DP模版">
+                  【信息】知识点-计数DP模版 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+  
+  <div><center>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+  <div class="social-share" data-sites="weibo, qq, qzone,wechat"></div>
+  <script src="http://apps.bdimg.com/libs/jquery/1.8.2/jquery.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
+  </center></div>  
+</article>
+
+
+
+
+
+
+    <div class="comments"><div id="twikoo-comments"></div></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">hkb</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+      <span>站点总字数：</span>
+    <span title="站点总字数">14k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span>站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">48 分钟</span>
+  </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+<script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
+
+<script>
+var options = {
+  bottom: '64px',
+  right: '32px',
+  left: '32px',
+  time: '0.5s',
+  mixColor: 'transparent',
+  backgroundColor: 'transparent',
+  buttonColorDark: '#100f2c',
+  buttonColorLight: '#fff',
+  saveInCookies: true,
+  label: '🌓',
+  autoMatchOsTheme: true
+}
+const darkmode = new Darkmode(options);
+window.darkmode = darkmode;
+darkmode.showWidget();
+</script>
+<script class="next-config" data-name="twikoo" type="application/json">{"enable":true,"visitor":true,"envId":"hkb150429.github.io","el":"#twikoo-comments"}</script>
+<script>
+document.addEventListener('page:loaded', () => {
+  NexT.utils.loadComments(CONFIG.twikoo.el)
+    .then(() => NexT.utils.getScript(
+      CONFIG.twikoo.jsUrl || 'https://cdn.jsdelivr.net/npm/twikoo/dist/twikoo.all.min.js',
+      { condition: window.twikoo }
+    ))
+    .then(() => {
+      twikoo.init(CONFIG.twikoo);
+    });
+});
+</script>
+<style>
+.post-block, .comments {
+  overflow: visible;
+}
+.tk-owo-emotion {
+  display: inline-block;
+}
+</style>
+
+  
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" integrity="sha256-UF1fgpAiu3tPJN/uCqEUHNe7pnr+QR0SQDNfgglgtcM=" crossorigin="anonymous">
+
+
+  
+<script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
+
+<script>
+var options = {
+  bottom: '64px',
+  right: '32px',
+  left: '32px',
+  time: '0.5s',
+  mixColor: 'transparent',
+  backgroundColor: 'transparent',
+  buttonColorDark: '#100f2c',
+  buttonColorLight: '#fff',
+  saveInCookies: true,
+  label: '🌓',
+  autoMatchOsTheme: true
+}
+const darkmode = new Darkmode(options);
+window.darkmode = darkmode;
+darkmode.showWidget();
+</script>
+<script class="next-config" data-name="twikoo" type="application/json">{"enable":true,"visitor":true,"envId":"hkb150429.github.io","el":"#twikoo-comments"}</script>
+<script>
+document.addEventListener('page:loaded', () => {
+  NexT.utils.loadComments(CONFIG.twikoo.el)
+    .then(() => NexT.utils.getScript(
+      CONFIG.twikoo.jsUrl || 'https://cdn.jsdelivr.net/npm/twikoo/dist/twikoo.all.min.js',
+      { condition: window.twikoo }
+    ))
+    .then(() => {
+      twikoo.init(CONFIG.twikoo);
+    });
+});
+</script>
+<style>
+.post-block, .comments {
+  overflow: visible;
+}
+.tk-owo-emotion {
+  display: inline-block;
+}
+</style>
+
+  
+
+  <script async src="/js/cursor/fireworks.js"></script>
+
+
+</body>
+</html>

@@ -174,7 +174,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">35</span>
+          <span class="site-state-item-count">37</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -213,6 +213,117 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://hkb150429.github.io/posts/b600f144/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="hkb">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="HKB Blog">
+      <meta itemprop="description" content="HKB的博客">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | HKB Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/posts/b600f144/" class="post-title-link" itemprop="url">【信息】题解-洛谷P3368（树状数组2）</a>
+        </h2>
+
+        <div class="post-meta-container">
+
+
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2026-08-12 23:11:51 / 修改时间：23:31:46" itemprop="dateCreated datePublished" datetime="2026-08-12T23:11:51+08:00">2026-08-12</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/information-technology/" itemprop="url" rel="index"><span itemprop="name">information-technology</span></a>
+        </span>
+    </span>
+
+  
+    <span id="/posts/b600f144/" class="post-meta-item twikoo_visitors" data-flag-title="【信息】题解-洛谷P3368（树状数组2）" title="阅读次数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="twikoo_visitors"></span>
+    </span>
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>189</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>1 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="题目大意"><a class="markdownIt-Anchor" href="#题目大意"></a> 题目大意</h3>
+<p>区点修改单间求和</p>
+<h3 id="思路"><a class="markdownIt-Anchor" href="#思路"></a> 思路</h3>
+<p>树状数组模版题</p>
+<h3 id="ac-code"><a class="markdownIt-Anchor" href="#ac-code"></a> AC CODE</h3>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="meta">#<span class="keyword">define</span> int long long</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> lowbit(x) ((x)&amp;-(x))</span></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N=<span class="number">1000005</span>;</span><br><span class="line"><span class="type">int</span> tree1[N],tree2[N],a[N];</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">sum</span><span class="params">(<span class="type">int</span>* tree,<span class="type">int</span> k)</span></span>&#123;</span><br><span class="line">	<span class="type">int</span> ans=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">while</span>(k&gt;<span class="number">0</span>)ans+=tree[k],k-=<span class="built_in">lowbit</span>(k);</span><br><span class="line">	<span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">update</span><span class="params">(<span class="type">int</span> x,<span class="type">int</span> d)</span></span>&#123;</span><br><span class="line">	<span class="type">int</span> d1=x*d;</span><br><span class="line">	<span class="keyword">while</span>(x&lt;=N)tree1[x]+=d,tree2[x]+=d1,x+=<span class="built_in">lowbit</span>(x);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">update1</span><span class="params">(<span class="type">int</span> x,<span class="type">int</span> y,<span class="type">int</span> d)</span></span>&#123;</span><br><span class="line">	<span class="built_in">update</span>(x,d),<span class="built_in">update</span>(y<span class="number">+1</span>,-d);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">sum1</span><span class="params">(<span class="type">int</span> x,<span class="type">int</span> y)</span></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> (y<span class="number">+1ll</span>)*<span class="built_in">sum</span>(tree1,y)<span class="number">-1ll</span>*x*<span class="built_in">sum</span>(tree1,x<span class="number">-1</span>)-(<span class="built_in">sum</span>(tree2,y)-<span class="built_in">sum</span>(tree2,x<span class="number">-1</span>));</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">signed</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="type">int</span> n,m;</span><br><span class="line">	cin&gt;&gt;n&gt;&gt;m;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++)cin&gt;&gt;a[i],<span class="built_in">update1</span>(i,i,a[i]);</span><br><span class="line">	<span class="type">int</span> t;<span class="type">int</span> x,y,z;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=m;i++)&#123;</span><br><span class="line">		cin&gt;&gt;t&gt;&gt;x;<span class="comment">//&gt;&gt;y;</span></span><br><span class="line">		<span class="keyword">if</span>(t==<span class="number">1</span>)cin&gt;&gt;y&gt;&gt;z,<span class="built_in">update1</span>(x,y,z);</span><br><span class="line">		<span class="keyword">else</span> cout&lt;&lt;<span class="built_in">sum1</span>(x,x)&lt;&lt;endl;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+    
+</article>
+
+
+
 
     
 
@@ -563,6 +674,212 @@
 <li>每个 SCC 缩成一个点，得到 DAG</li>
 <li><strong>应用</strong>：DAG 上 DP（如最长路）、求最少加边使图强连通（max(入度为0点数, 出度为0点数)）、2-SAT</li>
 </ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+    
+</article>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://hkb150429.github.io/posts/aeacccce/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="hkb">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="HKB Blog">
+      <meta itemprop="description" content="HKB的博客">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | HKB Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/posts/aeacccce/" class="post-title-link" itemprop="url">【信息】知识点-换根DP</a>
+        </h2>
+
+        <div class="post-meta-container">
+
+
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2026-08-12 23:00:32" itemprop="dateCreated datePublished" datetime="2026-08-12T23:00:32+08:00">2026-08-12</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2026-08-14 23:21:34" itemprop="dateModified" datetime="2026-08-14T23:21:34+08:00">2026-08-14</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/information-technology/" itemprop="url" rel="index"><span itemprop="name">information-technology</span></a>
+        </span>
+    </span>
+
+  
+    <span id="/posts/aeacccce/" class="post-meta-item twikoo_visitors" data-flag-title="【信息】知识点-换根DP" title="阅读次数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="twikoo_visitors"></span>
+    </span>
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>1k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>3 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <blockquote>
+<p>例题：P3478 STA‑Statistics，求每个点到所有点距离和</p>
+</blockquote>
+<h2 id="1什么是换根dp"><a class="markdownIt-Anchor" href="#1什么是换根dp"></a> 1.什么是换根DP</h2>
+<p>普通树形DP：只算<strong>以1为根</strong>的答案。<br />
+换根DP：求树上<strong>每一个点当作根</strong>的答案。</p>
+<p>暴力：每个点跑一遍dfs，O(n²)，n=1e5直接超时。</p>
+<p>换根DP思路：</p>
+<ol>
+<li>dfs1：任选一个根（一般取1），算出子树信息。</li>
+<li>dfs2：把根从父节点u挪到子节点v，利用u的全局答案直接算出v的全局答案，不用重遍历。<br />
+总复杂度 O(n)。</li>
+</ol>
+<blockquote>
+<p>核心：找到「根从u换到v」时答案的变化量。</p>
+</blockquote>
+<h2 id="2例题求每个点到全部点的距离总和"><a class="markdownIt-Anchor" href="#2例题求每个点到全部点的距离总和"></a> 2.例题：求每个点到全部点的距离总和</h2>
+<p>定义：</p>
+<ul>
+<li>sz[u]：以u为根的子树节点数量</li>
+<li>dp[u]：以u为根时，u子树内部所有点到u的距离总和（只看子树）</li>
+<li>f[u]：整棵树以u为根，全树所有点到u的距离总和（题目要求输出的答案）</li>
+</ul>
+<h3 id="dfs11-1-后序求子树信息"><a class="markdownIt-Anchor" href="#dfs11-1-后序求子树信息"></a> dfs1(1,-1) 后序求子树信息</h3>
+<p>对于子节点v：</p>
+<ol>
+<li>sz[u] += sz[v]</li>
+<li>u到v子树所有点的距离 = v到那些点距离 + 1；一共sz[v]个点，所以 dp[u] += dp[v] + sz[v]</li>
+</ol>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">dfs1</span><span class="params">(<span class="type">int</span> u,<span class="type">int</span> fa)</span></span>&#123;</span><br><span class="line">    sz[u]=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> v:g[u])&#123;</span><br><span class="line">        <span class="keyword">if</span>(v==fa) <span class="keyword">continue</span>;</span><br><span class="line">        <span class="built_in">dfs1</span>(v,u);</span><br><span class="line">        sz[u] += sz[v];</span><br><span class="line">        dp[u] += dp[v] + sz[v];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>跑完dfs1，f[1] = dp[1]，1号点作为全局根的答案。</p>
+<h3 id="dfs2换根推导最重要"><a class="markdownIt-Anchor" href="#dfs2换根推导最重要"></a> dfs2：换根推导（最重要）</h3>
+<p>把根从u移动到儿子v，只改变u‑v这条边：</p>
+<ol>
+<li>v的子树一共有 sz[v] 个点：这些点距离根全部减1，总距离减少 sz[v]。</li>
+<li>剩下外面 n‑sz[v] 个点：这些点距离根全部加1，总距离增加 (n‑sz[v])。</li>
+</ol>
+<p>转移等式（单行，无换行）：<br />
+<code>f[v] = f[u] - sz[v] + (n - sz[v])</code></p>
+<blockquote>
+<p>注意：先算出f[v]，再递归v的子节点。顺序不能颠倒。</p>
+</blockquote>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">dfs2</span><span class="params">(<span class="type">int</span> u,<span class="type">int</span> fa)</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> v:g[u])&#123;</span><br><span class="line">        <span class="keyword">if</span>(v==fa) <span class="keyword">continue</span>;</span><br><span class="line">        f[v] = f[u] - sz[v] + (n - sz[v]);</span><br><span class="line">        <span class="built_in">dfs2</span>(v,u);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>完整AC代码</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N=<span class="number">100005</span>;</span><br><span class="line">vector&lt;<span class="type">int</span>&gt;g[N];</span><br><span class="line"><span class="type">long</span> <span class="type">long</span> dp[N],f[N];</span><br><span class="line"><span class="type">int</span> sz[N];</span><br><span class="line"><span class="type">int</span> n;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">dfs1</span><span class="params">(<span class="type">int</span> u,<span class="type">int</span> fa)</span></span>&#123;</span><br><span class="line">    sz[u]=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> v:g[u])&#123;</span><br><span class="line">        <span class="keyword">if</span>(v==fa)<span class="keyword">continue</span>;</span><br><span class="line">        <span class="built_in">dfs1</span>(v,u);</span><br><span class="line">        sz[u]+=sz[v];</span><br><span class="line">        dp[u]+=dp[v]+sz[v];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">dfs2</span><span class="params">(<span class="type">int</span> u,<span class="type">int</span> fa)</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> v:g[u])&#123;</span><br><span class="line">        <span class="keyword">if</span>(v==fa)<span class="keyword">continue</span>;</span><br><span class="line">        f[v]=f[u]-sz[v]+(n-sz[v]);</span><br><span class="line">        <span class="built_in">dfs2</span>(v,u);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    cin&gt;&gt;n;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;n;i++)&#123;</span><br><span class="line">        <span class="type">int</span> a,b;cin&gt;&gt;a&gt;&gt;b;</span><br><span class="line">        g[a].<span class="built_in">push_back</span>(b);</span><br><span class="line">        g[b].<span class="built_in">push_back</span>(a);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">dfs1</span>(<span class="number">1</span>,<span class="number">-1</span>);</span><br><span class="line">    f[<span class="number">1</span>]=dp[<span class="number">1</span>];</span><br><span class="line">    <span class="built_in">dfs2</span>(<span class="number">1</span>,<span class="number">-1</span>);</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++) cout&lt;&lt;f[i]&lt;&lt;<span class="string">&quot; &quot;</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="3换根dp通用做题步骤"><a class="markdownIt-Anchor" href="#3换根dp通用做题步骤"></a> 3.换根DP通用做题步骤</h2>
+<ol>
+<li>选定初始根，一般选1。</li>
+<li>dfs1(u,fa)：后序遍历，求子树信息 sz、dp。只处理u的子树，不处理u上方部分。</li>
+<li>给初始根赋值：<code>f[root]=dp[root]</code>。</li>
+<li>dfs2(u,fa)：从上到下，父推子，算出f[v]。</li>
+</ol>
+<blockquote>
+<p>⚠️顺序：<strong>先算f[v]，再递归dfs2(v)</strong>。</p>
+</blockquote>
+<ol start="5">
+<li>输出f数组。</li>
+</ol>
+<blockquote>
+<p>dfs1：子 → 父（后序）<br />
+dfs2：父 → 子（先序）</p>
+</blockquote>
+<h2 id="4怎么推导换根公式思考模板"><a class="markdownIt-Anchor" href="#4怎么推导换根公式思考模板"></a> 4.怎么推导换根公式（思考模板）</h2>
+<ol>
+<li>u是父，v是儿子，画图；</li>
+<li>根从u移到v，只有u‑v这条边反转；</li>
+<li>树切两块：
+<ul>
+<li>A块：v的子树，点数 sz[v]</li>
+<li>B块：其余所有点，点数 n‑sz[v]</li>
+</ul>
+</li>
+<li>判断A块、B块总答案分别加多少、减多少，合并得到f[v]。</li>
+</ol>
+<blockquote>
+<p>提醒：<code>f[v]=f[u]-sz[v]+(n‑sz[v])</code>只是距离和专用，别的题目要重新推。</p>
+</blockquote>
+<h2 id="5易错点"><a class="markdownIt-Anchor" href="#5易错点"></a> 5.易错点</h2>
+<ol>
+<li>漏写fa判断，dfs死循环爆栈。</li>
+<li>dfs2递归顺序错：先递归子节点再算f[v]，结果全错。</li>
+<li>答案很大，必须用long long，int会溢出。</li>
+<li>分清两个数组：
+<ul>
+<li>dp[u]：仅u子树内部答案，dfs1求出</li>
+<li>f[u]：整棵树以u为根的全局答案，dfs2求出</li>
+</ul>
+</li>
+<li>忘记写 <code>f[1]=dp[1]</code>。</li>
+</ol>
+<h2 id="6什么时候想到换根dp"><a class="markdownIt-Anchor" href="#6什么时候想到换根dp"></a> 6.什么时候想到换根DP</h2>
+<p>题目要求：<strong>树上每一个点作为根，求某个代价/权值/距离，输出全部点的结果</strong>。</p>
+<blockquote>
+<p>只求一个点答案，普通树形DP就够，不用换根。</p>
+</blockquote>
 
       
     </div>
@@ -1078,132 +1395,6 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://hkb150429.github.io/posts/72ecda63/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="hkb">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="HKB Blog">
-      <meta itemprop="description" content="HKB的博客">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content=" | HKB Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/posts/72ecda63/" class="post-title-link" itemprop="url">【信息】知识点-树状数组</a>
-        </h2>
-
-        <div class="post-meta-container">
-
-
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2026-08-12 22:45:59 / 修改时间：23:01:53" itemprop="dateCreated datePublished" datetime="2026-08-12T22:45:59+08:00">2026-08-12</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/information-technology/" itemprop="url" rel="index"><span itemprop="name">information-technology</span></a>
-        </span>
-    </span>
-
-  
-    <span id="/posts/72ecda63/" class="post-meta-item twikoo_visitors" data-flag-title="【信息】知识点-树状数组" title="阅读次数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-eye"></i>
-      </span>
-      <span class="post-meta-item-text">阅读次数：</span>
-      <span id="twikoo_visitors"></span>
-    </span>
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>229</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>1 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h3 id="原理"><a class="markdownIt-Anchor" href="#原理"></a> 原理</h3>
-<ul>
-<li>利用 <code>lowbit(x) = x &amp; -x</code></li>
-<li>数组大小 n，下标从 1 开始</li>
-<li><strong>单点修改 + 前缀查询</strong>：O(log n)</li>
-</ul>
-<h3 id="基础操作"><a class="markdownIt-Anchor" href="#基础操作"></a> 基础操作</h3>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">修改：<span class="keyword">for</span> i=x; i&lt;=n; i+=<span class="built_in">lowbit</span> (i) t [i]+=v</span><br><span class="line">查询：<span class="keyword">for</span> i=x; i&gt;<span class="number">0</span>; i-=<span class="built_in">lowbit</span> (i) res+=t[i]</span><br></pre></td></tr></table></figure>
-<h3 id="扩展用法"><a class="markdownIt-Anchor" href="#扩展用法"></a> 扩展用法</h3>
-<ol>
-<li><strong>区间修改 + 单点查询</strong>：差分思想，修改 <code>[l,r]</code> 即 <code>add(l,v), add(r+1,-v)</code></li>
-<li><strong>区间修改 + 区间查询</strong>：维护两个树状数组 <code>t1</code> 和 <code>t2</code>，前缀和 = <code>(x+1)*query(t1,x) - query(t2,x)</code></li>
-<li><strong>求逆序对</strong>：离散化后从后往前插入，查询比当前小的数量</li>
-<li><strong>第 k 小</strong>：倍增式查询，从高位试探</li>
-<li><strong>二维树状数组</strong>：套一层循环，处理矩形和</li>
-</ol>
-<h3 id="与线段树对比"><a class="markdownIt-Anchor" href="#与线段树对比"></a> 与线段树对比</h3>
-<ul>
-<li>树状数组常数小、代码短，但只能做满足<strong>可逆、可差分</strong>的操作（和、异或）</li>
-<li>最值、最大子段和等不可差分操作必须用线段树</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-    
-</article>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="https://hkb150429.github.io/posts/55094d2b/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1318,158 +1509,6 @@
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://hkb150429.github.io/posts/8ca4d567/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="hkb">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="HKB Blog">
-      <meta itemprop="description" content="HKB的博客">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content=" | HKB Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/posts/8ca4d567/" class="post-title-link" itemprop="url">【信息】知识点-线段树</a>
-        </h2>
-
-        <div class="post-meta-container">
-
-
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2026-08-12 22:45:59 / 修改时间：23:01:53" itemprop="dateCreated datePublished" datetime="2026-08-12T22:45:59+08:00">2026-08-12</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/information-technology/" itemprop="url" rel="index"><span itemprop="name">information-technology</span></a>
-        </span>
-    </span>
-
-  
-    <span id="/posts/8ca4d567/" class="post-meta-item twikoo_visitors" data-flag-title="【信息】知识点-线段树" title="阅读次数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-eye"></i>
-      </span>
-      <span class="post-meta-item-text">阅读次数：</span>
-      <span id="twikoo_visitors"></span>
-    </span>
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>182</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>1 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h3 id="基本结构"><a class="markdownIt-Anchor" href="#基本结构"></a> 基本结构</h3>
-<ul>
-<li>数组开 <strong>4 倍</strong>空间</li>
-<li>支持区间修改、区间查询，单点修改更简单</li>
-<li><strong>懒标记（lazy tag）</strong>：区间修改时不下传，查询/修改子区间时再 pushdown</li>
-</ul>
-<h3 id="常见变体"><a class="markdownIt-Anchor" href="#常见变体"></a> 常见变体</h3>
-<table>
-<thead>
-<tr>
-<th>类型</th>
-<th>维护信息</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>区间加 + 区间和</td>
-<td>sum, lazy</td>
-</tr>
-<tr>
-<td>区间乘 + 区间加</td>
-<td>sum, mul, add（先乘后加）</td>
-</tr>
-<tr>
-<td>区间最值</td>
-<td>mx/mn, lazy</td>
-</tr>
-<tr>
-<td>区间赋值</td>
-<td>val, lazy（用特殊值标记无标记）</td>
-</tr>
-<tr>
-<td>最大子段和</td>
-<td>sum, mx, pre, suf</td>
-</tr>
-<tr>
-<td>吉司机线段树</td>
-<td>区间取 min/max，维护最大值、次大值、计数</td>
-</tr>
-</tbody>
-</table>
-<h3 id="易错点"><a class="markdownIt-Anchor" href="#易错点"></a> 易错点</h3>
-<ul>
-<li><code>pushdown</code> 后必须清空父节点标记</li>
-<li>区间修改时标记叠加顺序（先乘后加：<code>add = add*mul + new_add</code>）</li>
-<li>边界：<code>l &gt; r</code> 直接返回，完全覆盖再操作</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-    
-</article>
-
-
-
-
   <nav class="pagination">
     <a class="extend prev" rel="prev" title="上一页" aria-label="上一页" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/4/"><i class="fa fa-angle-right"></i></a>
   </nav>
@@ -1494,14 +1533,14 @@
       <i class="fa fa-chart-line"></i>
     </span>
       <span>站点总字数：</span>
-    <span title="站点总字数">12k</span>
+    <span title="站点总字数">14k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span>站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">40 分钟</span>
+    <span title="站点阅读时长">48 分钟</span>
   </span>
 </div>
 
