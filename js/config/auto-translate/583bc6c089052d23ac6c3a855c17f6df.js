@@ -1,1 +1,1 @@
-window.ATConfig={"hugoLangCodes":["en-US"],"hugoLangMap":{"en-US":"/posts/my-first-post/"}};
+window.ATConfig={"hugoLangCodes":["en"],"hugoLangMap":{"en":"/posts/my-first-post/"}};
