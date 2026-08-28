@@ -58,8 +58,6 @@
 
 下面是《角色T》的网易云音乐播放器（ID: 3376027807）：
 
-{{< mmt-netease mid="3376027807" autoplay="false" >}}
-
 {{< mmt-netease mid="3376027807" mini="true" >}}
 
 > ✅ 应该能看到一个音乐播放器，可以点击播放。
