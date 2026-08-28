@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/WebPage" lang="en-US" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+    <title>🧪 博客组件全面测试 - My Blog</title><meta name="author" content="">
+<meta name="description" content="这篇文章用来测试博客所有已安装的组件是否正常工作。
+💡 如果下面所有内容都正常显示，说明你的博客配置完美！如果某个部分没显示，那就是对应的组件需要检查。
+📋 测试清单暗色/亮色模式切换 多语言自动翻译 小鱼游动动画 网易云音乐播放器 B站视频嵌入 思维导图 代码高亮 提示框 (Admonition) 标签页 (Tabs) GitHub 项目展示 图片处理 JSON 订阅 1. 🌓 暗色/亮色模式点击右上角的 月亮/太阳图标，页面颜色应该会切换。
+"><meta name="robots" content="index, follow"><meta name="keywords" content='Hugo, FixIt, 组件测试, 角色T'>
+	<meta itemprop="name" content="🧪 博客组件全面测试">
+	<meta itemprop="description" content="这篇文章用来测试博客所有已安装的组件是否正常工作。
+💡 如果下面所有内容都正常显示，说明你的博客配置完美！如果某个部分没显示，那就是对应的组件需要检查。
+📋 测试清单暗色/亮色模式切换 多语言自动翻译 小鱼游动动画 网易云音乐播放器 B站视频嵌入 思维导图 代码高亮 提示框 (Admonition) 标签页 (Tabs) GitHub 项目展示 图片处理 JSON 订阅 1. 🌓 暗色/亮色模式点击右上角的 月亮/太阳图标，页面颜色应该会切换。">
+	<meta itemprop="datePublished" content="2026-08-27T00:00:00+00:00">
+	<meta itemprop="dateModified" content="2026-08-27T23:09:19+08:00">
+	<meta itemprop="wordCount" content="79">
+	<meta itemprop="keywords" content="Hugo,FixIt,组件测试,角色T"><meta property="og:url" content="https://hkb150429.github.io/posts/my-first-post/">
+	<meta property="og:site_name" content="My Blog">
+	<meta property="og:title" content="🧪 博客组件全面测试">
+	<meta property="og:description" content="这篇文章用来测试博客所有已安装的组件是否正常工作。
+💡 如果下面所有内容都正常显示，说明你的博客配置完美！如果某个部分没显示，那就是对应的组件需要检查。
+📋 测试清单暗色/亮色模式切换 多语言自动翻译 小鱼游动动画 网易云音乐播放器 B站视频嵌入 思维导图 代码高亮 提示框 (Admonition) 标签页 (Tabs) GitHub 项目展示 图片处理 JSON 订阅 1. 🌓 暗色/亮色模式点击右上角的 月亮/太阳图标，页面颜色应该会切换。">
+	<meta property="og:locale" content="en_US">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2026-08-27T00:00:00+00:00">
+		<meta property="article:modified_time" content="2026-08-27T23:09:19+08:00">
+		<meta property="article:tag" content="Hugo">
+		<meta property="article:tag" content="FixIt">
+		<meta property="article:tag" content="组件测试">
+		<meta property="article:tag" content="角色T">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="🧪 博客组件全面测试">
+  <meta name="twitter:description" content="这篇文章用来测试博客所有已安装的组件是否正常工作。
+💡 如果下面所有内容都正常显示，说明你的博客配置完美！如果某个部分没显示，那就是对应的组件需要检查。
+📋 测试清单暗色/亮色模式切换 多语言自动翻译 小鱼游动动画 网易云音乐播放器 B站视频嵌入 思维导图 代码高亮 提示框 (Admonition) 标签页 (Tabs) GitHub 项目展示 图片处理 JSON 订阅 1. 🌓 暗色/亮色模式点击右上角的 月亮/太阳图标，页面颜色应该会切换。"><meta name="application-name" content="My Blog">
+<meta name="apple-mobile-web-app-title" content="My Blog"><meta name="theme-color" data-light="#f6f8fa" data-dark="#151b23" content="#f6f8fa"><meta name="msapplication-TileColor" content="#2d89ef"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#FF7359"><link rel="canonical" type="text/html" href="https://hkb150429.github.io/posts/my-first-post/" title="🧪 博客组件全面测试 - My Blog" /><link rel="alternate" type="text/markdown" href="https://hkb150429.github.io/posts/my-first-post/index.md"><link rel="stylesheet" href="/css/unocss.min.css"><link rel="stylesheet" href="/css/main.min.css"><link rel="stylesheet" href="/css/pages/posts.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><link rel="preload" href="/js/main.min.js" as="script"><script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "🧪 博客组件全面测试",
+    "inLanguage": "en-US",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https:\/\/hkb150429.github.io\/posts\/my-first-post\/"
+    },"genre": "posts","keywords": "Hugo, FixIt, 组件测试, 角色T","wordcount":  79 ,
+    "url": "https:\/\/hkb150429.github.io\/posts\/my-first-post\/","datePublished": "2026-08-27T00:00:00+00:00","dateModified": "2026-08-27T23:09:19+08:00","publisher": {
+      "@type": "Organization",
+      "name": ""},"author": {
+        "@type": "Person",
+        "name": "Author"
+      },"description": ""
+  }
+  </script><script src="/js/head.min.js"></script></head>
+  <body data-instant-intensity="viewport" data-header-desktop="sticky" data-header-mobile="auto"><div class="wrapper" data-page-style="normal"><header class="desktop animate__faster" id="header-desktop">
+  <div class="header-wrapper">
+    <div class="header-title">
+      <a href="/" title="My Blog" class="header-title-link"><span class="header-title-text">My Blog</span></a><span class="header-subtitle"></span></div>
+    <nav>
+      <ul class="menu"><li class="menu-item">
+            <a class="menu-link" href="/archives/"><i class="fa-solid fa-archive fa-sm" aria-hidden="true"></i> Archives</a></li><li class="menu-item">
+            <a class="menu-link" href="/categories/"><i class="fa-solid fa-folder-tree fa-sm" aria-hidden="true"></i> Categories</a></li><li class="menu-item">
+            <a class="menu-link" href="/tags/"><i class="fa-solid fa-tags fa-sm" aria-hidden="true"></i> Tags</a></li><li class="menu-item delimiter"></li><li class="menu-item search">
+            <button type="button" class="search-trigger desktop" aria-label="Search" title="Search">
+              <i class="fa-solid fa-search" aria-hidden="true"></i>
+              Search
+              <kbd></kbd>
+            </button>
+          </li>
+          <li class="menu-item delimiter"></li><li class="menu-item theme-switch-item">
+          <button type="button" class="theme-switch" aria-label="Switch Theme" title="Switch Theme"><i class="fa-solid fa-adjust" aria-hidden="true"></i></button>
+        </li><li class="menu-item language-switch">
+            <button type="button" aria-label="Select Language" title="Select Language"><i class="fa-solid fa-language" aria-hidden="true"></i></button>
+            <ul class="sub-menu"><li class="menu-item">No translations</li></ul>
+          </li><li class="menu-item language-switch auto hidden" aria-hidden="true">
+    <span role="button" aria-label="Select Language" title="Select Language"><i class="fa-solid fa-language fa-fw" aria-hidden="true"></i></span>
+    <ul class="sub-menu"><li class="menu-item active" data-type="artificial">
+              <a href="/posts/my-first-post/" data-lang="en-US" class="menu-link text-secondary" title="English">
+                <i class="fa-solid fa-person fa-fw fa-sm" aria-hidden="true"></i> English</a>
+            </li><li class="menu-item-divider" aria-hidden="true"></li><li class="menu-item" data-type="machine">
+          <a data-lang="chinese_simplified" class="menu-link" title="简体中文">
+            <i class="fa-solid fa-robot fa-fw fa-sm" aria-hidden="true"></i> 简体中文</a>
+        </li><li class="menu-item" data-type="machine">
+          <a data-lang="japanese" class="menu-link" title="日本語">
+            <i class="fa-solid fa-robot fa-fw fa-sm" aria-hidden="true"></i> 日本語</a>
+        </li><li class="menu-item" data-type="machine">
+          <a data-lang="chinese_traditional" class="menu-link" title="繁體中文">
+            <i class="fa-solid fa-robot fa-fw fa-sm" aria-hidden="true"></i> 繁體中文</a>
+        </li><li class="menu-item" data-type="machine">
+          <a data-lang="korean" class="menu-link" title="한국어">
+            <i class="fa-solid fa-robot fa-fw fa-sm" aria-hidden="true"></i> 한국어</a>
+        </li></ul>
+  </li></ul>
+    </nav>
+  </div>
+</header><header class="mobile animate__faster" id="header-mobile">
+  <div class="header-container">
+    <div class="header-wrapper">
+      <div class="header-title">
+        <a href="/" title="My Blog" class="header-title-link"><span class="header-title-text">My Blog</span></a><span class="header-subtitle"></span></div><button type="button" class="search-trigger mobile" aria-label="Search"><i class="fa-solid fa-search" aria-hidden="true"></i></button><button type="button" class="theme-switch" aria-label="Switch Theme"><i class="fa-solid fa-adjust" aria-hidden="true"></i></button>
+      <button type="button" class="menu-toggle" id="menu-toggle-mobile" aria-controls="menu-mobile" aria-expanded="false" aria-labelledby="menu-mobile">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <nav>
+      <ul class="menu" id="menu-mobile"><li class="menu-item"><a class="menu-link" href="/archives/"><i class="fa-solid fa-archive fa-sm" aria-hidden="true"></i> Archives</a></li><li class="menu-item"><a class="menu-link" href="/categories/"><i class="fa-solid fa-folder-tree fa-sm" aria-hidden="true"></i> Categories</a></li><li class="menu-item"><a class="menu-link" href="/tags/"><i class="fa-solid fa-tags fa-sm" aria-hidden="true"></i> Tags</a></li><li class="menu-item menu-system"><span class="menu-system-item language-switch">
+              <button type="button" aria-label="Select Language" title="Select Language">English<i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i></button>
+              <select id="language-select" class="language-select" onchange="location = this.value;"><option disabled>No translations</option></select>
+            </span><span id="translate" class="menu-system-item language-switch auto hidden" aria-hidden="true">
+    <span role="button" aria-label="Select Language" title="Select Language" data-current="English">English<i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i></span>
+  </span></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main class="fi-container"><aside class="aside-collection animate__animated animate__fadeIn animate__faster" aria-label="Collections"></aside>
+
+  <article class="page single">
+    <div class="header"><h1 class="single-title animate__animated animate__flipInX"><span>🧪 博客组件全面测试</span>
+      </h1></div><div class="post-meta">
+      <div class="post-meta-line"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
+      Anonymous</span></span><span class="post-included-in">&nbsp;included in <a href="/categories/%E6%B5%8B%E8%AF%95/" class="post-category" title="Category - 测试"><i class="fa-regular fa-folder" aria-hidden="true"></i> 测试</a></span></div>
+      <div class="post-meta-line"><span title="published on 2026-08-27 00:00:00"><i class="fa-solid fa-calendar-days me-1" aria-hidden="true"></i><time datetime="2026-08-27">2026-08-27</time></span>&nbsp;<span title="Updated on 2026-08-27 23:09:19"><i class="fa-regular fa-calendar-check me-1" aria-hidden="true"></i><time datetime="2026-08-27">2026-08-27</time></span>&nbsp;<span title="79 words"><i class="fa-solid fa-pencil me-1" aria-hidden="true"></i>About 100 words</span>&nbsp;<span><i class="fa-regular fa-clock me-1" aria-hidden="true"></i>One minute</span>&nbsp;</div>
+    </div><div class="details toc" id="toc-static" data-kept="false">
+        <div class="details-summary toc-title">
+          <span>Contents</span>
+          <span><i class="details-icon fa-solid fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"></div>
+      </div><template data-toc><nav id="TableOfContents">
+  <ul>
+    <li><a href="#-测试清单">📋 测试清单</a></li>
+    <li><a href="#1--暗色亮色模式">1. 🌓 暗色/亮色模式</a></li>
+    <li><a href="#2--多语言自动翻译-cmpt-translate">2. 🌐 多语言自动翻译 (cmpt-translate)</a></li>
+    <li><a href="#3--小鱼游动动画-cmpt-flyfish">3. 🐟 小鱼游动动画 (cmpt-flyfish)</a></li>
+    <li><a href="#4--网易云音乐播放器-shortcode-mmt-netease">4. 🎵 网易云音乐播放器 (shortcode-mmt-netease)</a></li>
+    <li><a href="#5--b站视频嵌入">5. 📺 B站视频嵌入</a></li>
+    <li><a href="#6--思维导图-cmpt-markmap">6. 🧠 思维导图 (cmpt-markmap)</a></li>
+  </ul>
+</nav></template><div class="content" id="content"><p>这篇文章用来测试博客所有已安装的组件是否正常工作。</p>
+<blockquote>
+<p>💡 如果下面所有内容都正常显示，说明你的博客配置完美！如果某个部分没显示，那就是对应的组件需要检查。</p>
+</blockquote>
+<hr>
+<h2 class="heading-element" id="-测试清单"><span>📋 测试清单</span>
+  <a href="#-%e6%b5%8b%e8%af%95%e6%b8%85%e5%8d%95" class="heading-mark"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a>
+</h2><ul>
+<li data-task=" "><i class="fa-regular fa-square" aria-hidden="true"></i><span title="Unchecked">暗色/亮色模式切换</span></li>
+<li data-task=" "><i class="fa-regular fa-square" aria-hidden="true"></i><span title="Unchecked">多语言自动翻译</span></li>
+<li data-task=" "><i class="fa-regular fa-square" aria-hidden="true"></i><span title="Unchecked">小鱼游动动画</span></li>
+<li data-task=" "><i class="fa-regular fa-square" aria-hidden="true"></i><span title="Unchecked">网易云音乐播放器</span></li>
+<li data-task=" "><i class="fa-regular fa-square" aria-hidden="true"></i><span title="Unchecked">B站视频嵌入</span></li>
+<li data-task=" "><i class="fa-regular fa-square" aria-hidden="true"></i><span title="Unchecked">思维导图</span></li>
+<li data-task=" "><i class="fa-regular fa-square" aria-hidden="true"></i><span title="Unchecked">代码高亮</span></li>
+<li data-task=" "><i class="fa-regular fa-square" aria-hidden="true"></i><span title="Unchecked">提示框 (Admonition)</span></li>
+<li data-task=" "><i class="fa-regular fa-square" aria-hidden="true"></i><span title="Unchecked">标签页 (Tabs)</span></li>
+<li data-task=" "><i class="fa-regular fa-square" aria-hidden="true"></i><span title="Unchecked">GitHub 项目展示</span></li>
+<li data-task=" "><i class="fa-regular fa-square" aria-hidden="true"></i><span title="Unchecked">图片处理</span></li>
+<li data-task=" "><i class="fa-regular fa-square" aria-hidden="true"></i><span title="Unchecked">JSON 订阅</span></li>
+</ul>
+<hr>
+<h2 class="heading-element" id="1--暗色亮色模式"><span>1. 🌓 暗色/亮色模式</span>
+  <a href="#1--%e6%9a%97%e8%89%b2%e4%ba%ae%e8%89%b2%e6%a8%a1%e5%bc%8f" class="heading-mark"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a>
+</h2><p>点击右上角的 <strong>月亮/太阳图标</strong>，页面颜色应该会切换。</p>
+<ul>
+<li>🌞 亮色模式：白色背景</li>
+<li>🌙 暗色模式：深色背景</li>
+</ul>
+<hr>
+<h2 class="heading-element" id="2--多语言自动翻译-cmpt-translate"><span>2. 🌐 多语言自动翻译 (cmpt-translate)</span>
+  <a href="#2--%e5%a4%9a%e8%af%ad%e8%a8%80%e8%87%aa%e5%8a%a8%e7%bf%bb%e8%af%91-cmpt-translate" class="heading-mark"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a>
+</h2><p>点击右上角的 <strong>地球图标</strong>，选择不同语言：</p>
+<ul>
+<li>English</li>
+<li>简体中文</li>
+<li>日本語</li>
+<li>한국어</li>
+</ul>
+<p>文章内容应该会自动翻译。</p>
+<hr>
+<h2 class="heading-element" id="3--小鱼游动动画-cmpt-flyfish"><span>3. 🐟 小鱼游动动画 (cmpt-flyfish)</span>
+  <a href="#3--%e5%b0%8f%e9%b1%bc%e6%b8%b8%e5%8a%a8%e5%8a%a8%e7%94%bb-cmpt-flyfish" class="heading-mark"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a>
+</h2><p>仔细看页面背景，应该有<strong>浅蓝色（亮色模式）</strong> 或<strong>浅白色（暗色模式）</strong> 的小鱼在游动。</p>
+<blockquote>
+<p>如果看不到，可能是颜色太淡了。可以在 <code>hugo.toml</code> 中调整透明度。</p>
+</blockquote>
+<hr>
+<h2 class="heading-element" id="4--网易云音乐播放器-shortcode-mmt-netease"><span>4. 🎵 网易云音乐播放器 (shortcode-mmt-netease)</span>
+  <a href="#4--%e7%bd%91%e6%98%93%e4%ba%91%e9%9f%b3%e4%b9%90%e6%92%ad%e6%94%be%e5%99%a8-shortcode-mmt-netease" class="heading-mark"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a>
+</h2><p>下面是《角色T》的网易云音乐播放器（ID: 3376027807）：</p>
+<link rel="stylesheet" href="https://unpkg.com/mmt-webfont/dist/result.css">
+<link rel="stylesheet" href="https://unpkg.com/aplayer/dist/APlayer.min.css">
+<link rel="stylesheet" href='/mmt-netease/css/index.css?v=1.5.0' />
+<div class="netease-music" data-mid="3376027807" data-autoplay="false">
+  <meting-js server="netease" type="playlist" id="3376027807" list-folded="true" autoplay="false"></meting-js>
+</div>
+<section class="section-comment">
+  <div class="comment-163" title="随机下一条">
+    <span class="pic-backdrop"></span>
+    <div class="commentator">
+      <img class="comment-avatar d-none"/>
+      <div class="comment-user">
+        <span class="comment-nickname"></span>
+        <small class="comment-time"></small>
+      </div>
+      <span class="comment-liked"></span>
+    </div>
+    <div class="comment-content"></div>
+    <div class="music-info">
+      <span class="music-name"></span>
+      <span class="artists-name"></span>
+    </div>
+  </div>
+  <div class="loading-indicator-wrapper">
+    <div class="aether-spinner">
+      <div class="rect-one"></div>
+      <div class="rect-two"></div>
+      <div class="rect-three"></div>
+    </div>
+  </div>
+</section>
+<div class="mmt-netease-powered">
+  <span>From <a href="https://music.163.com/#/playlist?id=3376027807" target="_blank">playlist</a>, </span>
+  <span>Powered by <a href="https://github.com/Lruihao/hugo-shortcode-mmt-netease" title="mmt-netease v1.5.0" target="_blank">mmt-netease</a>.</span>
+</div>
+<script src='/mmt-netease/js/index.js?v=1.5.0'></script>
+<link rel="stylesheet" href="https://unpkg.com/mmt-webfont/dist/result.css">
+<link rel="stylesheet" href="https://unpkg.com/aplayer/dist/APlayer.min.css">
+<link rel="stylesheet" href='/mmt-netease/css/index.css?v=1.5.0' />
+<div class="netease-music" data-mid="3376027807" data-autoplay="false" data-mini="true">
+  <meting-js server="netease" type="playlist" id="3376027807" list-folded="true" autoplay="false" mini="true"></meting-js>
+</div>
+<section class="section-comment">
+  <div class="comment-163" title="随机下一条">
+    <span class="pic-backdrop"></span>
+    <div class="commentator">
+      <img class="comment-avatar d-none"/>
+      <div class="comment-user">
+        <span class="comment-nickname"></span>
+        <small class="comment-time"></small>
+      </div>
+      <span class="comment-liked"></span>
+    </div>
+    <div class="comment-content"></div>
+    <div class="music-info">
+      <span class="music-name"></span>
+      <span class="artists-name"></span>
+    </div>
+  </div>
+  <div class="loading-indicator-wrapper">
+    <div class="aether-spinner">
+      <div class="rect-one"></div>
+      <div class="rect-two"></div>
+      <div class="rect-three"></div>
+    </div>
+  </div>
+</section>
+<div class="mmt-netease-powered">
+  <span>From <a href="https://music.163.com/#/playlist?id=3376027807" target="_blank">playlist</a>, </span>
+  <span>Powered by <a href="https://github.com/Lruihao/hugo-shortcode-mmt-netease" title="mmt-netease v1.5.0" target="_blank">mmt-netease</a>.</span>
+</div>
+<script src='/mmt-netease/js/index.js?v=1.5.0'></script>
+<blockquote>
+<p>✅ 应该能看到一个音乐播放器，可以点击播放。</p>
+</blockquote>
+<hr>
+<h2 class="heading-element" id="5--b站视频嵌入"><span>5. 📺 B站视频嵌入</span>
+  <a href="#5--b%e7%ab%99%e8%a7%86%e9%a2%91%e5%b5%8c%e5%85%a5" class="heading-mark"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a>
+</h2><p>《角色T》B站本家视频：</p>
+<div class="bilibili relative w-full aspect-video my-4 mx-auto text-center">
+  <iframe class="absolute w-full h-full inset-0" src="//player.bilibili.com/player.html?bvid=BV1nk9fBTEkE&page=1&autoplay=false&poster=true&muted=false&danmaku=true&t=0" border="0" framespacing="0" allowfullscreen="true"></iframe>
+</div>
+<blockquote>
+<p>✅ 应该能看到B站视频播放器。</p>
+</blockquote>
+<hr>
+<h2 class="heading-element" id="6--思维导图-cmpt-markmap"><span>6. 🧠 思维导图 (cmpt-markmap)</span>
+  <a href="#6--%e6%80%9d%e7%bb%b4%e5%af%bc%e5%9b%be-cmpt-markmap" class="heading-mark"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a>
+</h2><div class="markmap-container" style="--markmap-embed-height: 24rem;">
+  <div class="markmap">
+    <script type="text/template"># 角色T - 歌曲结构
+## 基本信息
+- 演唱: 重音Teto
+- 作曲: Atena
+- 类型: VOCALOID
+## 主题
+- 自我认同
+- 角色扮演
+- 真实自我
+## 乐章
+### 前奏
+- 钢琴引入
+### 主歌
+- 叙事开始
+### 副歌
+- 情感爆发
+### 结尾
+- 渐进消失</script>
+  </div>
+</div></div><div class="post-footer" id="post-footer">
+  <div class="post-info">
+    <div class="post-info-line">
+      <div class="post-info-mod"><span title="Updated on 2026-08-27 23:09:19">Updated on 2026-08-27&nbsp;</span>
+      </div><div class="post-info-license">
+            <span><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a></span>
+          </div></div>
+    <div class="post-info-line">
+      <div class="post-info-md"><span><a href="/posts/my-first-post/index.md" title="Read Markdown" class="link-to-markdown">Read Markdown</a></span></div><div class="post-info-share">
+          <span><a href="javascript:void(0);" title="Share on X" data-sharer="twitter" data-url="https://hkb150429.github.io/posts/my-first-post/" data-title="🧪 博客组件全面测试" data-hashtags="Hugo,FixIt,组件测试,角色T"><i class="fa-brands fa-x-twitter" aria-hidden="true"></i></a>
+  <a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://hkb150429.github.io/posts/my-first-post/" data-hashtag="Hugo"><i class="fa-brands fa-facebook-square" aria-hidden="true"></i></a>
+  <a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://hkb150429.github.io/posts/my-first-post/" data-title="🧪 博客组件全面测试"><i class="fa-brands fa-weibo" aria-hidden="true"></i></a>
+  </span>
+        </div></div>
+  </div>
+
+  <div class="post-info-more">
+    <section class="post-tags"><i class="fa-solid fa-tags me-1" aria-hidden="true"></i><a href="/tags/hugo/" class="post-tag" title="Tags - Hugo">Hugo</a><a href="/tags/fixit/" class="post-tag" title="Tags - FixIt">FixIt</a><a href="/tags/%E7%BB%84%E4%BB%B6%E6%B5%8B%E8%AF%95/" class="post-tag" title="Tags - 组件测试">组件测试</a><a href="/tags/%E8%A7%92%E8%89%B2t/" class="post-tag" title="Tags - 角色T">角色T</a></section>
+    <section><span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+    </section>
+  </div><div class="post-nav"></div>
+</div>
+</article>
+
+  <aside class="toc animate__animated animate__fadeIn animate__faster" id="toc-auto" aria-label="Contents"><h2 class="toc-title">Contents&nbsp;<i class="toc-icon fa-solid fa-angle-down" aria-hidden="true"></i></h2>
+      <div class="toc-content" id="toc-content-auto"></div></aside></main><footer class="footer">
+    <div class="footer-container"><div id="draggableMusicPlayer" style="position: fixed; bottom: 20px; right: 20px; z-index: 9999; background: rgba(255, 255, 255, 0.95); border-radius: 12px; padding: 10px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); cursor: grab; min-width: 280px; user-select: none;">
+  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; font-size: 14px; color: #333;">
+    <span>🎵 拖动我</span>
+    <span style="cursor: pointer;" onclick="document.getElementById('draggableMusicPlayer').style.display='none'">✕ 关闭</span>
+  </div>
+  <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="450" src="//music.163.com/outchain/player?type=0&id=18327582289&auto=0&height=430"></iframe>
+</div>
+
+<script>
+  (function() {
+    const player = document.getElementById('draggableMusicPlayer');
+    let isDragging = false;
+    let offsetX, offsetY;
+
+    function onMouseDown(e) {
+      isDragging = true;
+      const rect = player.getBoundingClientRect();
+      offsetX = e.clientX - rect.left;
+      offsetY = e.clientY - rect.top;
+      player.style.cursor = 'grabbing';
+      document.addEventListener('mousemove', onMouseMove);
+      document.addEventListener('mouseup', onMouseUp);
+      e.preventDefault();
+    }
+
+    function onMouseMove(e) {
+      if (!isDragging) return;
+      let x = e.clientX - offsetX;
+      let y = e.clientY - offsetY;
+      
+      x = Math.max(0, Math.min(x, window.innerWidth - player.offsetWidth));
+      y = Math.max(0, Math.min(y, window.innerHeight - player.offsetHeight));
+      player.style.left = x + 'px';
+      player.style.top = y + 'px';
+      player.style.right = 'auto';
+      player.style.bottom = 'auto';
+    }
+
+    function onMouseUp() {
+      isDragging = false;
+      player.style.cursor = 'grab';
+      document.removeEventListener('mousemove', onMouseMove);
+      document.removeEventListener('mouseup', onMouseUp);
+    }
+
+    
+    player.addEventListener('mousedown', onMouseDown);
+  })();
+</script><div class="footer-line powered">Powered by <a href="https://github.com/gohugoio/hugo?v=0.165.0" target="_blank" rel="external nofollow noopener noreferrer" title="Hugo 0.165.0">Hugo</a> | Theme - <a href="https://github.com/hugo-fixit/FixIt?v=v1.0.0-alpha-mt895zhg" target="_blank" rel="external" title="FixIt v1.0.0-alpha-mt895zhg">FixIt</a>
+        </div><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright" aria-hidden="true"></i>
+            <span itemprop="copyrightYear">2026</span><span class="author" itemprop="copyrightHolder">
+              <a href="/"></a></span></div></div>
+  </footer></div><div class="widgets"><div id="mask"></div><dialog id="nav-dialog" aria-labelledby="nav-dialog-title" closedby="any">
+    <button type="button" class="nav-close-btn" aria-label="Close Navigation"><i class="fa-solid fa-xmark fa-lg" aria-hidden="true"></i></button>
+    <div class="toc">
+      <h2 class="toc-title" id="nav-dialog-title">Navigation</h2><div class="toc-content" id="toc-content-drawer"></div></div>
+  </dialog><dialog id="search-dialog" class="search-dialog" aria-label="Search" closedby="any">
+      <div class="search-modal">
+        <div class="search-modal-header">
+          <span class="search-delimiter"></span>
+          <button type="button" class="search-close-btn" aria-label="Close Search Dialog"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
+        </div>
+        <div class="search-source-footer">
+          <div class="search-shortcuts">
+            <span class="search-shortcut">
+              <kbd><i class="lucide-arrow-up" aria-hidden="true"></i></kbd>
+              <kbd><i class="lucide-arrow-down" aria-hidden="true"></i></kbd>
+              Navigate
+            </span>
+            <span class="search-shortcut">
+              <kbd><i class="lucide-corner-down-left" aria-hidden="true"></i></kbd>
+              Select
+            </span>
+            <span class="search-shortcut">
+              <kbd>ESC</kbd>
+              Close
+            </span>
+          </div><span class="search-engine">Search by <a href="https://fusejs.io/" target="_blank" rel="external nofollow noopener noreferrer">Fuse.js</a></span></div>
+      </div>
+    </dialog><div class="fixed-buttons"><button type="button" class="fixed-button back-to-top animate__faster hidden" aria-label="Back to Top"><i class="fa-solid fa-arrow-up" aria-hidden="true"></i></button><button type="button" id="nav-drawer-button" class="fixed-button nav-drawer-button hidden" aria-label="Navigation" aria-controls="nav-dialog" aria-expanded="false"><i class="fa-solid fa-bars" aria-hidden="true"></i></button></div><noscript>
+    <div class="noscript-warning bg-danger text-white text-base font-bold fixed text-center inset-x-0 bottom-0 w-full z-fixed">This website works best with JavaScript enabled.</div>
+  </noscript>
+</div><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><script src="/lib/autocomplete-js/index.production.js" defer></script><script src="/js/lib/fuse.min.js" defer></script><script src="/lib/sharer/sharer.min.js" async defer></script><script src="/lib/cookieconsent/cookieconsent.min.js" defer></script><script src="/js/lib/cookieconsent.min.js" defer></script><script src="/lib/cell-tooltip/cell-tooltip.umd.js" defer></script><script src="/js/config/583bc6c089052d23ac6c3a855c17f6df.min.js" defer></script><script src="/js/lib/file-tree.min.js" defer></script><script src="/js/main.min.js" defer></script><script src="/lib/translate.min.js" defer></script><script src="/js/config/auto-translate/583bc6c089052d23ac6c3a855c17f6df.js" defer></script><script src="/js/translate.fixit.min.js" defer></script><script src="/js/flyfish.min.min.js" defer></script></body>
+</html>

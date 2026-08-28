@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>我的博客</title>
+    <link>https://hkb150429.github.io/zh-cn/</link>
+    <description>我的博客</description>
+    <generator>Hugo 0.165.0 &amp; FixIt v1.0.0-alpha-mt895zhg</generator>
+    <language>zh-CN</language>
+    <lastBuildDate></lastBuildDate>
+    <atom:link href="https://hkb150429.github.io/zh-cn/index.xml" rel="self" type="application/rss+xml" />
+  </channel>
+</rss>
