@@ -1,0 +1,317 @@
+/* ===================================================
+   主题色切换器
+   =================================================== */
+.theme-color-picker {
+    position: relative;
+}
+
+.theme-color-btn {
+    background: var(--header-toggle-bg);
+    border: none;
+    color: var(--header-toggle-text);
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.05rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+}
+
+.theme-color-btn:hover {
+    background: var(--header-toggle-hover);
+}
+
+.theme-color-menu {
+    position: absolute;
+    top: 46px;
+    right: 0;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    box-shadow: var(--shadow-hover);
+    padding: 0.5rem;
+    display: none;
+    gap: 0.4rem;
+    z-index: 100;
+}
+
+.theme-color-menu.show {
+    display: flex;
+}
+
+.theme-color-dot {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: transform 0.15s, border-color 0.15s;
+}
+
+.theme-color-dot:hover {
+    transform: scale(1.15);
+}
+
+.theme-color-dot.active {
+    border-color: var(--text);
+}
+
+/* ===================================================
+   沉浸阅读模式
+   =================================================== */
+.immersive-btn {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    z-index: 1000;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    color: var(--text);
+    cursor: pointer;
+    font-size: 1.1rem;
+    box-shadow: var(--shadow);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+}
+
+.immersive-btn.show {
+    display: flex;
+}
+
+.immersive-btn:hover {
+    transform: scale(1.08);
+}
+
+/* 沉浸模式：隐藏导航栏和目录 */
+body.immersive .welcome-bar,
+body.immersive .article-aside,
+body.immersive .back-link,
+body.immersive .article-nav,
+body.immersive .share-bar {
+    display: none !important;
+}
+
+body.immersive .article-layout {
+    max-width: 780px;
+    margin-top: 3rem;
+}
+
+body.immersive .immersive-btn {
+    background: var(--accent);
+    color: white;
+    border-color: var(--accent);
+}
+
+/* ===================================================
+   相关文章推荐
+   =================================================== */
+.related-articles {
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+}
+
+.related-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 0.8rem;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.related-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.related-list a {
+    display: block;
+    padding: 0.6rem 0.9rem;
+    border-radius: 10px;
+    background: var(--soft-bg);
+    color: var(--text-soft);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: background 0.2s, color 0.2s;
+}
+
+.related-list a:hover {
+    background: var(--accent-soft);
+    color: var(--accent);
+}
+
+/* ===================================================
+   卡片字数 / 阅读时间
+   =================================================== */
+.card-stats {
+    display: flex;
+    gap: 0.6rem;
+    font-size: 0.75rem;
+    color: var(--text-faint);
+    margin-top: 0.2rem;
+}
+
+.card-stats span {
+    display: flex;
+    align-items: center;
+    gap: 0.2rem;
+}
+
+/* ===================================================
+   季节特效
+   =================================================== */
+.season-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 9998;
+}
+
+/* ===================================================
+   标签云
+   =================================================== */
+.tag-cloud {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    align-items: baseline;
+    justify-content: center;
+    padding: 1.5rem;
+    background: var(--card-bg);
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow);
+}
+
+.tag-cloud-item {
+    color: var(--text-soft);
+    text-decoration: none;
+    padding: 0.2rem 0.6rem;
+    border-radius: 30px;
+    transition: all 0.2s;
+    line-height: 1.2;
+}
+
+.tag-cloud-item:hover {
+    background: var(--accent-soft);
+    color: var(--accent);
+}
+
+/* ===================================================
+   友链 / 更新日志 / 网站地图
+   =================================================== */
+.page-content {
+    background: var(--card-bg);
+    border-radius: 24px;
+    padding: 2rem 2.5rem;
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow);
+    max-width: 780px;
+    margin: 0 auto;
+}
+
+.page-content h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text);
+    margin: 1.5rem 0 0.6rem;
+}
+
+.page-content h3:first-child {
+    margin-top: 0;
+}
+
+.page-content ul {
+    margin: 0 0 1rem 1.5rem;
+    color: var(--text-soft);
+    line-height: 1.8;
+}
+
+.page-content a {
+    color: var(--accent);
+    text-decoration: none;
+}
+
+.page-content a:hover {
+    text-decoration: underline;
+}
+
+.changelog-item {
+    display: flex;
+    gap: 1rem;
+    padding: 0.8rem 0;
+    border-bottom: 1px solid var(--border);
+}
+
+.changelog-item:last-child {
+    border-bottom: none;
+}
+
+.changelog-date {
+    font-size: 0.85rem;
+    color: var(--text-faint);
+    font-family: 'SF Mono', Consolas, monospace;
+    flex-shrink: 0;
+    min-width: 90px;
+}
+
+.changelog-content {
+    color: var(--text-soft);
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+/* ===================================================
+   彩蛋
+   =================================================== */
+.egg-toast {
+    position: fixed;
+    bottom: 3rem;
+    left: 50%;
+    transform: translateX(-50%) translateY(100px);
+    background: var(--accent);
+    color: white;
+    padding: 0.8rem 1.5rem;
+    border-radius: 40px;
+    font-size: 0.95rem;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.25);
+    z-index: 10001;
+    opacity: 0;
+    transition: all 0.3s;
+    pointer-events: none;
+}
+
+.egg-toast.show {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
+
+@media (max-width: 640px) {
+    .page-content {
+        padding: 1.5rem;
+    }
+    .changelog-item {
+        flex-direction: column;
+        gap: 0.3rem;
+    }
+    .theme-color-menu {
+        right: -10px;
+    }
+}

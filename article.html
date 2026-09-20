@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>文章详情 · 我的博客</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="extras.css">
+    <link rel="stylesheet" href="extras2.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/atom-one-dark.min.css">
+    <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+
+    <script>
+        (function() {
+            const saved = localStorage.getItem('theme');
+            if (saved === 'dark' || (!saved && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.classList.add('dark');
+            }
+        })();
+    </script>
+</head>
+<body>
+
+    <div id="progressBar"></div>
+
+    <header class="welcome-bar">
+        <div class="welcome-text">
+            <a href="index.html">
+                🎉 欢迎光临 <span>***</span> 的博客
+                <span class="home-hint">← 回首页</span>
+            </a>
+        </div>
+        <nav class="nav-tabs">
+            <a href="index.html" class="nav-tab">首页</a>
+            <a href="projects.html" class="nav-tab">项目</a>
+            <a href="articles.html" class="nav-tab active">文章</a>
+            <a href="archive.html" class="nav-tab">归档</a>
+            <a href="tags.html" class="nav-tab">标签</a>
+            <a href="categories.html" class="nav-tab">分类</a>
+            <a href="changelog.html" class="nav-tab">日志</a>
+            <a href="links.html" class="nav-tab">友链</a>
+            <a href="sitemap.html" class="nav-tab">地图</a>
+            <button class="theme-toggle" id="themeToggle" title="切换主题">🌙</button>
+        </nav>
+    </header>
+
+    <main class="container">
+        <a href="articles.html" class="back-link">← 返回文章列表</a>
+        <article class="article-detail" id="articleDetail">
+            <p style="text-align:center;color:#94a3b8;">加载中…</p>
+        </article>
+    </main>
+
+    <button id="backToTop" title="回到顶部">↑</button>
+
+    <div class="lightbox" id="lightbox">
+        <img id="lightboxImg" src="" alt="">
+    </div>
+
+    <script src="script.js"></script>
+    <script src="extras.js"></script>
+    <script src="extras2.js"></script>
+    <script>
+        function waitForLibs(callback) {
+            if (window.renderMathInElement && window.marked) {
+                callback();
+            } else {
+                setTimeout(() => waitForLibs(callback), 50);
+            }
+        }
+
+        waitForLibs(() => {
+            renderArticleDetail('articleDetail');
+            initBackToTop();
+            initProgressBar();
+            initThemeToggle();
+            initThemeColorPicker();
+            initEasterEgg();
+        });
+    </script>
+
+</body>
+</html>

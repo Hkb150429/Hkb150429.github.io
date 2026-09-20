@@ -1,0 +1,31 @@
+[
+    {
+        "id": 1,
+        "title": "文章标题一",
+        "date": "2025-01-01",
+        "category": "分类一",
+        "tags": ["标签一", "标签二"],
+        "summary": "这是文章一的摘要。",
+        "pinned": true,
+        "views": 120
+    },
+    {
+        "id": 2,
+        "title": "Luogu B3834 长方形面积",
+        "date": "2026-9-20",
+        "category": "信息学题解",
+        "tags": ["luogu","GESP"],
+        "summary": "这是文章二的摘要。",
+        "views": 80
+    },
+    {
+        "id": 6,
+        "title": "LaTeX 公式测试",
+        "date": "2025-06-01",
+        "category": "数学",
+        "tags": ["LaTeX", "公式"],
+        "summary": "测试一下数学公式。",
+        "pinned": true,
+        "views": 200
+    }
+]

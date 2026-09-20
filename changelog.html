@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>更新日志 · 我的博客</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="extras.css">
+    <link rel="stylesheet" href="extras2.css">
+    <script>
+        (function() {
+            const saved = localStorage.getItem('theme');
+            if (saved === 'dark' || (!saved && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.classList.add('dark');
+            }
+        })();
+    </script>
+</head>
+<body>
+
+    <div id="progressBar"></div>
+
+    <header class="welcome-bar">
+        <div class="welcome-text">
+            <a href="index.html">
+                🎉 欢迎光临 <span>***</span> 的博客
+                <span class="home-hint">← 回首页</span>
+            </a>
+        </div>
+        <nav class="nav-tabs">
+            <a href="index.html" class="nav-tab">首页</a>
+            <a href="projects.html" class="nav-tab">项目</a>
+            <a href="articles.html" class="nav-tab">文章</a>
+            <a href="archive.html" class="nav-tab">归档</a>
+            <a href="tags.html" class="nav-tab">标签</a>
+            <a href="categories.html" class="nav-tab">分类</a>
+            <a href="changelog.html" class="nav-tab active">日志</a>
+            <a href="links.html" class="nav-tab">友链</a>
+            <a href="sitemap.html" class="nav-tab">地图</a>
+            <button class="theme-toggle" id="themeToggle" title="切换主题">🌙</button>
+        </nav>
+    </header>
+
+    <main class="container">
+        <h2 class="page-title">📋 更新日志</h2>
+        <div class="page-content">
+            <div class="changelog-item">
+                <div class="changelog-date">2025-06-20</div>
+                <div class="changelog-content">加了归档、热门、置顶、随机、分享、更新日志、友链、网站地图、标签云、沉浸阅读、主题色切换等一堆功能</div>
+            </div>
+            <div class="changelog-item">
+                <div class="changelog-date">2025-06-15</div>
+                <div class="changelog-content">加了文章详情页、目录、代码高亮、LaTeX 公式</div>
+            </div>
+            <div class="changelog-item">
+                <div class="changelog-date">2025-06-01</div>
+                <div class="changelog-content">博客上线</div>
+            </div>
+        </div>
+    </main>
+
+    <button id="backToTop" title="回到顶部">↑</button>
+
+    <script src="script.js"></script>
+    <script src="extras.js"></script>
+    <script src="extras2.js"></script>
+    <script>
+        initBackToTop();
+        initProgressBar();
+        initThemeToggle();
+        initThemeColorPicker();
+        initEasterEgg();
+    </script>
+
+</body>
+</html>
