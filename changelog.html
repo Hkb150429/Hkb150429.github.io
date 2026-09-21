@@ -17,50 +17,65 @@
     </script>
 </head>
 <body>
-
     <div id="progressBar"></div>
-
     <header class="welcome-bar">
         <div class="welcome-text">
-            <a href="index.html">
-                🎉 欢迎光临 <span>***</span> 的博客
-                <span class="home-hint">← 回首页</span>
-            </a>
+            <a href="index.html">🎉 欢迎光临 <span>***</span> 的博客<span class="home-hint">← 回首页</span></a>
         </div>
         <nav class="nav-tabs">
             <a href="index.html" class="nav-tab">首页</a>
             <a href="projects.html" class="nav-tab">项目</a>
             <a href="articles.html" class="nav-tab">文章</a>
             <a href="archive.html" class="nav-tab">归档</a>
+            <a href="timeline.html" class="nav-tab">时间线</a>
             <a href="tags.html" class="nav-tab">标签</a>
             <a href="categories.html" class="nav-tab">分类</a>
+            <a href="stats.html" class="nav-tab">统计</a>
             <a href="changelog.html" class="nav-tab active">日志</a>
             <a href="links.html" class="nav-tab">友链</a>
             <a href="sitemap.html" class="nav-tab">地图</a>
+            <a href="404.html" class="nav-tab">404</a>
             <button class="theme-toggle" id="themeToggle" title="切换主题">🌙</button>
         </nav>
     </header>
-
     <main class="container">
         <h2 class="page-title">📋 更新日志</h2>
         <div class="page-content">
+	    <div class="changelog-item">
+             	<div class="changelog-date">2026-09-21</div>
+                <div class="changelog-content">加上天气功能</div>
+            </div>
+	    <div class="changelog-item">
+             	<div class="changelog-date">2026-09-20</div>
+                <div class="changelog-content">修复一堆bug</div>
+            </div>
+	    <div class="changelog-item">
+             	<div class="changelog-date">2026-09-19</div>
+              	<div class="changelog-content">修复颜色问题</div>
+            </div>
             <div class="changelog-item">
-                <div class="changelog-date">2025-06-20</div>
+                <div class="changelog-date">2026-09-18</div>
                 <div class="changelog-content">加了归档、热门、置顶、随机、分享、更新日志、友链、网站地图、标签云、沉浸阅读、主题色切换等一堆功能</div>
             </div>
             <div class="changelog-item">
-                <div class="changelog-date">2025-06-15</div>
-                <div class="changelog-content">加了文章详情页、目录、代码高亮、LaTeX 公式</div>
+                <div class="changelog-date">2026-09-07</div>
+                <div class="changelog-content">博客上线（MY）加了文章详情页、目录、代码高亮、LaTeX 公式</div>
             </div>
             <div class="changelog-item">
-                <div class="changelog-date">2025-06-01</div>
-                <div class="changelog-content">博客上线</div>
+                <div class="changelog-date">2026-09-03</div>
+                <div class="changelog-content">博客下架</div>
+            </div>
+            <div class="changelog-item">
+                <div class="changelog-date">2026-06-15</div>
+                <div class="changelog-content">博客下架，博客上线（HUGO）加了文章详情页、目录、代码高亮、LaTeX 公式</div>
+            </div>
+            <div class="changelog-item">
+                <div class="changelog-date">2026-04-01</div>
+                <div class="changelog-content">博客上线（HEXO）</div>
             </div>
         </div>
     </main>
-
     <button id="backToTop" title="回到顶部">↑</button>
-
     <script src="script.js"></script>
     <script src="extras.js"></script>
     <script src="extras2.js"></script>
@@ -71,6 +86,5 @@
         initThemeColorPicker();
         initEasterEgg();
     </script>
-
 </body>
 </html>

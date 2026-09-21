@@ -1,12 +1,12 @@
 // ===================================================
-// 主题色切换
+// 主题色切换（预设 + 自定义）
 // ===================================================
 const THEME_COLORS = {
-    blue:   { accent: '#0284c7', soft: '#e0f2fe' },
-    green:  { accent: '#16a34a', soft: '#dcfce7' },
-    purple: { accent: '#9333ea', soft: '#f3e8ff' },
-    orange: { accent: '#ea580c', soft: '#ffedd5' },
-    pink:   { accent: '#db2777', soft: '#fce7f3' }
+    blue:   { accent: '#0284c7', soft: '#e0f2fe', dark: '#0369a1', darker: '#075985' },
+    green:  { accent: '#16a34a', soft: '#dcfce7', dark: '#15803d', darker: '#166534' },
+    purple: { accent: '#9333ea', soft: '#f3e8ff', dark: '#7e22ce', darker: '#6b21a8' },
+    orange: { accent: '#ea580c', soft: '#ffedd5', dark: '#c2410c', darker: '#9a3412' },
+    pink:   { accent: '#db2777', soft: '#fce7f3', dark: '#be185d', darker: '#9d174d' }
 };
 
 function initThemeColorPicker() {
@@ -14,9 +14,13 @@ function initThemeColorPicker() {
     if (!nav) return;
 
     const saved = localStorage.getItem('themeColor') || 'blue';
-    applyThemeColor(saved);
+    if (saved === 'custom') {
+        const custom = localStorage.getItem('themeColorCustom') || '#0284c7';
+        applyCustomThemeColor(custom);
+    } else {
+        applyThemeColor(saved);
+    }
 
-    // 已有手写的 .theme-color-picker 就用它，否则自动生成
     let picker = document.querySelector('.theme-color-picker');
 
     if (!picker) {
@@ -31,11 +35,14 @@ function initThemeColorPicker() {
                          style="background:${c.accent}"
                          title="${name}"></div>
                 `).join('')}
+                <div class="theme-color-custom">
+                    <input type="color" id="themeColorCustom" value="${localStorage.getItem('themeColorCustom') || '#0284c7'}" title="自定义颜色">
+                    <label for="themeColorCustom">自定义</label>
+                </div>
             </div>
         `;
         nav.appendChild(picker);
     } else {
-        // 已有手写结构：按 localStorage 重置 active
         picker.querySelectorAll('.theme-color-dot').forEach(dot => {
             dot.classList.toggle('active', dot.dataset.color === saved);
         });
@@ -43,10 +50,8 @@ function initThemeColorPicker() {
 
     const btn = picker.querySelector('.theme-color-btn');
     const menu = picker.querySelector('.theme-color-menu');
-
     if (!btn || !menu) return;
 
-    // 先移除旧的监听（避免重复绑定）
     const newBtn = btn.cloneNode(true);
     btn.parentNode.replaceChild(newBtn, btn);
 
@@ -55,7 +60,6 @@ function initThemeColorPicker() {
         menu.classList.toggle('show');
     });
 
-    // 点其他地方关闭菜单
     if (!window.__themeMenuCloseBound) {
         document.addEventListener('click', () => {
             document.querySelectorAll('.theme-color-menu').forEach(m => m.classList.remove('show'));
@@ -63,7 +67,6 @@ function initThemeColorPicker() {
         window.__themeMenuCloseBound = true;
     }
 
-    // 颜色点点击
     menu.querySelectorAll('.theme-color-dot').forEach(dot => {
         dot.addEventListener('click', (e) => {
             e.stopPropagation();
@@ -75,16 +78,64 @@ function initThemeColorPicker() {
             menu.classList.remove('show');
         });
     });
+
+    const customInput = picker.querySelector('#themeColorCustom');
+    if (customInput) {
+        customInput.addEventListener('input', (e) => {
+            const color = e.target.value;
+            applyCustomThemeColor(color);
+            localStorage.setItem('themeColor', 'custom');
+            localStorage.setItem('themeColorCustom', color);
+            menu.querySelectorAll('.theme-color-dot').forEach(d => d.classList.remove('active'));
+        });
+    }
 }
 
 function applyThemeColor(name) {
     const c = THEME_COLORS[name] || THEME_COLORS.blue;
-    document.documentElement.style.setProperty('--accent', c.accent);
-    document.documentElement.style.setProperty('--accent-soft', c.soft);
+    const root = document.documentElement;
+    root.style.setProperty('--accent', c.accent);
+    root.style.setProperty('--accent-soft', c.soft);
+    root.style.setProperty('--welcome-bg-light', c.soft);
+    root.style.setProperty('--nav-bg-light', c.dark);
+    root.style.setProperty('--welcome-bg-dark', c.dark);
+    root.style.setProperty('--nav-bg-dark', c.darker);
+}
+
+function applyCustomThemeColor(hex) {
+    const root = document.documentElement;
+    root.style.setProperty('--accent', hex);
+    root.style.setProperty('--accent-soft', hexToLight(hex));
+    root.style.setProperty('--welcome-bg-light', hexToLight(hex));
+    root.style.setProperty('--nav-bg-light', hexToDark(hex));
+    root.style.setProperty('--welcome-bg-dark', hexToDark(hex));
+    root.style.setProperty('--nav-bg-dark', hexToDarker(hex));
+}
+
+function hexToLight(hex) { return mixHex(hex, '#ffffff', 0.8); }
+function hexToDark(hex)  { return mixHex(hex, '#000000', 0.25); }
+function hexToDarker(hex){ return mixHex(hex, '#000000', 0.45); }
+
+function mixHex(hex1, hex2, ratio) {
+    const c1 = hexToRgb(hex1);
+    const c2 = hexToRgb(hex2);
+    const r = Math.round(c1.r * (1 - ratio) + c2.r * ratio);
+    const g = Math.round(c1.g * (1 - ratio) + c2.g * ratio);
+    const b = Math.round(c1.b * (1 - ratio) + c2.b * ratio);
+    return '#' + [r, g, b].map(v => v.toString(16).padStart(2, '0')).join('');
+}
+
+function hexToRgb(hex) {
+    const h = hex.replace('#', '');
+    return {
+        r: parseInt(h.slice(0, 2), 16),
+        g: parseInt(h.slice(2, 4), 16),
+        b: parseInt(h.slice(4, 6), 16)
+    };
 }
 
 // ===================================================
-// 沉浸阅读模式
+// 沉浸阅读模式（含全屏）
 // ===================================================
 function initImmersiveMode() {
     const articleDetail = document.getElementById('articleDetail');
@@ -98,14 +149,27 @@ function initImmersiveMode() {
     document.body.appendChild(btn);
 
     btn.addEventListener('click', () => {
-        document.body.classList.toggle('immersive');
-        btn.textContent = document.body.classList.contains('immersive') ? '✖' : '📖';
+        const isImmersive = document.body.classList.toggle('immersive');
+        btn.textContent = isImmersive ? '✖' : '📖';
+
+        if (isImmersive) {
+            if (document.documentElement.requestFullscreen) {
+                document.documentElement.requestFullscreen().catch(() => {});
+            }
+        } else {
+            if (document.fullscreenElement) {
+                document.exitFullscreen().catch(() => {});
+            }
+        }
     });
 
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape' && document.body.classList.contains('immersive')) {
             document.body.classList.remove('immersive');
             btn.textContent = '📖';
+            if (document.fullscreenElement) {
+                document.exitFullscreen().catch(() => {});
+            }
         }
     });
 }
@@ -206,7 +270,7 @@ async function renderTagCloud(containerId) {
 }
 
 // ===================================================
-// 彩蛋：Ctrl + Shift + B
+// 彩蛋
 // ===================================================
 function initEasterEgg() {
     document.addEventListener('keydown', (e) => {
@@ -229,10 +293,370 @@ function showEgg() {
     }, 3000);
 }
 
+// ===================================================
+// 博客统计（首页）
+// ===================================================
+async function initBlogStats() {
+    const container = document.getElementById('blogStats');
+    if (!container) return;
+
+    try {
+        const articles = await loadArticlesMeta();
+        const tagSet = new Set();
+        let totalWords = 0;
+
+        for (const a of articles) {
+            (a.tags || []).forEach(t => tagSet.add(t));
+            try {
+                const res = await fetch(`posts/${a.id}.md`);
+                if (res.ok) {
+                    const text = await res.text();
+                    const plain = text.replace(/```[\s\S]*?```/g, '').replace(/[#>*`\-\[\]()]/g, '');
+                    totalWords += plain.replace(/\s/g, '').length;
+                }
+            } catch (e) {}
+        }
+
+        container.innerHTML = `
+            <div class="stats-card">
+                <div class="stat-item"><span class="stat-num">${articles.length}</span><span class="stat-label">篇文章</span></div>
+                <div class="stat-item"><span class="stat-num">${tagSet.size}</span><span class="stat-label">个标签</span></div>
+                <div class="stat-item"><span class="stat-num">${totalWords.toLocaleString()}</span><span class="stat-label">字</span></div>
+            </div>
+        `;
+    } catch (e) {}
+}
+
+// ===================================================
+// 每日一句
+// ===================================================
+const QUOTES = [
+    { text: "生活不止眼前的苟且，还有诗和远方。", author: "高晓松" },
+    { text: "纸上得来终觉浅，绝知此事要躬行。", author: "陆游" },
+    { text: "Stay hungry, stay foolish.", author: "Steve Jobs" },
+    { text: "山重水复疑无路，柳暗花明又一村。", author: "陆游" },
+    { text: "路漫漫其修远兮，吾将上下而求索。", author: "屈原" },
+    { text: "合抱之木，生于毫末；九层之台，起于累土。", author: "老子" },
+    { text: "不积跬步，无以至千里。", author: "荀子" },
+    { text: "Talk is cheap. Show me the code.", author: "Linus Torvalds" },
+    { text: "学而不思则罔，思而不学则殆。", author: "孔子" },
+    { text: "代码写得好，bug 就少。", author: "佚名" }
+];
+
+function initDailyQuote() {
+    const container = document.getElementById('dailyQuote');
+    if (!container) return;
+
+    const day = Math.floor(Date.now() / (1000 * 60 * 60 * 24));
+    const q = QUOTES[day % QUOTES.length];
+
+    container.innerHTML = `
+        <div class="quote-box">
+            <div class="quote-text">"${q.text}"</div>
+            <div class="quote-author">—— ${q.author}</div>
+        </div>
+    `;
+}
+
+// ===================================================
+// 时钟
+// ===================================================
+function initClock() {
+    const container = document.getElementById('clockBox');
+    if (!container) return;
+
+    function update() {
+        const now = new Date();
+        const date = now.toLocaleDateString('zh-CN', { year: 'numeric', month: 'long', day: 'numeric', weekday: 'long' });
+        const time = now.toLocaleTimeString('zh-CN', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+        container.innerHTML = `
+            <div class="clock-box">
+                <div class="clock-time">${time}</div>
+                <div class="clock-date">${date}</div>
+            </div>
+        `;
+    }
+
+    update();
+    setInterval(update, 1000);
+}
+
+// ===================================================
+// 天气
+// ===================================================
+async function initWeather() {
+    const container = document.getElementById('weatherBox');
+    if (!container) return;
+
+    try {
+        const res = await fetch('https://wttr.in/Guangzhou?format=j1');
+        const data = await res.json();
+        const current = data.current_condition[0];
+        const temp = current.temp_C;
+        const desc = current.weatherDesc[0].value;
+        const humidity = current.humidity;
+        const wind = current.windspeedKmph;
+
+        const descMap = {
+            'Sunny': '晴', 'Clear': '晴', 'Partly cloudy': '多云',
+            'Cloudy': '阴', 'Overcast': '阴', 'Mist': '雾',
+            'Patchy rain possible': '可能有雨', 'Light rain': '小雨',
+            'Moderate rain': '中雨', 'Heavy rain': '大雨',
+            'Light snow': '小雪', 'Moderate snow': '中雪', 'Heavy snow': '大雪'
+        };
+        const descZh = descMap[desc] || desc;
+
+        container.innerHTML = `
+            <div class="weather-box">
+                <div class="weather-city">📍 广州</div>
+                <div class="weather-temp">${temp}°C</div>
+                <div class="weather-desc">${descZh}</div>
+                <div class="weather-detail">湿度 ${humidity}% · 风 ${wind}km/h</div>
+            </div>
+        `;
+    } catch (e) {
+        container.innerHTML = '';
+    }
+}
+
+// ===================================================
+// 时间线
+// ===================================================
+async function renderTimeline(containerId) {
+    const container = document.getElementById(containerId);
+    if (!container) return;
+
+    try {
+        const articles = await loadArticlesMeta();
+        if (articles.length === 0) {
+            container.innerHTML = `<div class="empty-state"><div class="icon">📭</div><h3>还没有文章</h3></div>`;
+            return;
+        }
+
+        const sorted = articles.slice().sort((a, b) => (b.date || '').localeCompare(a.date || ''));
+
+        container.innerHTML = `
+            <div class="timeline">
+                ${sorted.map(a => `
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-date">${a.date}</div>
+                        <div class="timeline-content">
+                            <a href="article.html?id=${a.id}" class="timeline-title">${a.title}</a>
+                            <p class="timeline-summary">${a.summary || ''}</p>
+                            <div class="timeline-tags">
+                                <span class="card-tag">${a.category}</span>
+                                ${(a.tags || []).map(t => `<span class="card-tag">${t}</span>`).join('')}
+                            </div>
+                        </div>
+                    </div>
+                `).join('')}
+            </div>
+        `;
+    } catch (e) {
+        container.innerHTML = `<div class="empty-state"><div class="icon">⚠️</div><h3>加载失败</h3><p>${e.message}</p></div>`;
+    }
+}
+
+// ===================================================
+// 博客统计页
+// ===================================================
+async function renderStatsPage(containerId) {
+    const container = document.getElementById(containerId);
+    if (!container) return;
+
+    try {
+        const articles = await loadArticlesMeta();
+        const tagCount = {};
+        const catCount = {};
+        let totalWords = 0;
+        const perArticle = [];
+
+        for (const a of articles) {
+            (a.tags || []).forEach(t => tagCount[t] = (tagCount[t] || 0) + 1);
+            if (a.category) catCount[a.category] = (catCount[a.category] || 0) + 1;
+
+            let words = 0;
+            try {
+                const res = await fetch(`posts/${a.id}.md`);
+                if (res.ok) {
+                    const text = await res.text();
+                    const plain = text.replace(/```[\s\S]*?```/g, '').replace(/[#>*`\-\[\]()]/g, '');
+                    words = plain.replace(/\s/g, '').length;
+                    totalWords += words;
+                }
+            } catch (e) {}
+            perArticle.push({ title: a.title, id: a.id, words });
+        }
+
+        const topTags = Object.entries(tagCount).sort((a, b) => b[1] - a[1]).slice(0, 10);
+        const topCats = Object.entries(catCount).sort((a, b) => b[1] - a[1]);
+        const topArticles = perArticle.slice().sort((a, b) => b.words - a.words).slice(0, 5);
+
+        container.innerHTML = `
+            <div class="stats-page">
+                <div class="stats-grid">
+                    <div class="stat-card"><div class="stat-big">${articles.length}</div><div class="stat-label">篇文章</div></div>
+                    <div class="stat-card"><div class="stat-big">${Object.keys(tagCount).length}</div><div class="stat-label">个标签</div></div>
+                    <div class="stat-card"><div class="stat-big">${Object.keys(catCount).length}</div><div class="stat-label">个分类</div></div>
+                    <div class="stat-card"><div class="stat-big">${totalWords.toLocaleString()}</div><div class="stat-label">总字数</div></div>
+                </div>
+
+                <h3 class="stats-section-title">🔥 热门标签</h3>
+                <div class="stats-tags">
+                    ${topTags.map(([t, n]) => `<span class="stats-tag">${t} <b>${n}</b></span>`).join('')}
+                </div>
+
+                <h3 class="stats-section-title">📁 分类分布</h3>
+                <div class="stats-tags">
+                    ${topCats.map(([c, n]) => `<span class="stats-tag">${c} <b>${n}</b></span>`).join('')}
+                </div>
+
+                <h3 class="stats-section-title">📝 最长文章</h3>
+                <ul class="stats-list">
+                    ${topArticles.map(a => `<li><a href="article.html?id=${a.id}">${a.title}</a> <span>${a.words} 字</span></li>`).join('')}
+                </ul>
+            </div>
+        `;
+    } catch (e) {
+        container.innerHTML = `<div class="empty-state"><div class="icon">⚠️</div><h3>加载失败</h3><p>${e.message}</p></div>`;
+    }
+}
+
+// ===================================================
+// 404 小游戏
+// ===================================================
+function init404Game() {
+    const canvas = document.getElementById('gameCanvas');
+    if (!canvas) return;
+
+    const ctx = canvas.getContext('2d');
+    const W = canvas.width = 400;
+    const H = canvas.height = 300;
+
+    let paddle = { x: W / 2 - 40, y: H - 20, w: 80, h: 10 };
+    let ball = { x: W / 2, y: H / 2, r: 8, dx: 3, dy: -3 };
+    let score = 0;
+    let gameOver = false;
+
+    document.addEventListener('mousemove', (e) => {
+        const rect = canvas.getBoundingClientRect();
+        const mx = e.clientX - rect.left;
+        paddle.x = Math.max(0, Math.min(W - paddle.w, mx - paddle.w / 2));
+    });
+
+    document.addEventListener('touchmove', (e) => {
+        const rect = canvas.getBoundingClientRect();
+        const mx = e.touches[0].clientX - rect.left;
+        paddle.x = Math.max(0, Math.min(W - paddle.w, mx - paddle.w / 2));
+    });
+
+    function draw() {
+        ctx.fillStyle = '#0f172a';
+        ctx.fillRect(0, 0, W, H);
+
+        ctx.fillStyle = '#38bdf8';
+        ctx.fillRect(paddle.x, paddle.y, paddle.w, paddle.h);
+
+        ctx.beginPath();
+        ctx.arc(ball.x, ball.y, ball.r, 0, Math.PI * 2);
+        ctx.fillStyle = '#fbbf24';
+        ctx.fill();
+
+        ctx.fillStyle = '#fff';
+        ctx.font = '16px sans-serif';
+        ctx.fillText('得分: ' + score, 10, 24);
+
+        if (gameOver) {
+            ctx.fillStyle = 'rgba(0,0,0,0.7)';
+            ctx.fillRect(0, 0, W, H);
+            ctx.fillStyle = '#fff';
+            ctx.font = 'bold 24px sans-serif';
+            ctx.textAlign = 'center';
+            ctx.fillText('游戏结束', W / 2, H / 2 - 10);
+            ctx.font = '14px sans-serif';
+            ctx.fillText('点击重新开始', W / 2, H / 2 + 20);
+            ctx.textAlign = 'left';
+        }
+    }
+
+    function update() {
+        if (gameOver) return;
+
+        ball.x += ball.dx;
+        ball.y += ball.dy;
+
+        if (ball.x - ball.r < 0 || ball.x + ball.r > W) ball.dx = -ball.dx;
+        if (ball.y - ball.r < 0) ball.dy = -ball.dy;
+
+        if (ball.y + ball.r > paddle.y &&
+            ball.x > paddle.x &&
+            ball.x < paddle.x + paddle.w &&
+            ball.dy > 0) {
+            ball.dy = -ball.dy;
+            score++;
+        }
+
+        if (ball.y + ball.r > H) gameOver = true;
+    }
+
+    function loop() {
+        update();
+        draw();
+        requestAnimationFrame(loop);
+    }
+
+    canvas.addEventListener('click', () => {
+        if (gameOver) {
+            ball = { x: W / 2, y: H / 2, r: 8, dx: 3, dy: -3 };
+            score = 0;
+            gameOver = false;
+        }
+    });
+
+    loop();
+}
+
+// ===================================================
+// 全文搜索
+// ===================================================
+const fullTextCache = {};
+
+async function searchFullText(keyword) {
+    const articles = await loadArticlesMeta();
+    const kw = keyword.toLowerCase();
+    const results = [];
+
+    for (const a of articles) {
+        let text = fullTextCache[a.id];
+        if (!text) {
+            try {
+                const res = await fetch(`posts/${a.id}.md`);
+                if (res.ok) {
+                    text = (await res.text()).toLowerCase();
+                    fullTextCache[a.id] = text;
+                }
+            } catch (e) {}
+        }
+        if (text && text.includes(kw)) results.push(a);
+    }
+    return results;
+}
+
 // 暴露
 window.initThemeColorPicker = initThemeColorPicker;
+window.applyThemeColor = applyThemeColor;
+window.applyCustomThemeColor = applyCustomThemeColor;
 window.initImmersiveMode = initImmersiveMode;
 window.initReadingPosition = initReadingPosition;
 window.renderRelatedArticles = renderRelatedArticles;
 window.renderTagCloud = renderTagCloud;
 window.initEasterEgg = initEasterEgg;
+window.initBlogStats = initBlogStats;
+window.initDailyQuote = initDailyQuote;
+window.initClock = initClock;
+window.initWeather = initWeather;
+window.renderTimeline = renderTimeline;
+window.renderStatsPage = renderStatsPage;
+window.init404Game = init404Game;
+window.searchFullText = searchFullText;

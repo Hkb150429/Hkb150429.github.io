@@ -29,7 +29,7 @@ function escapeHtml(str) {
 }
 
 // ===================================================
-// 解析 Markdown（代码块单独处理）
+// 解析 Markdown
 // ===================================================
 function parseMarkdown(mdContent) {
     if (!window.marked) {
@@ -62,7 +62,7 @@ function parseMarkdown(mdContent) {
 }
 
 // ===================================================
-// 渲染文章列表（搜索 + 排序 + 分页 + 字数/时间）
+// 渲染文章列表（搜索 + 全文搜索 + 排序 + 分页）
 // ===================================================
 async function renderArticleList(containerId) {
     const container = document.getElementById(containerId);
@@ -82,21 +82,27 @@ async function renderArticleList(containerId) {
         let currentPage = 1;
         let keyword = '';
         let sortMode = 'date-desc';
+        let fullTextResults = null;   // 全文搜索结果缓存
 
         function applyFilterSort() {
             let list = articles.slice();
 
             if (keyword) {
-                const kw = keyword.toLowerCase();
-                list = list.filter(a => {
-                    const hay = [
-                        a.title,
-                        a.summary,
-                        a.category,
-                        ...(a.tags || [])
-                    ].join(' ').toLowerCase();
-                    return hay.includes(kw);
-                });
+                // 如果全文搜索结果存在，优先用它
+                if (fullTextResults !== null) {
+                    list = fullTextResults.slice();
+                } else {
+                    const kw = keyword.toLowerCase();
+                    list = list.filter(a => {
+                        const hay = [
+                            a.title,
+                            a.summary,
+                            a.category,
+                            ...(a.tags || [])
+                        ].join(' ').toLowerCase();
+                        return hay.includes(kw);
+                    });
+                }
             }
 
             list.sort((a, b) => {
@@ -127,7 +133,6 @@ async function renderArticleList(containerId) {
 
             container.innerHTML = pageList.map(a => cardHtml(a, keyword)).join('');
 
-            // 异步填充卡片字数/阅读时间
             pageList.forEach(async (a) => {
                 const stats = await getArticleStats(a.id);
                 const el = container.querySelector(`[data-stats-id="${a.id}"]`);
@@ -153,11 +158,25 @@ async function renderArticleList(containerId) {
             let t;
             searchInput.addEventListener('input', () => {
                 clearTimeout(t);
-                t = setTimeout(() => {
+                t = setTimeout(async () => {
                     keyword = searchInput.value.trim();
+                    fullTextResults = null;
                     currentPage = 1;
+
+                    // 先按本地搜索结果渲染
                     renderPage();
-                }, 200);
+
+                    // 如果本地搜索无结果且关键词非空，异步做全文搜索
+                    if (keyword && container.querySelector('.empty-state')) {
+                        if (typeof searchFullText === 'function') {
+                            const results = await searchFullText(keyword);
+                            if (results.length > 0 && keyword === searchInput.value.trim()) {
+                                fullTextResults = results;
+                                renderPage();
+                            }
+                        }
+                    }
+                }, 300);
             });
         }
 
@@ -525,7 +544,7 @@ async function renderArticleDetail(containerId) {
             });
         }
 
-        // ===== 新功能初始化 =====
+        // 新功能
         if (typeof initImmersiveMode === 'function') initImmersiveMode();
         if (typeof initReadingPosition === 'function') initReadingPosition();
         if (typeof renderRelatedArticles === 'function') renderRelatedArticles(article, container);

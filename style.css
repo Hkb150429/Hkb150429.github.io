@@ -5,10 +5,10 @@
     --bg: #f8fafc;
     --card-bg: #ffffff;
     --soft-bg: #f1f5f9;
-    --text: #0f172a;
-    --text-soft: #334155;
-    --text-mute: #64748b;
-    --text-faint: #94a3b8;
+    --text: #000000;
+    --text-soft: #1e293b;
+    --text-mute: #334155;
+    --text-faint: #64748b;
     --border: #e2e8f0;
     --border-hover: #cbd5e1;
     --accent: #0284c7;
@@ -19,15 +19,14 @@
     --shadow: 0 4px 12px -4px rgba(0,0,0,0.06);
     --shadow-hover: 0 12px 24px -8px rgba(0,0,0,0.12);
 
+    --welcome-bg-light: #e0f2fe;
+    --nav-bg-light: #0369a1;
+    --welcome-bg-dark: #0369a1;
+    --nav-bg-dark: #075985;
+
     --header-text: #0c4a6e;
-    --header-tab: #0c4a6e;
-    --header-tab-hover-bg: rgba(255,255,255,0.5);
-    --header-tab-hover-text: #0c4a6e;
-    --header-toggle-bg: rgba(255,255,255,0.5);
-    --header-toggle-text: #0c4a6e;
-    --header-toggle-hover: rgba(255,255,255,0.8);
     --header-hint: #0369a1;
-    --header-shadow: 0 4px 12px rgba(3,105,161,0.08);
+    --header-shadow: 0 4px 12px rgba(0,0,0,0.05);
 }
 
 /* ===================================================
@@ -37,10 +36,10 @@ html.dark {
     --bg: #0b1220;
     --card-bg: #131c2e;
     --soft-bg: #1e293b;
-    --text: #e2e8f0;
-    --text-soft: #cbd5e1;
-    --text-mute: #94a3b8;
-    --text-faint: #64748b;
+    --text: #ffffff;
+    --text-soft: #f1f5f9;
+    --text-mute: #e2e8f0;
+    --text-faint: #cbd5e1;
     --border: #1e293b;
     --border-hover: #334155;
     --accent: #38bdf8;
@@ -52,14 +51,7 @@ html.dark {
     --shadow-hover: 0 12px 24px -8px rgba(0,0,0,0.6);
 
     --header-text: #ffffff;
-    --header-tab: #ffffff;
-    --header-tab-hover-bg: rgba(255,255,255,0.15);
-    --header-tab-hover-text: #ffffff;
-    --header-toggle-bg: rgba(255,255,255,0.15);
-    --header-toggle-text: #ffffff;
-    --header-toggle-hover: rgba(255,255,255,0.25);
     --header-hint: #bae6fd;
-    --header-shadow: 0 4px 12px rgba(0,0,0,0.05);
 }
 
 /* ===================================================
@@ -117,24 +109,29 @@ body {
 }
 
 /* ===================================================
-   顶部欢迎栏（主题色）
+   顶部欢迎栏
    =================================================== */
 .welcome-bar {
-    background: linear-gradient(135deg, var(--accent-soft), var(--accent-soft));
+    background: var(--welcome-bg-light);
     color: var(--header-text);
-    padding: 1.25rem 2rem;
+    padding: 1.1rem 1.6rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
     flex-wrap: wrap;
-    gap: 1rem;
+    gap: 0.6rem;
     box-shadow: var(--header-shadow);
     transition: background 0.3s, color 0.3s;
 }
 
+html.dark .welcome-bar {
+    background: var(--welcome-bg-dark);
+    color: var(--header-text);
+}
+
 .welcome-text {
-    font-size: 1.6rem;
-    font-weight: 600;
+    font-size: 1.45rem;
+    font-weight: 700;
 }
 
 .welcome-text a {
@@ -142,7 +139,7 @@ body {
     text-decoration: none;
     display: flex;
     align-items: center;
-    gap: 0.6rem;
+    gap: 0.5rem;
     transition: opacity 0.2s;
 }
 
@@ -151,19 +148,20 @@ body {
 }
 
 .welcome-text span {
-    background: var(--accent);
-    color: #ffffff;
-    padding: 0.2rem 0.9rem;
+    background: rgba(255,255,255,0.3);
+    color: var(--header-text);
+    padding: 0.15rem 0.7rem;
     border-radius: 40px;
-    font-size: 1.1rem;
+    font-size: 1rem;
+    font-weight: 700;
     transition: background 0.3s;
 }
 
 .welcome-text .home-hint {
-    font-size: 0.75rem;
+    font-size: 0.7rem;
     color: var(--header-hint);
-    font-weight: 400;
-    margin-left: 0.4rem;
+    font-weight: 600;
+    margin-left: 0.3rem;
     opacity: 0;
     transition: opacity 0.2s;
     background: transparent;
@@ -176,12 +174,12 @@ body {
 }
 
 /* ===================================================
-   导航（主题色背景）
+   导航
    =================================================== */
 .nav-tabs {
     display: flex;
-    gap: 0.5rem;
-    background: var(--accent);
+    gap: 0.25rem;
+    background: var(--nav-bg-light);
     padding: 0.35rem;
     border-radius: 60px;
     flex-wrap: wrap;
@@ -189,19 +187,23 @@ body {
     transition: background 0.3s;
 }
 
+html.dark .nav-tabs {
+    background: var(--nav-bg-dark);
+}
+
 .nav-tab {
     background: transparent;
     border: none;
     color: #ffffff;
-    padding: 0.55rem 1.4rem;
-    font-size: 0.95rem;
-    font-weight: 500;
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+    font-weight: 600;
     border-radius: 40px;
     cursor: pointer;
     transition: all 0.2s;
     white-space: nowrap;
     text-decoration: none;
-    opacity: 0.9;
+    opacity: 0.95;
 }
 
 .nav-tab:hover {
@@ -220,15 +222,16 @@ body {
     background: rgba(255,255,255,0.2);
     border: none;
     color: #ffffff;
-    width: 38px;
-    height: 38px;
+    width: 36px;
+    height: 36px;
     border-radius: 50%;
     cursor: pointer;
-    font-size: 1.05rem;
+    font-size: 1rem;
     display: flex;
     align-items: center;
     justify-content: center;
     transition: background 0.2s;
+    flex-shrink: 0;
 }
 
 .theme-toggle:hover {
@@ -248,7 +251,7 @@ body {
 
 .page-title {
     font-size: 1.5rem;
-    font-weight: 600;
+    font-weight: 700;
     margin-bottom: 1.5rem;
     color: var(--text);
 }
@@ -263,7 +266,7 @@ body {
 
 .home-hero h1 {
     font-size: 2.2rem;
-    font-weight: 700;
+    font-weight: 800;
     margin-bottom: 1rem;
     color: var(--text);
 }
@@ -271,6 +274,7 @@ body {
 .home-hero p {
     color: var(--text-mute);
     font-size: 1.05rem;
+    font-weight: 500;
     margin-bottom: 2.5rem;
 }
 
@@ -282,12 +286,12 @@ body {
 }
 
 .home-link {
-    background: var(--accent-soft);
+    background: color-mix(in srgb, var(--accent-soft) 85%, black 15%);
     padding: 0.9rem 1.8rem;
     border-radius: 40px;
     text-decoration: none;
     color: var(--accent);
-    font-weight: 600;
+    font-weight: 700;
     border: 1px solid var(--accent);
     box-shadow: var(--shadow);
     transition: all 0.2s;
@@ -318,7 +322,7 @@ body {
     width: 44px;
     height: 44px;
     border-radius: 50%;
-    background: var(--accent-soft);
+    background: color-mix(in srgb, var(--accent-soft) 85%, black 15%);
     color: var(--accent);
     border: 1px solid var(--accent);
     box-shadow: var(--shadow);
@@ -355,8 +359,9 @@ body {
     font-size: 0.95rem;
     border: 1px solid var(--accent);
     border-radius: 40px;
-    background: var(--accent-soft);
+    background: color-mix(in srgb, var(--accent-soft) 85%, black 15%);
     color: var(--text);
+    font-weight: 500;
     outline: none;
     transition: border-color 0.2s, box-shadow 0.2s, background 0.3s;
     box-shadow: var(--shadow);
@@ -368,6 +373,7 @@ body {
 
 .search-bar input::placeholder {
     color: var(--text-faint);
+    font-weight: 500;
 }
 
 .sort-select {
@@ -375,8 +381,9 @@ body {
     font-size: 0.95rem;
     border: 1px solid var(--accent);
     border-radius: 40px;
-    background: var(--accent-soft);
+    background: color-mix(in srgb, var(--accent-soft) 85%, black 15%);
     color: var(--text);
+    font-weight: 600;
     outline: none;
     cursor: pointer;
     box-shadow: var(--shadow);
@@ -404,9 +411,10 @@ mark {
 
 .card {
     background: var(--accent-soft);
+    background: color-mix(in srgb, var(--accent-soft) 80%, black 20%);
     border-radius: 20px;
     padding: 1.5rem;
-    border: 1px solid var(--accent);
+    border: 2px solid var(--accent);
     box-shadow: var(--shadow);
     transition: transform 0.25s, box-shadow 0.25s, opacity 0.45s, background 0.3s, border-color 0.3s;
     display: flex;
@@ -425,7 +433,6 @@ mark {
 .card:hover {
     transform: translateY(-3px);
     box-shadow: var(--shadow-hover);
-    border-color: var(--accent);
 }
 
 a.card {
@@ -440,14 +447,15 @@ a.card {
 
 .card-title {
     font-size: 1.15rem;
-    font-weight: 600;
+    font-weight: 800;
     line-height: 1.3;
     color: var(--text);
 }
 
 .card-meta {
     font-size: 0.8rem;
-    color: var(--text-mute);
+    color: var(--text);
+    font-weight: 600;
     display: flex;
     gap: 0.5rem;
     flex-wrap: wrap;
@@ -460,13 +468,15 @@ a.card {
     padding: 0.15rem 0.6rem;
     border-radius: 30px;
     font-size: 0.75rem;
+    font-weight: 600;
     text-decoration: none;
     transition: background 0.3s;
 }
 
 .card-description {
     font-size: 0.9rem;
-    color: var(--text-soft);
+    color: var(--text);
+    font-weight: 500;
     line-height: 1.6;
     flex: 1;
 }
@@ -481,6 +491,7 @@ a.card {
 
 .tag-card .card-title {
     font-size: 1.4rem;
+    font-weight: 800;
 }
 
 .tag-count {
@@ -489,7 +500,7 @@ a.card {
     background: var(--accent);
     padding: 0.2rem 0.8rem;
     border-radius: 30px;
-    font-weight: 500;
+    font-weight: 700;
     display: inline-block;
     margin-top: 0.3rem;
 }
@@ -518,13 +529,14 @@ a.tag-card {
 }
 
 .pagination button {
-    background: var(--accent-soft);
+    background: color-mix(in srgb, var(--accent-soft) 80%, black 20%);
     border: 1px solid var(--accent);
     color: var(--accent);
     padding: 0.5rem 0.9rem;
     border-radius: 10px;
     cursor: pointer;
     font-size: 0.9rem;
+    font-weight: 700;
     transition: all 0.2s;
     min-width: 38px;
 }
@@ -552,6 +564,7 @@ a.tag-card {
     color: var(--accent);
     text-decoration: none;
     font-size: 0.9rem;
+    font-weight: 700;
     margin-bottom: 1.5rem;
     transition: color 0.2s;
 }
@@ -589,13 +602,13 @@ a.tag-card {
     background: var(--card-bg);
     border-radius: 24px;
     padding: 2.5rem;
-    border: 1px solid var(--accent);
+    border: 2px solid var(--accent);
     box-shadow: var(--shadow);
 }
 
 .article-title {
     font-size: 1.9rem;
-    font-weight: 700;
+    font-weight: 800;
     line-height: 1.3;
     margin-bottom: 1rem;
     letter-spacing: -0.02em;
@@ -609,7 +622,8 @@ a.tag-card {
     flex-wrap: wrap;
     align-items: center;
     font-size: 0.85rem;
-    color: var(--text-mute);
+    color: var(--text);
+    font-weight: 600;
     padding-bottom: 1.5rem;
     border-bottom: 1px solid var(--border);
     margin-bottom: 1.5rem;
@@ -618,7 +632,8 @@ a.tag-card {
 .article-content {
     font-size: 1rem;
     line-height: 1.8;
-    color: var(--text-soft);
+    color: var(--text);
+    font-weight: 500;
 }
 
 .article-content p {
@@ -627,7 +642,7 @@ a.tag-card {
 
 .article-content h2 {
     font-size: 1.3rem;
-    font-weight: 600;
+    font-weight: 800;
     color: var(--text);
     margin: 1.8rem 0 0.8rem;
     scroll-margin-top: 1rem;
@@ -635,7 +650,7 @@ a.tag-card {
 
 .article-content h3 {
     font-size: 1.1rem;
-    font-weight: 600;
+    font-weight: 800;
     color: var(--text);
     margin: 1.5rem 0 0.6rem;
     scroll-margin-top: 1rem;
@@ -657,6 +672,7 @@ a.tag-card {
     font-size: 0.9em;
     font-family: 'SF Mono', Consolas, monospace;
     color: var(--accent);
+    font-weight: 600;
 }
 
 .article-content pre {
@@ -708,7 +724,8 @@ a.tag-card {
 .article-content blockquote {
     border-left: 3px solid var(--accent);
     padding-left: 1rem;
-    color: var(--text-mute);
+    color: var(--text);
+    font-weight: 500;
     margin-bottom: 1.1rem;
 }
 
@@ -727,6 +744,7 @@ a.tag-card {
 .article-content a {
     color: var(--accent);
     text-decoration: none;
+    font-weight: 600;
 }
 
 .article-content a:hover {
@@ -749,7 +767,7 @@ a.tag-card {
 
 .article-content th {
     background: var(--accent-soft);
-    font-weight: 600;
+    font-weight: 700;
 }
 
 .article-content input[type="checkbox"] {
@@ -770,11 +788,12 @@ a.tag-card {
 .article-nav a {
     flex: 1;
     min-width: 180px;
-    background: var(--accent-soft);
+    background: color-mix(in srgb, var(--accent-soft) 80%, black 20%);
     padding: 1rem 1.2rem;
     border-radius: 12px;
     text-decoration: none;
     color: var(--accent);
+    font-weight: 600;
     transition: background 0.2s, color 0.2s;
     border: 1px solid var(--accent);
 }
@@ -791,7 +810,7 @@ a.tag-card {
 }
 
 .article-nav .nav-title {
-    font-weight: 600;
+    font-weight: 700;
     font-size: 0.95rem;
 }
 
@@ -803,8 +822,8 @@ a.tag-card {
    文章目录 TOC
    =================================================== */
 .article-toc {
-    background: var(--accent-soft);
-    border: 1px solid var(--accent);
+    background: color-mix(in srgb, var(--accent-soft) 80%, black 20%);
+    border: 2px solid var(--accent);
     border-radius: 16px;
     padding: 1rem 1.1rem;
     box-shadow: var(--shadow);
@@ -813,7 +832,7 @@ a.tag-card {
 
 .article-toc-title {
     font-size: 0.8rem;
-    font-weight: 600;
+    font-weight: 800;
     color: var(--accent);
     text-transform: uppercase;
     letter-spacing: 0.05em;
@@ -842,9 +861,10 @@ a.tag-card {
 
 .article-toc a {
     display: block;
-    color: var(--text-soft);
+    color: var(--text);
     text-decoration: none;
     font-size: 0.85rem;
+    font-weight: 600;
     padding: 0.3rem 0.55rem;
     border-radius: 6px;
     transition: background 0.15s, color 0.15s;
@@ -859,7 +879,7 @@ a.tag-card {
 
 .article-toc a.toc-active {
     color: white;
-    font-weight: 500;
+    font-weight: 700;
     background: var(--accent);
     border-left-color: var(--accent);
 }
@@ -871,7 +891,7 @@ a.tag-card {
 }
 
 .article-toc li.toc-h1 a {
-    font-weight: 600;
+    font-weight: 800;
     color: var(--accent);
     font-size: 0.9rem;
 }
@@ -968,11 +988,11 @@ a.tag-card {
     align-items: center;
     justify-content: center;
     padding: 5rem 2rem;
-    background: var(--accent-soft);
+    background: color-mix(in srgb, var(--accent-soft) 80%, black 20%);
     border-radius: 24px;
-    border: 1px dashed var(--accent);
+    border: 2px dashed var(--accent);
     text-align: center;
-    color: var(--text-faint);
+    color: var(--text);
     gap: 0.5rem;
     grid-column: 1 / -1;
 }
@@ -980,18 +1000,19 @@ a.tag-card {
 .empty-state .icon {
     font-size: 3rem;
     margin-bottom: 1rem;
-    opacity: 0.6;
+    opacity: 0.8;
 }
 
 .empty-state h3 {
     font-size: 1.2rem;
-    font-weight: 600;
-    color: var(--text-mute);
+    font-weight: 800;
+    color: var(--text);
 }
 
 .empty-state p {
     font-size: 0.9rem;
-    color: var(--text-faint);
+    color: var(--text);
+    font-weight: 500;
     max-width: 320px;
     line-height: 1.6;
 }
@@ -1006,6 +1027,14 @@ a.tag-card {
 /* ===================================================
    移动端
    =================================================== */
+@media (max-width: 1000px) {
+    .welcome-bar {
+        padding: 0.9rem 1rem;
+    }
+    .welcome-text { font-size: 1.2rem; }
+    .nav-tab { padding: 0.45rem 0.8rem; font-size: 0.85rem; }
+}
+
 @media (max-width: 640px) {
     .welcome-bar {
         padding: 1rem 1.25rem;

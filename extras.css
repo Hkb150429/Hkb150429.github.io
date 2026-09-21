@@ -7,7 +7,7 @@
 
 .archive-year {
     font-size: 1.4rem;
-    font-weight: 700;
+    font-weight: 800;
     color: var(--accent);
     margin-bottom: 0.8rem;
     padding-bottom: 0.4rem;
@@ -16,8 +16,8 @@
 
 .archive-month {
     font-size: 1rem;
-    font-weight: 600;
-    color: var(--text-mute);
+    font-weight: 700;
+    color: var(--text);
     margin: 1rem 0 0.5rem;
     padding-left: 0.5rem;
 }
@@ -46,8 +46,9 @@
 
 .archive-date {
     font-size: 0.8rem;
-    color: var(--text-faint);
+    color: var(--text);
     font-family: 'SF Mono', Consolas, monospace;
+    font-weight: 600;
     flex-shrink: 0;
     min-width: 40px;
 }
@@ -56,6 +57,7 @@
     color: var(--text);
     text-decoration: none;
     font-size: 0.95rem;
+    font-weight: 700;
     flex: 1;
     transition: color 0.15s;
 }
@@ -71,6 +73,7 @@
     padding: 0.1rem 0.5rem;
     border-radius: 20px;
     flex-shrink: 0;
+    font-weight: 700;
 }
 
 /* ===================================================
@@ -87,17 +90,17 @@
 }
 
 .extra-card {
-    background: var(--accent-soft);
-    border: 1px solid var(--accent);
+    background: var(--card-bg);
+    border: 2px solid var(--accent);
     border-radius: 20px;
     padding: 1.3rem 1.5rem;
     box-shadow: var(--shadow);
 }
 
 .extra-card-title {
-    font-size: 0.95rem;
-    font-weight: 600;
-    color: var(--accent);
+    font-size: 1rem;
+    font-weight: 800;
+    color: var(--text);
     margin-bottom: 0.8rem;
     display: flex;
     align-items: center;
@@ -110,7 +113,7 @@
     padding: 0;
     display: flex;
     flex-direction: column;
-    gap: 0.4rem;
+    gap: 0.5rem;
 }
 
 .extra-list li {
@@ -118,14 +121,16 @@
     align-items: baseline;
     gap: 0.5rem;
     font-size: 0.9rem;
+    color: var(--text);
 }
 
 .extra-list a {
-    color: var(--text-soft);
+    color: var(--text);
     text-decoration: none;
     flex: 1;
     line-height: 1.5;
     transition: color 0.15s;
+    font-weight: 700;
 }
 
 .extra-list a:hover {
@@ -133,15 +138,16 @@
 }
 
 .extra-list .num {
-    color: var(--text-faint);
-    font-size: 0.8rem;
+    color: var(--accent);
+    font-size: 0.85rem;
     font-family: 'SF Mono', Consolas, monospace;
     min-width: 18px;
+    font-weight: 800;
 }
 
 .extra-list .num.top {
     color: var(--accent);
-    font-weight: 600;
+    font-weight: 800;
 }
 
 .pinned-badge {
@@ -152,7 +158,7 @@
     padding: 0.05rem 0.4rem;
     border-radius: 10px;
     margin-right: 0.4rem;
-    font-weight: 500;
+    font-weight: 700;
 }
 
 /* ===================================================
@@ -162,12 +168,13 @@
     display: inline-flex;
     align-items: center;
     gap: 0.4rem;
-    background: var(--accent-soft);
-    border: 1px solid var(--accent);
-    color: var(--accent);
-    padding: 0.5rem 1rem;
+    background: var(--accent);
+    border: none;
+    color: #ffffff;
+    padding: 0.6rem 1.2rem;
     border-radius: 40px;
-    font-size: 0.85rem;
+    font-size: 0.9rem;
+    font-weight: 700;
     cursor: pointer;
     text-decoration: none;
     transition: all 0.2s;
@@ -176,9 +183,8 @@
 
 .random-btn:hover {
     transform: translateY(-2px);
-    background: var(--accent);
-    color: white;
     box-shadow: var(--shadow-hover);
+    filter: brightness(1.1);
 }
 
 /* ===================================================
@@ -203,6 +209,7 @@
     padding: 0.45rem 0.9rem;
     border-radius: 30px;
     font-size: 0.82rem;
+    font-weight: 700;
     cursor: pointer;
     text-decoration: none;
     transition: all 0.2s;
@@ -210,12 +217,12 @@
 
 .share-btn:hover {
     background: var(--accent);
-    color: white;
+    color: #ffffff;
 }
 
 .share-btn.copied {
     background: #16a34a;
-    color: white;
+    color: #ffffff;
     border-color: #16a34a;
 }
 
