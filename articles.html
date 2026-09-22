@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="extras.css">
     <link rel="stylesheet" href="extras2.css">
+    <link rel="stylesheet" href="extras3.css">
     <script>
         (function() {
             const saved = localStorage.getItem('theme');
@@ -20,37 +21,40 @@
     <div id="progressBar"></div>
     <header class="welcome-bar">
         <div class="welcome-text">
-            <a href="index.html">🎉 欢迎光临 <span>***</span> 的博客<span class="home-hint">← 回首页</span></a>
+            <a href="index.html">🎉 <span data-i18n="welcome">欢迎光临</span> <span>***</span> <span data-i18n="blog">的博客</span><span class="home-hint" data-i18n="backHome">← 回首页</span></a>
         </div>
         <nav class="nav-tabs">
-            <a href="index.html" class="nav-tab">首页</a>
-            <a href="projects.html" class="nav-tab">项目</a>
-            <a href="articles.html" class="nav-tab active">文章</a>
-            <a href="archive.html" class="nav-tab">归档</a>
-            <a href="timeline.html" class="nav-tab">时间线</a>
-            <a href="tags.html" class="nav-tab">标签</a>
-            <a href="categories.html" class="nav-tab">分类</a>
-            <a href="stats.html" class="nav-tab">统计</a>
-            <a href="changelog.html" class="nav-tab">日志</a>
-            <a href="links.html" class="nav-tab">友链</a>
-            <a href="sitemap.html" class="nav-tab">地图</a>
-            <a href="404.html" class="nav-tab">404</a>
+            <a href="index.html" class="nav-tab" data-i18n="home">首页</a>
+            <a href="projects.html" class="nav-tab" data-i18n="projects">项目</a>
+            <a href="articles.html" class="nav-tab active" data-i18n="articles">文章</a>
+            <a href="archive.html" class="nav-tab" data-i18n="archive">归档</a>
+            <a href="timeline.html" class="nav-tab" data-i18n="timeline">时间线</a>
+            <a href="tags.html" class="nav-tab" data-i18n="tags">标签</a>
+            <a href="categories.html" class="nav-tab" data-i18n="categories">分类</a>
+            <a href="gallery.html" class="nav-tab" data-i18n="gallery">画廊</a>
+            <a href="stats.html" class="nav-tab" data-i18n="stats">统计</a>
+            <a href="sponsor.html" class="nav-tab" data-i18n="sponsor">赞赏</a>
+            <a href="changelog.html" class="nav-tab" data-i18n="changelog">日志</a>
+            <a href="links.html" class="nav-tab" data-i18n="links">友链</a>
+            <a href="sitemap.html" class="nav-tab" data-i18n="sitemap">地图</a>
+            <a href="404.html" class="nav-tab" data-i18n="notFound">404</a>
+            <button class="lang-toggle" id="langToggle" title="切换语言">中</button>
             <button class="theme-toggle" id="themeToggle" title="切换主题">🌙</button>
         </nav>
     </header>
     <main class="container">
-        <h2 class="page-title">📝 文章</h2>
+        <h2 class="page-title" data-i18n="articlesTitle">📝 文章</h2>
         <div class="toolbar">
             <div class="search-bar">
-                <input type="text" id="searchInput" placeholder="🔍 搜索标题、摘要、标签、正文…" autocomplete="off" />
+                <input type="text" id="searchInput" data-i18n-placeholder="searchPlaceholder" placeholder="🔍 搜索标题、摘要、标签、正文…" autocomplete="off" />
             </div>
             <select class="sort-select" id="sortSelect">
-                <option value="date-desc">最新发布</option>
-                <option value="date-asc">最早发布</option>
-                <option value="title-asc">标题 A→Z</option>
-                <option value="title-desc">标题 Z→A</option>
+                <option value="date-desc" data-i18n="sortNewest">最新发布</option>
+                <option value="date-asc" data-i18n="sortOldest">最早发布</option>
+                <option value="title-asc" data-i18n="sortTitleAsc">标题 A→Z</option>
+                <option value="title-desc" data-i18n="sortTitleDesc">标题 Z→A</option>
             </select>
-            <button class="random-btn" onclick="goRandomArticle()">🎲 随机</button>
+            <button class="random-btn" onclick="goRandomArticle()" data-i18n="randomShort">🎲 随机</button>
         </div>
         <div class="card-grid" id="articleList">
             <p style="color:#94a3b8;">加载中…</p>
@@ -61,6 +65,7 @@
     <script src="script.js"></script>
     <script src="extras.js"></script>
     <script src="extras2.js"></script>
+    <script src="extras3.js"></script>
     <script>
         renderArticleList('articleList');
         initBackToTop();
@@ -68,6 +73,14 @@
         initThemeToggle();
         initThemeColorPicker();
         initEasterEgg();
+        initMoreEggs();
+        initI18n();
+        document.getElementById('langToggle').addEventListener('click', () => {
+            toggleLang();
+            const lang = localStorage.getItem('lang') || 'zh';
+            document.getElementById('langToggle').textContent = lang === 'zh' ? '中' : 'EN';
+        });
+        document.getElementById('langToggle').textContent = (localStorage.getItem('lang') || 'zh') === 'zh' ? '中' : 'EN';
     </script>
 </body>
 </html>

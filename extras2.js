@@ -52,42 +52,47 @@ function initThemeColorPicker() {
     const menu = picker.querySelector('.theme-color-menu');
     if (!btn || !menu) return;
 
-    const newBtn = btn.cloneNode(true);
-    btn.parentNode.replaceChild(newBtn, btn);
-
-    newBtn.addEventListener('click', (e) => {
+    // 🎨 按钮：切换菜单
+    btn.onclick = function(e) {
         e.stopPropagation();
         menu.classList.toggle('show');
-    });
+    };
 
-    if (!window.__themeMenuCloseBound) {
-        document.addEventListener('click', () => {
-            document.querySelectorAll('.theme-color-menu').forEach(m => m.classList.remove('show'));
-        });
-        window.__themeMenuCloseBound = true;
-    }
-
-    menu.querySelectorAll('.theme-color-dot').forEach(dot => {
-        dot.addEventListener('click', (e) => {
+    // 菜单：事件委托
+    menu.onclick = function(e) {
+        const dot = e.target.closest('.theme-color-dot');
+        if (dot) {
             e.stopPropagation();
             const color = dot.dataset.color;
+            if (!color) return;
             applyThemeColor(color);
             localStorage.setItem('themeColor', color);
             menu.querySelectorAll('.theme-color-dot').forEach(d => d.classList.remove('active'));
             dot.classList.add('active');
             menu.classList.remove('show');
-        });
-    });
+            return;
+        }
+        e.stopPropagation();
+    };
 
+    // 自定义颜色
     const customInput = picker.querySelector('#themeColorCustom');
     if (customInput) {
-        customInput.addEventListener('input', (e) => {
+        customInput.oninput = function(e) {
             const color = e.target.value;
             applyCustomThemeColor(color);
             localStorage.setItem('themeColor', 'custom');
             localStorage.setItem('themeColorCustom', color);
             menu.querySelectorAll('.theme-color-dot').forEach(d => d.classList.remove('active'));
-        });
+        };
+    }
+
+    // 点其他地方关闭（只绑一次）
+    if (!window.__themeMenuCloseBound) {
+        document.onclick = function() {
+            document.querySelectorAll('.theme-color-menu').forEach(m => m.classList.remove('show'));
+        };
+        window.__themeMenuCloseBound = true;
     }
 }
 
@@ -205,6 +210,8 @@ async function renderRelatedArticles(article, container) {
     try {
         const articles = await loadArticlesMeta();
         const tags = article.tags || [];
+        const lang = localStorage.getItem('lang') || 'zh';
+        const isEn = lang === 'en';
 
         let related = articles.filter(a => {
             if (a.id === article.id) return false;
@@ -223,12 +230,17 @@ async function renderRelatedArticles(article, container) {
         related = related.slice(0, 3);
         if (related.length === 0) return;
 
+        const title = isEn ? '🎲 Related Posts' : '🎲 相关文章';
+
         const div = document.createElement('div');
         div.className = 'related-articles';
         div.innerHTML = `
-            <div class="related-title">🎲 相关文章</div>
+            <div class="related-title">${title}</div>
             <ul class="related-list">
-                ${related.map(a => `<li><a href="article.html?id=${a.id}">${a.title}</a></li>`).join('')}
+                ${related.map(a => {
+                    const t = (isEn && a.titleEn) ? a.titleEn : a.title;
+                    return `<li><a href="article.html?id=${a.id}">${t}</a></li>`;
+                }).join('')}
             </ul>
         `;
 
@@ -251,8 +263,14 @@ async function renderTagCloud(containerId) {
 
     try {
         const articles = await loadArticlesMeta();
+        const lang = localStorage.getItem('lang') || 'zh';
+        const isEn = lang === 'en';
+
         const tagCount = {};
-        articles.forEach(a => (a.tags || []).forEach(t => { tagCount[t] = (tagCount[t] || 0) + 1; }));
+        articles.forEach(a => {
+            const tags = (isEn && a.tagsEn) ? a.tagsEn : (a.tags || []);
+            tags.forEach(t => { tagCount[t] = (tagCount[t] || 0) + 1; });
+        });
 
         const tags = Object.entries(tagCount).sort((a, b) => b[1] - a[1]);
         if (tags.length === 0) return;
@@ -317,11 +335,20 @@ async function initBlogStats() {
             } catch (e) {}
         }
 
+        const lang = localStorage.getItem('lang') || 'zh';
+        const isEn = lang === 'en';
+
+        const labels = isEn ? {
+            posts: 'Posts', tags: 'Tags', words: 'Words'
+        } : {
+            posts: '篇文章', tags: '个标签', words: '字'
+        };
+
         container.innerHTML = `
             <div class="stats-card">
-                <div class="stat-item"><span class="stat-num">${articles.length}</span><span class="stat-label">篇文章</span></div>
-                <div class="stat-item"><span class="stat-num">${tagSet.size}</span><span class="stat-label">个标签</span></div>
-                <div class="stat-item"><span class="stat-num">${totalWords.toLocaleString()}</span><span class="stat-label">字</span></div>
+                <div class="stat-item"><span class="stat-num">${articles.length}</span><span class="stat-label">${labels.posts}</span></div>
+                <div class="stat-item"><span class="stat-num">${tagSet.size}</span><span class="stat-label">${labels.tags}</span></div>
+                <div class="stat-item"><span class="stat-num">${totalWords.toLocaleString()}</span><span class="stat-label">${labels.words}</span></div>
             </div>
         `;
     } catch (e) {}
@@ -367,8 +394,15 @@ function initClock() {
 
     function update() {
         const now = new Date();
-        const date = now.toLocaleDateString('zh-CN', { year: 'numeric', month: 'long', day: 'numeric', weekday: 'long' });
-        const time = now.toLocaleTimeString('zh-CN', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+        const lang = localStorage.getItem('lang') || 'zh';
+        const isEn = lang === 'en';
+
+        const date = now.toLocaleDateString(isEn ? 'en-US' : 'zh-CN', {
+            year: 'numeric', month: 'long', day: 'numeric', weekday: 'long'
+        });
+        const time = now.toLocaleTimeString(isEn ? 'en-US' : 'zh-CN', {
+            hour: '2-digit', minute: '2-digit', second: '2-digit'
+        });
         container.innerHTML = `
             <div class="clock-box">
                 <div class="clock-time">${time}</div>
@@ -397,6 +431,9 @@ async function initWeather() {
         const humidity = current.humidity;
         const wind = current.windspeedKmph;
 
+        const lang = localStorage.getItem('lang') || 'zh';
+        const isEn = lang === 'en';
+
         const descMap = {
             'Sunny': '晴', 'Clear': '晴', 'Partly cloudy': '多云',
             'Cloudy': '阴', 'Overcast': '阴', 'Mist': '雾',
@@ -405,13 +442,17 @@ async function initWeather() {
             'Light snow': '小雪', 'Moderate snow': '中雪', 'Heavy snow': '大雪'
         };
         const descZh = descMap[desc] || desc;
+        const displayDesc = isEn ? desc : descZh;
+        const city = isEn ? 'Guangzhou' : '广州';
+        const humidityLabel = isEn ? 'Humidity' : '湿度';
+        const windLabel = isEn ? 'Wind' : '风';
 
         container.innerHTML = `
             <div class="weather-box">
-                <div class="weather-city">📍 广州</div>
+                <div class="weather-city">📍 ${city}</div>
                 <div class="weather-temp">${temp}°C</div>
-                <div class="weather-desc">${descZh}</div>
-                <div class="weather-detail">湿度 ${humidity}% · 风 ${wind}km/h</div>
+                <div class="weather-desc">${displayDesc}</div>
+                <div class="weather-detail">${humidityLabel} ${humidity}% · ${windLabel} ${wind}km/h</div>
             </div>
         `;
     } catch (e) {
@@ -428,8 +469,11 @@ async function renderTimeline(containerId) {
 
     try {
         const articles = await loadArticlesMeta();
+        const lang = localStorage.getItem('lang') || 'zh';
+        const isEn = lang === 'en';
+
         if (articles.length === 0) {
-            container.innerHTML = `<div class="empty-state"><div class="icon">📭</div><h3>还没有文章</h3></div>`;
+            container.innerHTML = `<div class="empty-state"><div class="icon">📭</div><h3>${isEn ? 'No posts yet' : '还没有文章'}</h3></div>`;
             return;
         }
 
@@ -437,20 +481,26 @@ async function renderTimeline(containerId) {
 
         container.innerHTML = `
             <div class="timeline">
-                ${sorted.map(a => `
-                    <div class="timeline-item">
-                        <div class="timeline-dot"></div>
-                        <div class="timeline-date">${a.date}</div>
-                        <div class="timeline-content">
-                            <a href="article.html?id=${a.id}" class="timeline-title">${a.title}</a>
-                            <p class="timeline-summary">${a.summary || ''}</p>
-                            <div class="timeline-tags">
-                                <span class="card-tag">${a.category}</span>
-                                ${(a.tags || []).map(t => `<span class="card-tag">${t}</span>`).join('')}
+                ${sorted.map(a => {
+                    const title = (isEn && a.titleEn) ? a.titleEn : a.title;
+                    const summary = (isEn && a.summaryEn) ? a.summaryEn : (a.summary || '');
+                    const category = (isEn && a.categoryEn) ? a.categoryEn : a.category;
+                    const tags = (isEn && a.tagsEn) ? a.tagsEn : (a.tags || []);
+                    return `
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-date">${a.date}</div>
+                            <div class="timeline-content">
+                                <a href="article.html?id=${a.id}" class="timeline-title">${title}</a>
+                                <p class="timeline-summary">${summary}</p>
+                                <div class="timeline-tags">
+                                    <span class="card-tag">${category}</span>
+                                    ${tags.map(t => `<span class="card-tag">${t}</span>`).join('')}
+                                </div>
                             </div>
                         </div>
-                    </div>
-                `).join('')}
+                    `;
+                }).join('')}
             </div>
         `;
     } catch (e) {
@@ -467,14 +517,19 @@ async function renderStatsPage(containerId) {
 
     try {
         const articles = await loadArticlesMeta();
+        const lang = localStorage.getItem('lang') || 'zh';
+        const isEn = lang === 'en';
+
         const tagCount = {};
         const catCount = {};
         let totalWords = 0;
         const perArticle = [];
 
         for (const a of articles) {
-            (a.tags || []).forEach(t => tagCount[t] = (tagCount[t] || 0) + 1);
-            if (a.category) catCount[a.category] = (catCount[a.category] || 0) + 1;
+            const tags = (isEn && a.tagsEn) ? a.tagsEn : (a.tags || []);
+            tags.forEach(t => tagCount[t] = (tagCount[t] || 0) + 1);
+            const cat = (isEn && a.categoryEn) ? a.categoryEn : a.category;
+            if (cat) catCount[cat] = (catCount[cat] || 0) + 1;
 
             let words = 0;
             try {
@@ -486,35 +541,49 @@ async function renderStatsPage(containerId) {
                     totalWords += words;
                 }
             } catch (e) {}
-            perArticle.push({ title: a.title, id: a.id, words });
+            perArticle.push({
+                title: (isEn && a.titleEn) ? a.titleEn : a.title,
+                id: a.id,
+                words
+            });
         }
 
         const topTags = Object.entries(tagCount).sort((a, b) => b[1] - a[1]).slice(0, 10);
         const topCats = Object.entries(catCount).sort((a, b) => b[1] - a[1]);
         const topArticles = perArticle.slice().sort((a, b) => b.words - a.words).slice(0, 5);
 
+        const tr = isEn ? {
+            articles: 'Articles', tags: 'Tags', categories: 'Categories', words: 'Words',
+            hotTags: '🔥 Hot Tags', catDist: '📁 Categories', longest: '📝 Longest Posts',
+            word: 'words'
+        } : {
+            articles: '篇文章', tags: '个标签', categories: '个分类', words: '总字数',
+            hotTags: '🔥 热门标签', catDist: '📁 分类分布', longest: '📝 最长文章',
+            word: '字'
+        };
+
         container.innerHTML = `
             <div class="stats-page">
                 <div class="stats-grid">
-                    <div class="stat-card"><div class="stat-big">${articles.length}</div><div class="stat-label">篇文章</div></div>
-                    <div class="stat-card"><div class="stat-big">${Object.keys(tagCount).length}</div><div class="stat-label">个标签</div></div>
-                    <div class="stat-card"><div class="stat-big">${Object.keys(catCount).length}</div><div class="stat-label">个分类</div></div>
-                    <div class="stat-card"><div class="stat-big">${totalWords.toLocaleString()}</div><div class="stat-label">总字数</div></div>
+                    <div class="stat-card"><div class="stat-big">${articles.length}</div><div class="stat-label">${tr.articles}</div></div>
+                    <div class="stat-card"><div class="stat-big">${Object.keys(tagCount).length}</div><div class="stat-label">${tr.tags}</div></div>
+                    <div class="stat-card"><div class="stat-big">${Object.keys(catCount).length}</div><div class="stat-label">${tr.categories}</div></div>
+                    <div class="stat-card"><div class="stat-big">${totalWords.toLocaleString()}</div><div class="stat-label">${tr.words}</div></div>
                 </div>
 
-                <h3 class="stats-section-title">🔥 热门标签</h3>
+                <h3 class="stats-section-title">${tr.hotTags}</h3>
                 <div class="stats-tags">
-                    ${topTags.map(([t, n]) => `<span class="stats-tag">${t} <b>${n}</b></span>`).join('')}
+                    ${topTags.map(([tag, n]) => `<span class="stats-tag">${tag} <b>${n}</b></span>`).join('')}
                 </div>
 
-                <h3 class="stats-section-title">📁 分类分布</h3>
+                <h3 class="stats-section-title">${tr.catDist}</h3>
                 <div class="stats-tags">
                     ${topCats.map(([c, n]) => `<span class="stats-tag">${c} <b>${n}</b></span>`).join('')}
                 </div>
 
-                <h3 class="stats-section-title">📝 最长文章</h3>
+                <h3 class="stats-section-title">${tr.longest}</h3>
                 <ul class="stats-list">
-                    ${topArticles.map(a => `<li><a href="article.html?id=${a.id}">${a.title}</a> <span>${a.words} 字</span></li>`).join('')}
+                    ${topArticles.map(a => `<li><a href="article.html?id=${a.id}">${a.title}</a> <span>${a.words} ${tr.word}</span></li>`).join('')}
                 </ul>
             </div>
         `;
@@ -565,7 +634,10 @@ function init404Game() {
 
         ctx.fillStyle = '#fff';
         ctx.font = '16px sans-serif';
-        ctx.fillText('得分: ' + score, 10, 24);
+        const lang = localStorage.getItem('lang') || 'zh';
+        const isEn = lang === 'en';
+        const scoreLabel = isEn ? 'Score: ' : '得分: ';
+        ctx.fillText(scoreLabel + score, 10, 24);
 
         if (gameOver) {
             ctx.fillStyle = 'rgba(0,0,0,0.7)';
@@ -573,9 +645,9 @@ function init404Game() {
             ctx.fillStyle = '#fff';
             ctx.font = 'bold 24px sans-serif';
             ctx.textAlign = 'center';
-            ctx.fillText('游戏结束', W / 2, H / 2 - 10);
+            ctx.fillText(isEn ? 'Game Over' : '游戏结束', W / 2, H / 2 - 10);
             ctx.font = '14px sans-serif';
-            ctx.fillText('点击重新开始', W / 2, H / 2 + 20);
+            ctx.fillText(isEn ? 'Click to Restart' : '点击重新开始', W / 2, H / 2 + 20);
             ctx.textAlign = 'left';
         }
     }
@@ -642,21 +714,3 @@ async function searchFullText(keyword) {
     }
     return results;
 }
-
-// 暴露
-window.initThemeColorPicker = initThemeColorPicker;
-window.applyThemeColor = applyThemeColor;
-window.applyCustomThemeColor = applyCustomThemeColor;
-window.initImmersiveMode = initImmersiveMode;
-window.initReadingPosition = initReadingPosition;
-window.renderRelatedArticles = renderRelatedArticles;
-window.renderTagCloud = renderTagCloud;
-window.initEasterEgg = initEasterEgg;
-window.initBlogStats = initBlogStats;
-window.initDailyQuote = initDailyQuote;
-window.initClock = initClock;
-window.initWeather = initWeather;
-window.renderTimeline = renderTimeline;
-window.renderStatsPage = renderStatsPage;
-window.init404Game = init404Game;
-window.searchFullText = searchFullText;

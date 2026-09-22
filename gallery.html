@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>404 · 我的博客</title>
+    <title>画廊 · 我的博客</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="extras.css">
     <link rel="stylesheet" href="extras2.css">
@@ -31,38 +31,33 @@
             <a href="timeline.html" class="nav-tab" data-i18n="timeline">时间线</a>
             <a href="tags.html" class="nav-tab" data-i18n="tags">标签</a>
             <a href="categories.html" class="nav-tab" data-i18n="categories">分类</a>
-            <a href="gallery.html" class="nav-tab" data-i18n="gallery">画廊</a>
+            <a href="gallery.html" class="nav-tab active" data-i18n="gallery">画廊</a>
             <a href="stats.html" class="nav-tab" data-i18n="stats">统计</a>
             <a href="sponsor.html" class="nav-tab" data-i18n="sponsor">赞赏</a>
             <a href="changelog.html" class="nav-tab" data-i18n="changelog">日志</a>
             <a href="links.html" class="nav-tab" data-i18n="links">友链</a>
             <a href="sitemap.html" class="nav-tab" data-i18n="sitemap">地图</a>
-            <a href="404.html" class="nav-tab active" data-i18n="notFound">404</a>
+            <a href="404.html" class="nav-tab" data-i18n="notFound">404</a>
             <button class="lang-toggle" id="langToggle" title="切换语言">中</button>
             <button class="theme-toggle" id="themeToggle" title="切换主题">🌙</button>
         </nav>
     </header>
     <main class="container">
-        <div style="text-align:center;">
-            <h1 style="font-size:5rem;font-weight:900;color:var(--accent);margin-bottom:0.5rem;">404</h1>
-            <p style="font-size:1.1rem;color:var(--text-mute);margin-bottom:1.5rem;font-weight:600;" id="notFoundDesc">页面走丢了，来玩个小游戏吧</p>
-        </div>
-        <div class="game-wrap">
-            <canvas id="gameCanvas"></canvas>
-            <p style="font-size:0.8rem;color:var(--text-mute);margin-top:0.5rem;" id="gameHint">鼠标/手指控制挡板，接住小球</p>
-        </div>
-        <div style="text-align:center;margin-top:1.5rem;">
-            <a href="index.html" class="home-link" id="backHomeBtn">🏠 返回首页</a>
+        <h2 class="page-title" data-i18n="galleryTitle">🖼️ 图片画廊</h2>
+        <div id="galleryBox">
+            <p style="color:#94a3b8;">加载中…</p>
         </div>
     </main>
     <button id="backToTop" title="回到顶部">↑</button>
+    <div class="lightbox" id="lightbox">
+        <img id="lightboxImg" src="" alt="">
+    </div>
     <script src="script.js"></script>
     <script src="extras.js"></script>
     <script src="extras2.js"></script>
     <script src="extras3.js"></script>
     <script>
-        init404Game();
-        initGameSwitcher();
+        renderGallery('galleryBox');
         initBackToTop();
         initProgressBar();
         initThemeToggle();
@@ -74,17 +69,8 @@
             toggleLang();
             const lang = localStorage.getItem('lang') || 'zh';
             document.getElementById('langToggle').textContent = lang === 'zh' ? '中' : 'EN';
-            applyNotFoundLang();
         });
         document.getElementById('langToggle').textContent = (localStorage.getItem('lang') || 'zh') === 'zh' ? '中' : 'EN';
-        applyNotFoundLang();
-
-        function applyNotFoundLang() {
-            const isEn = (localStorage.getItem('lang') || 'zh') === 'en';
-            document.getElementById('notFoundDesc').textContent = isEn ? 'Page lost, play a game!' : '页面走丢了，来玩个小游戏吧';
-            document.getElementById('gameHint').textContent = isEn ? 'Use keyboard/mouse to play' : '用键盘/鼠标操作游戏';
-            document.getElementById('backHomeBtn').textContent = isEn ? '🏠 Back Home' : '🏠 返回首页';
-        }
     </script>
 </body>
 </html>

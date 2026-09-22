@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="extras.css">
     <link rel="stylesheet" href="extras2.css">
+    <link rel="stylesheet" href="extras3.css">
     <script>
         (function() {
             const saved = localStorage.getItem('theme');
@@ -20,43 +21,47 @@
     <div id="progressBar"></div>
     <header class="welcome-bar">
         <div class="welcome-text">
-            <a href="index.html">🎉 欢迎光临 <span>***</span> 的博客<span class="home-hint">← 回首页</span></a>
+            <a href="index.html">🎉 <span data-i18n="welcome">欢迎光临</span> <span>***</span> <span data-i18n="blog">的博客</span><span class="home-hint" data-i18n="backHome">← 回首页</span></a>
         </div>
         <nav class="nav-tabs">
-            <a href="index.html" class="nav-tab">首页</a>
-            <a href="projects.html" class="nav-tab">项目</a>
-            <a href="articles.html" class="nav-tab">文章</a>
-            <a href="archive.html" class="nav-tab">归档</a>
-            <a href="timeline.html" class="nav-tab">时间线</a>
-            <a href="tags.html" class="nav-tab">标签</a>
-            <a href="categories.html" class="nav-tab">分类</a>
-            <a href="stats.html" class="nav-tab">统计</a>
-            <a href="changelog.html" class="nav-tab">日志</a>
-            <a href="links.html" class="nav-tab">友链</a>
-            <a href="sitemap.html" class="nav-tab active">地图</a>
-            <a href="404.html" class="nav-tab">404</a>
+            <a href="index.html" class="nav-tab" data-i18n="home">首页</a>
+            <a href="projects.html" class="nav-tab" data-i18n="projects">项目</a>
+            <a href="articles.html" class="nav-tab" data-i18n="articles">文章</a>
+            <a href="archive.html" class="nav-tab" data-i18n="archive">归档</a>
+            <a href="timeline.html" class="nav-tab" data-i18n="timeline">时间线</a>
+            <a href="tags.html" class="nav-tab" data-i18n="tags">标签</a>
+            <a href="categories.html" class="nav-tab" data-i18n="categories">分类</a>
+            <a href="gallery.html" class="nav-tab" data-i18n="gallery">画廊</a>
+            <a href="stats.html" class="nav-tab" data-i18n="stats">统计</a>
+            <a href="sponsor.html" class="nav-tab" data-i18n="sponsor">赞赏</a>
+            <a href="changelog.html" class="nav-tab" data-i18n="changelog">日志</a>
+            <a href="links.html" class="nav-tab" data-i18n="links">友链</a>
+            <a href="sitemap.html" class="nav-tab active" data-i18n="sitemap">地图</a>
+            <a href="404.html" class="nav-tab" data-i18n="notFound">404</a>
+            <button class="lang-toggle" id="langToggle" title="切换语言">中</button>
             <button class="theme-toggle" id="themeToggle" title="切换主题">🌙</button>
         </nav>
     </header>
     <main class="container">
-        <h2 class="page-title">🗺️ 网站地图</h2>
+        <h2 class="page-title" data-i18n="sitemapTitle">🗺️ 网站地图</h2>
         <div class="page-content">
-            <h3>主要页面</h3>
+            <h3 data-i18n="mainPages">主要页面</h3>
             <ul>
-                <li><a href="index.html">首页</a></li>
-                <li><a href="projects.html">项目</a></li>
-                <li><a href="articles.html">文章</a></li>
-                <li><a href="archive.html">归档</a></li>
-                <li><a href="timeline.html">时间线</a></li>
-                <li><a href="tags.html">标签</a></li>
-                <li><a href="categories.html">分类</a></li>
-                <li><a href="stats.html">统计</a></li>
-                <li><a href="changelog.html">更新日志</a></li>
-                <li><a href="links.html">友链</a></li>
-                <li><a href="sitemap.html">网站地图</a></li>
-                <li><a href="404.html">404 小游戏</a></li>
+                <li><a href="index.html" data-i18n="home">首页</a></li>
+                <li><a href="projects.html" data-i18n="projects">项目</a></li>
+                <li><a href="articles.html" data-i18n="articles">文章</a></li>
+                <li><a href="archive.html" data-i18n="archive">归档</a></li>
+                <li><a href="timeline.html" data-i18n="timeline">时间线</a></li>
+                <li><a href="tags.html" data-i18n="tags">标签</a></li>
+                <li><a href="categories.html" data-i18n="categories">分类</a></li>
+                <li><a href="gallery.html" data-i18n="gallery">画廊</a></li>
+                <li><a href="stats.html" data-i18n="stats">统计</a></li>
+                <li><a href="sponsor.html" data-i18n="sponsor">赞赏</a></li>
+                <li><a href="changelog.html" data-i18n="changelog">日志</a></li>
+                <li><a href="links.html" data-i18n="links">友链</a></li>
+                <li><a href="404.html" data-i18n="notFound">404</a></li>
             </ul>
-            <h3>所有文章</h3>
+            <h3 data-i18n="allPosts">所有文章</h3>
             <ul id="sitemapArticles">
                 <li style="color:var(--text-faint)">加载中…</li>
             </ul>
@@ -66,19 +71,30 @@
     <script src="script.js"></script>
     <script src="extras.js"></script>
     <script src="extras2.js"></script>
+    <script src="extras3.js"></script>
     <script>
         initBackToTop();
         initProgressBar();
         initThemeToggle();
         initThemeColorPicker();
         initEasterEgg();
+        initMoreEggs();
+        initI18n();
+        document.getElementById('langToggle').addEventListener('click', () => {
+            toggleLang();
+            const lang = localStorage.getItem('lang') || 'zh';
+            document.getElementById('langToggle').textContent = lang === 'zh' ? '中' : 'EN';
+        });
+        document.getElementById('langToggle').textContent = (localStorage.getItem('lang') || 'zh') === 'zh' ? '中' : 'EN';
 
         (async () => {
             try {
                 const articles = await loadArticlesMeta();
-                document.getElementById('sitemapArticles').innerHTML = articles.map(a =>
-                    `<li><a href="article.html?id=${a.id}">${a.title}</a> <span style="color:var(--text-faint);font-size:0.85rem;">${a.date}</span></li>`
-                ).join('');
+                const isEn = (localStorage.getItem('lang') || 'zh') === 'en';
+                document.getElementById('sitemapArticles').innerHTML = articles.map(a => {
+                    const title = (isEn && a.titleEn) ? a.titleEn : a.title;
+                    return `<li><a href="article.html?id=${a.id}">${title}</a> <span style="color:var(--text-faint);font-size:0.85rem;">${a.date}</span></li>`;
+                }).join('');
             } catch (e) {
                 document.getElementById('sitemapArticles').innerHTML = '<li style="color:var(--text-faint)">加载失败</li>';
             }

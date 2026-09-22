@@ -62,6 +62,13 @@ function parseMarkdown(mdContent) {
 }
 
 // ===================================================
+// 获取当前语言
+// ===================================================
+function getCurrentLang() {
+    return localStorage.getItem('lang') || 'zh';
+}
+
+// ===================================================
 // 渲染文章列表（搜索 + 全文搜索 + 排序 + 分页）
 // ===================================================
 async function renderArticleList(containerId) {
@@ -82,24 +89,24 @@ async function renderArticleList(containerId) {
         let currentPage = 1;
         let keyword = '';
         let sortMode = 'date-desc';
-        let fullTextResults = null;   // 全文搜索结果缓存
+        let fullTextResults = null;
 
         function applyFilterSort() {
             let list = articles.slice();
 
             if (keyword) {
-                // 如果全文搜索结果存在，优先用它
                 if (fullTextResults !== null) {
                     list = fullTextResults.slice();
                 } else {
                     const kw = keyword.toLowerCase();
                     list = list.filter(a => {
                         const hay = [
-                            a.title,
-                            a.summary,
-                            a.category,
-                            ...(a.tags || [])
-                        ].join(' ').toLowerCase();
+                            a.title, a.titleEn,
+                            a.summary, a.summaryEn,
+                            a.category, a.categoryEn,
+                            ...(a.tags || []),
+                            ...(a.tagsEn || [])
+                        ].filter(Boolean).join(' ').toLowerCase();
                         return hay.includes(kw);
                     });
                 }
@@ -162,11 +169,8 @@ async function renderArticleList(containerId) {
                     keyword = searchInput.value.trim();
                     fullTextResults = null;
                     currentPage = 1;
-
-                    // 先按本地搜索结果渲染
                     renderPage();
 
-                    // 如果本地搜索无结果且关键词非空，异步做全文搜索
                     if (keyword && container.querySelector('.empty-state')) {
                         if (typeof searchFullText === 'function') {
                             const results = await searchFullText(keyword);
@@ -198,7 +202,12 @@ async function renderArticleList(containerId) {
 // ===================================================
 async function getArticleStats(id) {
     try {
-        const res = await fetch(`posts/${id}.md`);
+        const lang = getCurrentLang();
+        const mdFile = lang === 'en' ? `posts/${id}.en.md` : `posts/${id}.md`;
+        let res = await fetch(mdFile);
+        if (!res.ok && lang === 'en') {
+            res = await fetch(`posts/${id}.md`);
+        }
         if (!res.ok) return null;
         const text = await res.text();
         const plain = text.replace(/```[\s\S]*?```/g, '').replace(/[#>*`\-\[\]()]/g, '');
@@ -225,16 +234,9 @@ function renderPagination(container, current, total, onChange) {
 
     const range = 2;
     for (let i = 1; i <= total; i++) {
-        if (
-            i === 1 ||
-            i === total ||
-            (i >= current - range && i <= current + range)
-        ) {
+        if (i === 1 || i === total || (i >= current - range && i <= current + range)) {
             buttons.push(`<button class="${i === current ? 'active' : ''}" data-page="${i}">${i}</button>`);
-        } else if (
-            i === current - range - 1 ||
-            i === current + range + 1
-        ) {
+        } else if (i === current - range - 1 || i === current + range + 1) {
             buttons.push(`<span style="padding:0.5rem 0.3rem;color:var(--text-faint);">…</span>`);
         }
     }
@@ -259,10 +261,13 @@ async function renderTagList(containerId) {
 
     try {
         const articles = await loadArticlesMeta();
+        const lang = getCurrentLang();
+        const isEn = lang === 'en';
 
         const tagCount = {};
         articles.forEach(a => {
-            (a.tags || []).forEach(t => {
+            const tags = (isEn && a.tagsEn) ? a.tagsEn : (a.tags || []);
+            tags.forEach(t => {
                 tagCount[t] = (tagCount[t] || 0) + 1;
             });
         });
@@ -295,11 +300,14 @@ async function renderCategoryList(containerId) {
 
     try {
         const articles = await loadArticlesMeta();
+        const lang = getCurrentLang();
+        const isEn = lang === 'en';
 
         const catCount = {};
         articles.forEach(a => {
-            if (a.category) {
-                catCount[a.category] = (catCount[a.category] || 0) + 1;
+            const c = (isEn && a.categoryEn) ? a.categoryEn : a.category;
+            if (c) {
+                catCount[c] = (catCount[c] || 0) + 1;
             }
         });
 
@@ -347,10 +355,10 @@ async function renderFilteredList(titleId, containerId) {
         let titleText = '全部文章';
 
         if (tag) {
-            filtered = articles.filter(a => (a.tags || []).includes(tag));
+            filtered = articles.filter(a => (a.tags || []).includes(tag) || (a.tagsEn || []).includes(tag));
             titleText = `🏷️ 标签：${tag}`;
         } else if (category) {
-            filtered = articles.filter(a => a.category === category);
+            filtered = articles.filter(a => a.category === category || a.categoryEn === category);
             titleText = `📁 分类：${category}`;
         }
 
@@ -371,7 +379,7 @@ async function renderFilteredList(titleId, containerId) {
 }
 
 // ===================================================
-// 渲染文章详情
+// 渲染文章详情（含英文支持）
 // ===================================================
 async function renderArticleDetail(containerId) {
     const container = document.getElementById(containerId);
@@ -402,19 +410,32 @@ async function renderArticleDetail(containerId) {
         }
 
         const article = articles[idx];
-
         const prev = idx > 0 ? articles[idx - 1] : null;
         const next = idx < articles.length - 1 ? articles[idx + 1] : null;
 
-        document.title = article.title + ' · 我的博客';
+        // 当前语言
+        const lang = getCurrentLang();
+        const isEn = lang === 'en';
 
+        // 显示标题 / 分类 / 标签
+        const displayTitle = (isEn && article.titleEn) ? article.titleEn : article.title;
+        const displayCategory = (isEn && article.categoryEn) ? article.categoryEn : article.category;
+        const displayTags = (isEn && article.tagsEn) ? article.tagsEn : (article.tags || []);
+
+        document.title = displayTitle + ' · 我的博客';
+
+        // 读 md（英文优先 .en.md，没有则回退）
+        const mdFile = isEn ? `posts/${article.id}.en.md` : `posts/${article.id}.md`;
         let mdContent = '';
         try {
-            const mdRes = await fetch(`posts/${article.id}.md`);
+            let mdRes = await fetch(mdFile);
+            if (!mdRes.ok && isEn) {
+                mdRes = await fetch(`posts/${article.id}.md`);
+            }
             if (mdRes.ok) {
                 mdContent = await mdRes.text();
             } else {
-                mdContent = '（正文文件 `posts/' + article.id + '.md` 没找到）';
+                mdContent = `（正文文件 \`${mdFile}\` 没找到）`;
             }
         } catch (err) {
             mdContent = '（正文文件读取失败）';
@@ -422,7 +443,7 @@ async function renderArticleDetail(containerId) {
 
         const htmlContent = parseMarkdown(mdContent);
 
-        const tagsHtml = (article.tags || [])
+        const tagsHtml = displayTags
             .map(t => `<a href="list.html?tag=${encodeURIComponent(t)}" class="card-tag">${t}</a>`)
             .join('');
 
@@ -436,7 +457,7 @@ async function renderArticleDetail(containerId) {
             <div class="article-layout">
                 <div class="article-main">
                     <article class="article-detail">
-                        <h1 class="article-title">${pinnedBadge}${article.title}</h1>
+                        <h1 class="article-title">${pinnedBadge}${displayTitle}</h1>
                         <div class="article-meta">
                             <span>${article.date}</span>
                             <span>·</span>
@@ -444,7 +465,7 @@ async function renderArticleDetail(containerId) {
                             <span>·</span>
                             <span>${wordCount} 字</span>
                             <span>·</span>
-                            <a href="list.html?category=${encodeURIComponent(article.category)}" class="card-tag">${article.category}</a>
+                            <a href="list.html?category=${encodeURIComponent(displayCategory)}" class="card-tag">${displayCategory}</a>
                             ${tagsHtml}
                         </div>
                         <div class="article-content" id="articleBody">
@@ -455,13 +476,13 @@ async function renderArticleDetail(containerId) {
                             ${prev ? `
                                 <a href="article.html?id=${prev.id}">
                                     <div class="nav-label">← 上一篇</div>
-                                    <div class="nav-title">${prev.title}</div>
+                                    <div class="nav-title">${(isEn && prev.titleEn) ? prev.titleEn : prev.title}</div>
                                 </a>
                             ` : '<span style="flex:1"></span>'}
                             ${next ? `
                                 <a href="article.html?id=${next.id}" class="nav-next">
                                     <div class="nav-label">下一篇 →</div>
-                                    <div class="nav-title">${next.title}</div>
+                                    <div class="nav-title">${(isEn && next.titleEn) ? next.titleEn : next.title}</div>
                                 </a>
                             ` : '<span style="flex:1"></span>'}
                         </div>
@@ -471,23 +492,20 @@ async function renderArticleDetail(containerId) {
             </div>
         `;
 
-        // 目录
         generateTOC(container);
 
-        // 分享栏
         if (typeof initShareBar === 'function') {
             initShareBar('shareBar');
         }
 
-        // 代码高亮（手动，避免空格转义）
+        // 代码高亮
         container.querySelectorAll('pre code').forEach(block => {
             if (!window.hljs) return;
             const raw = block.textContent;
             const langMatch = block.className.match(/language-(\w+)/);
-            const lang = langMatch ? langMatch[1] : 'plaintext';
-
+            const langCode = langMatch ? langMatch[1] : 'plaintext';
             try {
-                const result = hljs.highlight(raw, { language: lang, ignoreIllegals: true });
+                const result = hljs.highlight(raw, { language: langCode, ignoreIllegals: true });
                 block.innerHTML = result.value;
             } catch (e) {
                 block.textContent = raw;
@@ -691,16 +709,23 @@ function cardHtml(a, keyword) {
         return safe.replace(re, '<mark>$1</mark>');
     }
 
+    const lang = getCurrentLang();
+    const isEn = lang === 'en';
+
+    const title = (isEn && a.titleEn) ? a.titleEn : a.title;
+    const summary = (isEn && a.summaryEn) ? a.summaryEn : a.summary;
+    const category = (isEn && a.categoryEn) ? a.categoryEn : a.category;
+
     const pinnedBadge = a.pinned ? '<span class="pinned-badge">📌</span>' : '';
 
     return `
         <a href="article.html?id=${a.id}" class="card article-card">
-            <h3 class="card-title">${pinnedBadge}${highlight(a.title)}</h3>
+            <h3 class="card-title">${pinnedBadge}${highlight(title)}</h3>
             <div class="card-meta">
                 <span>${a.date}</span>
-                <span class="card-tag">${highlight(a.category)}</span>
+                <span class="card-tag">${highlight(category)}</span>
             </div>
-            <p class="card-description">${highlight(a.summary)}</p>
+            <p class="card-description">${highlight(summary)}</p>
             <div class="card-stats" data-stats-id="${a.id}"></div>
         </a>
     `;

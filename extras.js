@@ -1,4 +1,13 @@
 // ===================================================
+// 翻译辅助
+// ===================================================
+function t(key) {
+    const lang = localStorage.getItem('lang') || 'zh';
+    const dict = (window.I18N && window.I18N[lang]) ? window.I18N[lang] : {};
+    return dict[key] || key;
+}
+
+// ===================================================
 // 归档页
 // ===================================================
 async function renderArchive(containerId) {
@@ -35,7 +44,7 @@ async function renderArchive(containerId) {
                 const list = groups[year][month]
                     .sort((a, b) => (b.date || '').localeCompare(a.date || ''));
 
-                html += `<div class="archive-month">${year}年${month}月 · ${list.length} 篇</div>`;
+                html += `<div class="archive-month">${year}年${month}月 · ${list.length} ${t('count')}</div>`;
                 html += `<ul class="archive-list">`;
                 list.forEach(a => {
                     const day = (a.date || '').slice(8, 10) || '--';
@@ -77,12 +86,18 @@ async function renderHotArticles(containerId, limit = 5) {
             return bScore - aScore;
         }).slice(0, limit);
 
-        container.innerHTML = sorted.map((a, i) => `
-            <li>
-                <span class="num ${i < 3 ? 'top' : ''}">${i + 1}</span>
-                <a href="article.html?id=${a.id}">${a.title}</a>
-            </li>
-        `).join('');
+        const lang = localStorage.getItem('lang') || 'zh';
+        const isEn = lang === 'en';
+
+        container.innerHTML = sorted.map((a, i) => {
+            const title = (isEn && a.titleEn) ? a.titleEn : a.title;
+            return `
+                <li>
+                    <span class="num ${i < 3 ? 'top' : ''}">${i + 1}</span>
+                    <a href="article.html?id=${a.id}">${title}</a>
+                </li>
+            `;
+        }).join('');
 
     } catch (e) {
         container.innerHTML = `<li style="color:var(--text-faint);font-size:0.85rem;">加载失败</li>`;
@@ -105,11 +120,13 @@ async function renderPinnedArticles(containerId, limit = 5) {
             return;
         }
 
-        container.innerHTML = pinned.map(a => `
-            <li>
-                <a href="article.html?id=${a.id}">📌 ${a.title}</a>
-            </li>
-        `).join('');
+        const lang = localStorage.getItem('lang') || 'zh';
+        const isEn = lang === 'en';
+
+        container.innerHTML = pinned.map(a => {
+            const title = (isEn && a.titleEn) ? a.titleEn : a.title;
+            return `<li><a href="article.html?id=${a.id}">📌 ${title}</a></li>`;
+        }).join('');
 
     } catch (e) {
         container.innerHTML = `<li style="color:var(--text-faint);font-size:0.85rem;">加载失败</li>`;
@@ -142,27 +159,35 @@ function initShareBar(containerId) {
 
     const url = window.location.href;
     const title = document.title;
+    const lang = localStorage.getItem('lang') || 'zh';
+    const isEn = lang === 'en';
+
+    const labels = isEn ? {
+        copy: '🔗 Copy Link', weibo: '📤 Weibo', twitter: '🐦 Twitter', email: '✉️ Email'
+    } : {
+        copy: '🔗 复制链接', weibo: '📤 分享到微博', twitter: '🐦 分享到 Twitter', email: '✉️ 邮件分享'
+    };
 
     container.innerHTML = `
-        <button class="share-btn" id="shareCopy">🔗 复制链接</button>
-        <a class="share-btn" href="https://service.weibo.com/share/share.php?url=${encodeURIComponent(url)}&title=${encodeURIComponent(title)}" target="_blank" rel="noopener">📤 分享到微博</a>
-        <a class="share-btn" href="https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=${encodeURIComponent(title)}" target="_blank" rel="noopener">🐦 分享到 Twitter</a>
-        <a class="share-btn" href="mailto:?subject=${encodeURIComponent(title)}&body=${encodeURIComponent(url)}">✉️ 邮件分享</a>
+        <button class="share-btn" id="shareCopy">${labels.copy}</button>
+        <a class="share-btn" href="https://service.weibo.com/share/share.php?url=${encodeURIComponent(url)}&title=${encodeURIComponent(title)}" target="_blank" rel="noopener">${labels.weibo}</a>
+        <a class="share-btn" href="https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=${encodeURIComponent(title)}" target="_blank" rel="noopener">${labels.twitter}</a>
+        <a class="share-btn" href="mailto:?subject=${encodeURIComponent(title)}&body=${encodeURIComponent(url)}">${labels.email}</a>
     `;
 
     const copyBtn = container.querySelector('#shareCopy');
     copyBtn.addEventListener('click', async () => {
-        try {
-            await navigator.clipboard.writeText(url);
-            copyBtn.textContent = '✅ 已复制';
+        const ok = await copyText(url);
+        if (ok) {
+            copyBtn.textContent = isEn ? '✅ Copied' : '✅ 已复制';
             copyBtn.classList.add('copied');
             setTimeout(() => {
-                copyBtn.textContent = '🔗 复制链接';
+                copyBtn.textContent = labels.copy;
                 copyBtn.classList.remove('copied');
             }, 1500);
-        } catch (e) {
-            copyBtn.textContent = '❌ 失败';
-            setTimeout(() => copyBtn.textContent = '🔗 复制链接', 1500);
+        } else {
+            copyBtn.textContent = isEn ? '❌ Failed' : '❌ 失败';
+            setTimeout(() => copyBtn.textContent = labels.copy, 1500);
         }
     });
 }

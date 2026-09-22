@@ -1,61 +1,94 @@
 /* ===================================================
    主题色切换器
    =================================================== */
-.theme-color-picker { position: relative; }
+.theme-color-picker {
+    position: relative;
+    display: inline-block;
+}
 
 .theme-color-btn {
     background: rgba(255,255,255,0.2);
     border: none;
     color: #ffffff;
-    width: 38px;
-    height: 38px;
+    width: 36px;
+    height: 36px;
     border-radius: 50%;
     cursor: pointer;
-    font-size: 1.05rem;
+    font-size: 1rem;
     display: flex;
     align-items: center;
     justify-content: center;
     transition: background 0.2s;
+    flex-shrink: 0;
 }
-.theme-color-btn:hover { background: rgba(255,255,255,0.35); }
 
-.theme-color-menu {
-    position: absolute;
-    top: 46px;
-    right: 0;
-    background: var(--card-bg);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    box-shadow: var(--shadow-hover);
-    padding: 0.5rem;
-    display: none;
-    gap: 0.4rem;
-    z-index: 100;
-    flex-wrap: wrap;
-    max-width: 200px;
+.theme-color-btn:hover {
+    background: rgba(255,255,255,0.35);
 }
-.theme-color-menu.show { display: flex; }
+
+/* 菜单：固定到右上角，一定可见 */
+.theme-color-menu {
+    position: fixed !important;
+    top: 80px !important;
+    right: 20px !important;
+    background: #ffffff !important;
+    border: 2px solid #0284c7 !important;
+    border-radius: 12px !important;
+    padding: 0.6rem !important;
+    display: none;
+    gap: 0.5rem;
+    z-index: 99999 !important;
+    flex-wrap: wrap;
+    max-width: 220px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.2) !important;
+}
+
+.theme-color-menu.show {
+    display: flex !important;
+}
+
+html.dark .theme-color-menu {
+    background: #1e293b !important;
+    border-color: #38bdf8 !important;
+}
 
 .theme-color-dot {
-    width: 26px;
-    height: 26px;
+    width: 28px;
+    height: 28px;
     border-radius: 50%;
     cursor: pointer;
     border: 2px solid transparent;
     transition: transform 0.15s, border-color 0.15s;
 }
-.theme-color-dot:hover { transform: scale(1.15); }
-.theme-color-dot.active { border-color: var(--text); }
+
+.theme-color-dot:hover {
+    transform: scale(1.15);
+}
+
+.theme-color-dot.active {
+    border-color: #000000;
+    box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px #0284c7;
+}
+
+html.dark .theme-color-dot.active {
+    border-color: #ffffff;
+    box-shadow: 0 0 0 2px #1e293b, 0 0 0 4px #38bdf8;
+}
 
 .theme-color-custom {
     display: flex;
     align-items: center;
     gap: 0.5rem;
     padding: 0.5rem;
-    border-top: 1px solid var(--border);
+    border-top: 1px solid #e2e8f0;
     margin-top: 0.5rem;
     width: 100%;
 }
+
+html.dark .theme-color-custom {
+    border-top-color: #334155;
+}
+
 .theme-color-custom input[type="color"] {
     width: 32px;
     height: 32px;
@@ -65,11 +98,16 @@
     background: transparent;
     padding: 0;
 }
+
 .theme-color-custom label {
     font-size: 0.75rem;
-    color: var(--text-mute);
+    color: #64748b;
     font-weight: 600;
     cursor: pointer;
+}
+
+html.dark .theme-color-custom label {
+    color: #94a3b8;
 }
 
 /* ===================================================
@@ -94,8 +132,14 @@
     justify-content: center;
     transition: all 0.2s;
 }
-.immersive-btn.show { display: flex; }
-.immersive-btn:hover { transform: scale(1.08); }
+
+.immersive-btn.show {
+    display: flex;
+}
+
+.immersive-btn:hover {
+    transform: scale(1.08);
+}
 
 body.immersive .welcome-bar,
 body.immersive .article-aside,
@@ -105,8 +149,17 @@ body.immersive .share-bar,
 body.immersive .related-articles {
     display: none !important;
 }
-body.immersive .article-layout { max-width: 780px; margin-top: 3rem; }
-body.immersive .immersive-btn { background: var(--accent); color: white; border-color: var(--accent); }
+
+body.immersive .article-layout {
+    max-width: 780px;
+    margin-top: 3rem;
+}
+
+body.immersive .immersive-btn {
+    background: var(--accent);
+    color: white;
+    border-color: var(--accent);
+}
 
 /* ===================================================
    相关文章推荐
@@ -116,12 +169,14 @@ body.immersive .immersive-btn { background: var(--accent); color: white; border-
     padding-top: 1.5rem;
     border-top: 1px solid var(--border);
 }
+
 .related-title {
     font-size: 1rem;
     font-weight: 800;
     color: var(--text);
     margin-bottom: 0.8rem;
 }
+
 .related-list {
     list-style: none;
     margin: 0;
@@ -130,6 +185,7 @@ body.immersive .immersive-btn { background: var(--accent); color: white; border-
     flex-direction: column;
     gap: 0.5rem;
 }
+
 .related-list a {
     display: block;
     padding: 0.6rem 0.9rem;
@@ -141,7 +197,11 @@ body.immersive .immersive-btn { background: var(--accent); color: white; border-
     font-weight: 600;
     transition: background 0.2s, color 0.2s;
 }
-.related-list a:hover { background: var(--accent); color: #ffffff; }
+
+.related-list a:hover {
+    background: var(--accent);
+    color: #ffffff;
+}
 
 /* ===================================================
    卡片统计
@@ -154,7 +214,12 @@ body.immersive .immersive-btn { background: var(--accent); color: white; border-
     font-weight: 600;
     margin-top: 0.2rem;
 }
-.card-stats span { display: flex; align-items: center; gap: 0.2rem; }
+
+.card-stats span {
+    display: flex;
+    align-items: center;
+    gap: 0.2rem;
+}
 
 /* ===================================================
    标签云
@@ -171,6 +236,7 @@ body.immersive .immersive-btn { background: var(--accent); color: white; border-
     border: 2px solid var(--accent);
     box-shadow: var(--shadow);
 }
+
 .tag-cloud-item {
     color: var(--text);
     text-decoration: none;
@@ -180,7 +246,11 @@ body.immersive .immersive-btn { background: var(--accent); color: white; border-
     line-height: 1.2;
     font-weight: 600;
 }
-.tag-cloud-item:hover { background: var(--accent); color: #ffffff; }
+
+.tag-cloud-item:hover {
+    background: var(--accent);
+    color: #ffffff;
+}
 
 /* ===================================================
    博客统计（首页）
@@ -193,7 +263,11 @@ body.immersive .immersive-btn { background: var(--accent); color: white; border-
     max-width: 500px;
     flex-wrap: wrap;
 }
-.stat-item { text-align: center; }
+
+.stat-item {
+    text-align: center;
+}
+
 .stat-num {
     display: block;
     font-size: 1.8rem;
@@ -201,6 +275,7 @@ body.immersive .immersive-btn { background: var(--accent); color: white; border-
     color: var(--accent);
     line-height: 1.2;
 }
+
 .stat-label {
     font-size: 0.8rem;
     color: var(--text-mute);
@@ -219,6 +294,7 @@ body.immersive .immersive-btn { background: var(--accent); color: white; border-
     border-left: 3px solid var(--accent);
     border-radius: 12px;
 }
+
 .quote-text {
     font-size: 1rem;
     color: var(--text);
@@ -226,6 +302,7 @@ body.immersive .immersive-btn { background: var(--accent); color: white; border-
     line-height: 1.7;
     font-style: italic;
 }
+
 .quote-author {
     font-size: 0.85rem;
     color: var(--text-mute);
@@ -240,6 +317,7 @@ body.immersive .immersive-btn { background: var(--accent); color: white; border-
     text-align: center;
     margin: 1.5rem auto 0;
 }
+
 .clock-time {
     font-size: 2rem;
     font-weight: 800;
@@ -247,6 +325,7 @@ body.immersive .immersive-btn { background: var(--accent); color: white; border-
     font-family: 'SF Mono', Consolas, monospace;
     letter-spacing: 0.05em;
 }
+
 .clock-date {
     font-size: 0.85rem;
     color: var(--text-mute);
@@ -267,11 +346,13 @@ body.immersive .immersive-btn { background: var(--accent); color: white; border-
     display: inline-block;
     min-width: 160px;
 }
+
 .weather-city {
     font-size: 0.85rem;
     color: var(--text-mute);
     font-weight: 600;
 }
+
 .weather-temp {
     font-size: 2rem;
     font-weight: 800;
@@ -279,11 +360,13 @@ body.immersive .immersive-btn { background: var(--accent); color: white; border-
     line-height: 1.2;
     margin: 0.3rem 0;
 }
+
 .weather-desc {
     font-size: 0.95rem;
     color: var(--text);
     font-weight: 700;
 }
+
 .weather-detail {
     font-size: 0.75rem;
     color: var(--text-mute);
@@ -300,6 +383,7 @@ body.immersive .immersive-btn { background: var(--accent); color: white; border-
     max-width: 780px;
     margin: 0 auto;
 }
+
 .timeline::before {
     content: '';
     position: absolute;
@@ -309,11 +393,13 @@ body.immersive .immersive-btn { background: var(--accent); color: white; border-
     width: 2px;
     background: var(--accent);
 }
+
 .timeline-item {
     position: relative;
     margin-bottom: 2rem;
     padding-left: 1rem;
 }
+
 .timeline-dot {
     position: absolute;
     left: -1.65rem;
@@ -325,6 +411,7 @@ body.immersive .immersive-btn { background: var(--accent); color: white; border-
     border: 3px solid var(--bg);
     box-shadow: 0 0 0 2px var(--accent);
 }
+
 .timeline-date {
     font-size: 0.85rem;
     color: var(--accent);
@@ -332,12 +419,14 @@ body.immersive .immersive-btn { background: var(--accent); color: white; border-
     font-family: 'SF Mono', Consolas, monospace;
     margin-bottom: 0.4rem;
 }
+
 .timeline-content {
     background: var(--accent-soft);
     padding: 1rem 1.2rem;
     border-radius: 12px;
     border: 2px solid var(--accent);
 }
+
 .timeline-title {
     font-size: 1.05rem;
     font-weight: 800;
@@ -346,7 +435,11 @@ body.immersive .immersive-btn { background: var(--accent); color: white; border-
     display: block;
     margin-bottom: 0.4rem;
 }
-.timeline-title:hover { color: var(--accent); }
+
+.timeline-title:hover {
+    color: var(--accent);
+}
+
 .timeline-summary {
     font-size: 0.85rem;
     color: var(--text);
@@ -354,6 +447,7 @@ body.immersive .immersive-btn { background: var(--accent); color: white; border-
     margin-bottom: 0.6rem;
     font-weight: 500;
 }
+
 .timeline-tags {
     display: flex;
     gap: 0.4rem;
@@ -363,13 +457,18 @@ body.immersive .immersive-btn { background: var(--accent); color: white; border-
 /* ===================================================
    博客统计页
    =================================================== */
-.stats-page { max-width: 780px; margin: 0 auto; }
+.stats-page {
+    max-width: 780px;
+    margin: 0 auto;
+}
+
 .stats-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
     gap: 1rem;
     margin-bottom: 2rem;
 }
+
 .stat-card {
     background: var(--accent-soft);
     border: 2px solid var(--accent);
@@ -377,29 +476,34 @@ body.immersive .immersive-btn { background: var(--accent); color: white; border-
     padding: 1.5rem 1rem;
     text-align: center;
 }
+
 .stat-big {
     font-size: 2rem;
     font-weight: 800;
     color: var(--accent);
     line-height: 1.2;
 }
+
 .stat-card .stat-label {
     font-size: 0.85rem;
     color: var(--text);
     font-weight: 700;
     margin-top: 0.3rem;
 }
+
 .stats-section-title {
     font-size: 1.1rem;
     font-weight: 800;
     color: var(--text);
     margin: 2rem 0 0.8rem;
 }
+
 .stats-tags {
     display: flex;
     gap: 0.5rem;
     flex-wrap: wrap;
 }
+
 .stats-tag {
     background: var(--accent-soft);
     border: 2px solid var(--accent);
@@ -409,11 +513,17 @@ body.immersive .immersive-btn { background: var(--accent); color: white; border-
     font-size: 0.85rem;
     font-weight: 600;
 }
-.stats-tag b { color: var(--accent); margin-left: 0.3rem; }
+
+.stats-tag b {
+    color: var(--accent);
+    margin-left: 0.3rem;
+}
+
 .stats-list {
     list-style: none;
     padding: 0;
 }
+
 .stats-list li {
     display: flex;
     justify-content: space-between;
@@ -424,12 +534,17 @@ body.immersive .immersive-btn { background: var(--accent); color: white; border-
     border-radius: 10px;
     margin-bottom: 0.4rem;
 }
+
 .stats-list a {
     color: var(--text);
     text-decoration: none;
     font-weight: 700;
 }
-.stats-list a:hover { color: var(--accent); }
+
+.stats-list a:hover {
+    color: var(--accent);
+}
+
 .stats-list span {
     color: var(--text-mute);
     font-size: 0.85rem;
@@ -443,6 +558,7 @@ body.immersive .immersive-btn { background: var(--accent); color: white; border-
     text-align: center;
     margin: 2rem auto;
 }
+
 #gameCanvas {
     border: 2px solid var(--accent);
     border-radius: 12px;
@@ -470,12 +586,19 @@ body.immersive .immersive-btn { background: var(--accent); color: white; border-
     transition: all 0.3s;
     pointer-events: none;
 }
-.egg-toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+.egg-toast.show {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
 
 /* ===================================================
    归档页
    =================================================== */
-.archive-group { margin-bottom: 2rem; }
+.archive-group {
+    margin-bottom: 2rem;
+}
+
 .archive-year {
     font-size: 1.4rem;
     font-weight: 800;
@@ -484,6 +607,7 @@ body.immersive .immersive-btn { background: var(--accent); color: white; border-
     padding-bottom: 0.4rem;
     border-bottom: 2px solid var(--accent);
 }
+
 .archive-month {
     font-size: 1rem;
     font-weight: 700;
@@ -491,6 +615,7 @@ body.immersive .immersive-btn { background: var(--accent); color: white; border-
     margin: 1rem 0 0.5rem;
     padding-left: 0.5rem;
 }
+
 .archive-list {
     list-style: none;
     margin: 0;
@@ -499,6 +624,7 @@ body.immersive .immersive-btn { background: var(--accent); color: white; border-
     flex-direction: column;
     gap: 0.3rem;
 }
+
 .archive-item {
     display: flex;
     align-items: baseline;
@@ -507,7 +633,11 @@ body.immersive .immersive-btn { background: var(--accent); color: white; border-
     border-radius: 10px;
     transition: background 0.2s;
 }
-.archive-item:hover { background: var(--accent-soft); }
+
+.archive-item:hover {
+    background: var(--accent-soft);
+}
+
 .archive-date {
     font-size: 0.8rem;
     color: var(--text);
@@ -516,6 +646,7 @@ body.immersive .immersive-btn { background: var(--accent); color: white; border-
     flex-shrink: 0;
     min-width: 40px;
 }
+
 .archive-link {
     color: var(--text);
     text-decoration: none;
@@ -524,7 +655,11 @@ body.immersive .immersive-btn { background: var(--accent); color: white; border-
     flex: 1;
     transition: color 0.15s;
 }
-.archive-link:hover { color: var(--accent); }
+
+.archive-link:hover {
+    color: var(--accent);
+}
+
 .archive-tag {
     font-size: 0.7rem;
     color: #ffffff;
@@ -547,6 +682,7 @@ body.immersive .immersive-btn { background: var(--accent); color: white; border-
     margin-left: auto;
     margin-right: auto;
 }
+
 .extra-card {
     background: var(--card-bg);
     border: 2px solid var(--accent);
@@ -554,6 +690,7 @@ body.immersive .immersive-btn { background: var(--accent); color: white; border-
     padding: 1.3rem 1.5rem;
     box-shadow: var(--shadow);
 }
+
 .extra-card-title {
     font-size: 1rem;
     font-weight: 800;
@@ -563,6 +700,7 @@ body.immersive .immersive-btn { background: var(--accent); color: white; border-
     align-items: center;
     gap: 0.4rem;
 }
+
 .extra-list {
     list-style: none;
     margin: 0;
@@ -571,6 +709,7 @@ body.immersive .immersive-btn { background: var(--accent); color: white; border-
     flex-direction: column;
     gap: 0.5rem;
 }
+
 .extra-list li {
     display: flex;
     align-items: baseline;
@@ -578,6 +717,7 @@ body.immersive .immersive-btn { background: var(--accent); color: white; border-
     font-size: 0.9rem;
     color: var(--text);
 }
+
 .extra-list a {
     color: var(--text);
     text-decoration: none;
@@ -586,7 +726,11 @@ body.immersive .immersive-btn { background: var(--accent); color: white; border-
     transition: color 0.15s;
     font-weight: 700;
 }
-.extra-list a:hover { color: var(--accent); }
+
+.extra-list a:hover {
+    color: var(--accent);
+}
+
 .extra-list .num {
     color: var(--accent);
     font-size: 0.85rem;
@@ -594,10 +738,12 @@ body.immersive .immersive-btn { background: var(--accent); color: white; border-
     min-width: 18px;
     font-weight: 800;
 }
+
 .extra-list .num.top {
     color: var(--accent);
     font-weight: 800;
 }
+
 .pinned-badge {
     display: inline-block;
     font-size: 0.7rem;
@@ -628,6 +774,7 @@ body.immersive .immersive-btn { background: var(--accent); color: white; border-
     transition: all 0.2s;
     box-shadow: var(--shadow);
 }
+
 .random-btn:hover {
     transform: translateY(-2px);
     box-shadow: var(--shadow-hover);
@@ -645,6 +792,7 @@ body.immersive .immersive-btn { background: var(--accent); color: white; border-
     padding-top: 1.5rem;
     border-top: 1px solid var(--border);
 }
+
 .share-btn {
     display: inline-flex;
     align-items: center;
@@ -660,7 +808,12 @@ body.immersive .immersive-btn { background: var(--accent); color: white; border-
     text-decoration: none;
     transition: all 0.2s;
 }
-.share-btn:hover { background: var(--accent); color: #ffffff; }
+
+.share-btn:hover {
+    background: var(--accent);
+    color: #ffffff;
+}
+
 .share-btn.copied {
     background: #16a34a;
     color: #ffffff;
@@ -679,16 +832,33 @@ body.immersive .immersive-btn { background: var(--accent); color: white; border-
     max-width: 780px;
     margin: 0 auto;
 }
+
 .page-content h3 {
     font-size: 1.1rem;
     font-weight: 800;
     color: var(--text);
     margin: 1.5rem 0 0.6rem;
 }
-.page-content h3:first-child { margin-top: 0; }
-.page-content ul { margin: 0 0 1rem 1.5rem; color: var(--text); line-height: 1.8; }
-.page-content a { color: var(--accent); text-decoration: none; font-weight: 700; }
-.page-content a:hover { text-decoration: underline; }
+
+.page-content h3:first-child {
+    margin-top: 0;
+}
+
+.page-content ul {
+    margin: 0 0 1rem 1.5rem;
+    color: var(--text);
+    line-height: 1.8;
+}
+
+.page-content a {
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 700;
+}
+
+.page-content a:hover {
+    text-decoration: underline;
+}
 
 .changelog-item {
     display: flex;
@@ -696,7 +866,11 @@ body.immersive .immersive-btn { background: var(--accent); color: white; border-
     padding: 0.8rem 0;
     border-bottom: 1px solid var(--border);
 }
-.changelog-item:last-child { border-bottom: none; }
+
+.changelog-item:last-child {
+    border-bottom: none;
+}
+
 .changelog-date {
     font-size: 0.85rem;
     color: var(--text);
@@ -705,7 +879,13 @@ body.immersive .immersive-btn { background: var(--accent); color: white; border-
     flex-shrink: 0;
     min-width: 90px;
 }
-.changelog-content { color: var(--text); font-size: 0.95rem; line-height: 1.6; font-weight: 500; }
+
+.changelog-content {
+    color: var(--text);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    font-weight: 500;
+}
 
 /* ===================================================
    打印样式
@@ -741,7 +921,10 @@ body.immersive .immersive-btn { background: var(--accent); color: white; border-
         border: none !important;
         padding: 0 !important;
     }
-    .article-content a { color: #000; text-decoration: underline; }
+    .article-content a {
+        color: #000;
+        text-decoration: underline;
+    }
     .article-content pre {
         background: #f5f5f5 !important;
         color: #000 !important;
@@ -753,10 +936,26 @@ body.immersive .immersive-btn { background: var(--accent); color: white; border-
    移动端
    =================================================== */
 @media (max-width: 640px) {
-    .home-extras { grid-template-columns: 1fr; gap: 1rem; }
-    .archive-item { flex-wrap: wrap; gap: 0.4rem; }
-    .archive-date { min-width: 36px; font-size: 0.75rem; }
-    .timeline { padding-left: 1.5rem; }
-    .stats-grid { grid-template-columns: repeat(2, 1fr); }
-    .theme-color-menu { right: -10px; }
+    .home-extras {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    .archive-item {
+        flex-wrap: wrap;
+        gap: 0.4rem;
+    }
+    .archive-date {
+        min-width: 36px;
+        font-size: 0.75rem;
+    }
+    .timeline {
+        padding-left: 1.5rem;
+    }
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .theme-color-menu {
+        right: 10px !important;
+        top: 70px !important;
+    }
 }

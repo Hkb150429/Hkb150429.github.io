@@ -174,7 +174,7 @@ html.dark .welcome-bar {
 }
 
 /* ===================================================
-   导航
+   导航（横向滚动，不换行）
    =================================================== */
 .nav-tabs {
     display: flex;
@@ -182,20 +182,36 @@ html.dark .welcome-bar {
     background: var(--nav-bg-light);
     padding: 0.35rem;
     border-radius: 60px;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
+    overflow-x: auto;
     align-items: center;
     transition: background 0.3s;
+    max-width: 100%;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.nav-tabs::-webkit-scrollbar {
+    display: none;
 }
 
 html.dark .nav-tabs {
     background: var(--nav-bg-dark);
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+html.dark .nav-tabs::-webkit-scrollbar {
+    display: none;
 }
 
 .nav-tab {
     background: transparent;
     border: none;
     color: #ffffff;
-    padding: 0.5rem 1rem;
+    padding: 0.5rem 0.9rem;
     font-size: 0.9rem;
     font-weight: 600;
     border-radius: 40px;
@@ -204,6 +220,7 @@ html.dark .nav-tabs {
     white-space: nowrap;
     text-decoration: none;
     opacity: 0.95;
+    flex-shrink: 0;
 }
 
 .nav-tab:hover {
@@ -1032,7 +1049,7 @@ a.tag-card {
         padding: 0.9rem 1rem;
     }
     .welcome-text { font-size: 1.2rem; }
-    .nav-tab { padding: 0.45rem 0.8rem; font-size: 0.85rem; }
+    .nav-tab { padding: 0.45rem 0.75rem; font-size: 0.85rem; }
 }
 
 @media (max-width: 640px) {
@@ -1042,8 +1059,8 @@ a.tag-card {
         align-items: flex-start;
     }
     .welcome-text { font-size: 1.3rem; }
-    .nav-tabs { width: 100%; justify-content: space-between; }
-    .nav-tab { flex: 1; text-align: center; padding: 0.5rem; font-size: 0.85rem; }
+    .nav-tabs { width: 100%; }
+    .nav-tab { padding: 0.5rem 0.8rem; font-size: 0.85rem; }
     .container { padding: 1.5rem 1rem; }
     .card-grid { grid-template-columns: 1fr; }
     .home-hero h1 { font-size: 1.6rem; }

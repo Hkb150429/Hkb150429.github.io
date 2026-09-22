@@ -1,0 +1,508 @@
+/* ===================================================
+   1. 博客运行时长
+   =================================================== */
+.runtime-box {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.3rem;
+    background: color-mix(in srgb, var(--accent-soft) 80%, black 20%);
+    border: 2px solid var(--accent);
+    border-radius: 40px;
+    padding: 0.6rem 1.4rem;
+    margin: 1.5rem auto 0;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.runtime-label {
+    font-size: 0.9rem;
+    color: var(--text);
+    font-weight: 700;
+    margin-right: 0.3rem;
+}
+
+.runtime-num {
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: var(--accent);
+    font-family: 'SF Mono', Consolas, monospace;
+}
+
+.runtime-unit {
+    font-size: 0.85rem;
+    color: var(--text-mute);
+    font-weight: 600;
+    margin-right: 0.3rem;
+}
+
+/* ===================================================
+   2. 打字机
+   =================================================== */
+.typewriter-cursor {
+    display: inline-block;
+    width: 3px;
+    height: 1em;
+    background: var(--accent);
+    margin-left: 2px;
+    animation: blink 1s infinite;
+    vertical-align: text-bottom;
+}
+
+@keyframes blink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
+}
+
+/* ===================================================
+   3. 图片画廊
+   =================================================== */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
+}
+
+.gallery-item {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 2px solid var(--accent);
+    cursor: zoom-in;
+    transition: transform 0.2s, box-shadow 0.2s;
+    aspect-ratio: 1;
+    background: var(--soft-bg);
+}
+
+.gallery-item:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-hover);
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.gallery-caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(transparent, rgba(0,0,0,0.8));
+    color: #fff;
+    padding: 1.5rem 0.8rem 0.6rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    opacity: 0;
+    transition: opacity 0.2s;
+}
+
+.gallery-item:hover .gallery-caption {
+    opacity: 1;
+}
+
+.gallery-caption a {
+    color: #fff;
+    text-decoration: none;
+}
+
+/* ===================================================
+   4. 语言切换按钮
+   =================================================== */
+.lang-toggle {
+    background: rgba(255,255,255,0.2);
+    border: none;
+    color: #ffffff;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 0.85rem;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+    flex-shrink: 0;
+}
+
+.lang-toggle:hover {
+    background: rgba(255,255,255,0.35);
+}
+
+/* ===================================================
+   5. 3D 标签云
+   =================================================== */
+.tag3d-wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 420px;
+    overflow: hidden;
+    perspective: 1000px;
+}
+
+.tag3d-sphere {
+    position: relative;
+    width: 360px;
+    height: 360px;
+    transform-style: preserve-3d;
+}
+
+.tag3d-item {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    text-decoration: none;
+    font-weight: 700;
+    color: var(--accent);
+    padding: 0.2rem 0.6rem;
+    border-radius: 20px;
+    transition: color 0.2s, background 0.2s;
+    white-space: nowrap;
+    transform-origin: center;
+    margin-left: -1em;
+    margin-top: -0.5em;
+}
+
+.tag3d-item:hover {
+    background: var(--accent);
+    color: #fff;
+    z-index: 9999 !important;
+}
+
+/* ===================================================
+   6. 短链生成
+   =================================================== */
+.shortlink-box {
+    display: flex;
+    gap: 0.6rem;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+}
+
+.shortlink-box input {
+    flex: 1;
+    min-width: 200px;
+    padding: 0.7rem 1.1rem;
+    font-size: 0.9rem;
+    border: 2px solid var(--accent);
+    border-radius: 40px;
+    background: var(--card-bg);
+    color: var(--text);
+    outline: none;
+    font-weight: 500;
+}
+
+.shortlink-box input:focus {
+    box-shadow: 0 0 0 3px var(--accent-soft);
+}
+
+.shortlink-result {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.8rem 1.2rem;
+    background: var(--accent-soft);
+    border: 2px solid var(--accent);
+    border-radius: 12px;
+    flex-wrap: wrap;
+}
+
+.shortlink-result a {
+    color: var(--accent);
+    font-weight: 700;
+    text-decoration: none;
+    font-size: 1rem;
+    word-break: break-all;
+}
+
+.shortlink-result a:hover {
+    text-decoration: underline;
+}
+
+/* ===================================================
+   7. 更多彩蛋
+   =================================================== */
+.egg-toast {
+    position: fixed;
+    bottom: 3rem;
+    left: 50%;
+    transform: translateX(-50%) translateY(100px);
+    background: var(--accent);
+    color: white;
+    padding: 0.8rem 1.5rem;
+    border-radius: 40px;
+    font-size: 0.95rem;
+    font-weight: 700;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.25);
+    z-index: 10001;
+    opacity: 0;
+    transition: all 0.3s;
+    pointer-events: none;
+}
+
+.egg-toast.show {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
+
+/* ===================================================
+   8. 文章词云
+   =================================================== */
+.wordcloud {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 0.8rem 1.2rem;
+    padding: 2rem;
+    min-height: 300px;
+    background: var(--card-bg);
+    border: 2px solid var(--accent);
+    border-radius: 20px;
+    box-shadow: var(--shadow);
+}
+
+.wordcloud-item {
+    font-weight: 800;
+    cursor: default;
+    transition: transform 0.2s, opacity 0.2s;
+    line-height: 1;
+    display: inline-block;
+}
+
+.wordcloud-item:hover {
+    transform: scale(1.15) !important;
+    opacity: 0.8;
+}
+
+/* ===================================================
+   9. 标签热力图
+   =================================================== */
+.heatmap {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    padding: 1.5rem;
+    background: var(--card-bg);
+    border: 2px solid var(--accent);
+    border-radius: 20px;
+    box-shadow: var(--shadow);
+}
+
+.heatmap-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.5rem 1rem;
+    border-radius: 40px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-decoration: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+    border: 1px solid var(--accent);
+}
+
+.heatmap-item:hover {
+    transform: scale(1.05);
+    box-shadow: var(--shadow-hover);
+}
+
+.heatmap-count {
+    font-size: 0.75rem;
+    background: rgba(255,255,255,0.25);
+    padding: 0.1rem 0.4rem;
+    border-radius: 20px;
+    font-weight: 800;
+}
+
+/* ===================================================
+   10. 日历组件
+   =================================================== */
+.calendar {
+    background: var(--card-bg);
+    border: 2px solid var(--accent);
+    border-radius: 20px;
+    padding: 1.2rem;
+    box-shadow: var(--shadow);
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.calendar-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+}
+
+.calendar-title {
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: var(--text);
+}
+
+.calendar-nav {
+    background: var(--accent-soft);
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.1rem;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+}
+
+.calendar-nav:hover {
+    background: var(--accent);
+    color: #fff;
+}
+
+.calendar-weekdays {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 0.2rem;
+    margin-bottom: 0.4rem;
+}
+
+.calendar-weekdays span {
+    text-align: center;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--text-mute);
+    padding: 0.4rem 0;
+}
+
+.calendar-days {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 0.2rem;
+}
+
+.calendar-day {
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text);
+    border-radius: 8px;
+    position: relative;
+    transition: all 0.15s;
+    cursor: default;
+}
+
+.calendar-day.empty {
+    background: transparent;
+}
+
+.calendar-day.has-post {
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-weight: 800;
+    cursor: pointer;
+}
+
+.calendar-day.has-post:hover {
+    background: var(--accent);
+    color: #fff;
+}
+
+.calendar-day.today {
+    border: 2px solid var(--accent);
+}
+
+.calendar-day .dot {
+    position: absolute;
+    bottom: 3px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 4px;
+    height: 4px;
+    background: var(--accent);
+    border-radius: 50%;
+}
+
+.calendar-day.has-post:hover .dot {
+    background: #fff;
+}
+
+/* ===================================================
+   移动端
+   =================================================== */
+@media (max-width: 640px) {
+    .runtime-box {
+        font-size: 0.85rem;
+        padding: 0.5rem 1rem;
+    }
+    .runtime-num { font-size: 1rem; }
+    .runtime-unit { font-size: 0.75rem; }
+
+    .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .tag3d-wrap {
+        height: 320px;
+    }
+    .tag3d-sphere {
+        width: 280px;
+        height: 280px;
+    }
+
+    .wordcloud {
+        padding: 1rem;
+        gap: 0.5rem 0.8rem;
+    }
+
+    .calendar {
+        padding: 0.8rem;
+    }
+    .calendar-day {
+        font-size: 0.75rem;
+    }
+}
+
+/* ===================================================
+   游戏切换菜单
+   =================================================== */
+.game-switcher {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+}
+
+.game-tab {
+    background: var(--accent-soft);
+    border: 2px solid var(--accent);
+    color: var(--accent);
+    padding: 0.5rem 1rem;
+    border-radius: 40px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: inherit;
+}
+
+.game-tab:hover {
+    background: var(--accent);
+    color: #fff;
+}
+
+.game-tab.active {
+    background: var(--accent);
+    color: #fff;
+    box-shadow: 0 4px 12px var(--accent);
+}

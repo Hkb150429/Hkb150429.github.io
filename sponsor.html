@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>404 · 我的博客</title>
+    <title>赞赏 · 我的博客</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="extras.css">
     <link rel="stylesheet" href="extras2.css">
@@ -33,26 +33,28 @@
             <a href="categories.html" class="nav-tab" data-i18n="categories">分类</a>
             <a href="gallery.html" class="nav-tab" data-i18n="gallery">画廊</a>
             <a href="stats.html" class="nav-tab" data-i18n="stats">统计</a>
-            <a href="sponsor.html" class="nav-tab" data-i18n="sponsor">赞赏</a>
+            <a href="sponsor.html" class="nav-tab active" data-i18n="sponsor">赞赏</a>
             <a href="changelog.html" class="nav-tab" data-i18n="changelog">日志</a>
             <a href="links.html" class="nav-tab" data-i18n="links">友链</a>
             <a href="sitemap.html" class="nav-tab" data-i18n="sitemap">地图</a>
-            <a href="404.html" class="nav-tab active" data-i18n="notFound">404</a>
+            <a href="404.html" class="nav-tab" data-i18n="notFound">404</a>
             <button class="lang-toggle" id="langToggle" title="切换语言">中</button>
             <button class="theme-toggle" id="themeToggle" title="切换主题">🌙</button>
         </nav>
     </header>
     <main class="container">
-        <div style="text-align:center;">
-            <h1 style="font-size:5rem;font-weight:900;color:var(--accent);margin-bottom:0.5rem;">404</h1>
-            <p style="font-size:1.1rem;color:var(--text-mute);margin-bottom:1.5rem;font-weight:600;" id="notFoundDesc">页面走丢了，来玩个小游戏吧</p>
-        </div>
-        <div class="game-wrap">
-            <canvas id="gameCanvas"></canvas>
-            <p style="font-size:0.8rem;color:var(--text-mute);margin-top:0.5rem;" id="gameHint">鼠标/手指控制挡板，接住小球</p>
-        </div>
-        <div style="text-align:center;margin-top:1.5rem;">
-            <a href="index.html" class="home-link" id="backHomeBtn">🏠 返回首页</a>
+        <h2 class="page-title" data-i18n="sponsorTitle">☕ 赞赏</h2>
+        <div class="page-content" style="text-align:center;">
+            <p style="font-size:1.05rem;color:var(--text);margin-bottom:1.5rem;font-weight:600;" id="sponsorDesc">
+                如果我的文章对你有帮助，可以请我喝杯咖啡 ☕
+            </p>
+            <div>
+                <img src="wechat.png" alt="微信收款码" style="width:220px;height:220px;border-radius:12px;border:2px solid var(--accent);object-fit:cover;">
+                <p style="margin-top:0.6rem;font-weight:700;color:var(--text);" id="sponsorLabel">微信扫一扫</p>
+            </div>
+            <p style="margin-top:2rem;font-size:0.85rem;color:var(--text-mute);font-weight:600;" id="sponsorThanks">
+                感谢你的支持 ❤️
+            </p>
         </div>
     </main>
     <button id="backToTop" title="回到顶部">↑</button>
@@ -61,8 +63,6 @@
     <script src="extras2.js"></script>
     <script src="extras3.js"></script>
     <script>
-        init404Game();
-        initGameSwitcher();
         initBackToTop();
         initProgressBar();
         initThemeToggle();
@@ -74,16 +74,16 @@
             toggleLang();
             const lang = localStorage.getItem('lang') || 'zh';
             document.getElementById('langToggle').textContent = lang === 'zh' ? '中' : 'EN';
-            applyNotFoundLang();
+            applySponsorLang();
         });
         document.getElementById('langToggle').textContent = (localStorage.getItem('lang') || 'zh') === 'zh' ? '中' : 'EN';
-        applyNotFoundLang();
+        applySponsorLang();
 
-        function applyNotFoundLang() {
+        function applySponsorLang() {
             const isEn = (localStorage.getItem('lang') || 'zh') === 'en';
-            document.getElementById('notFoundDesc').textContent = isEn ? 'Page lost, play a game!' : '页面走丢了，来玩个小游戏吧';
-            document.getElementById('gameHint').textContent = isEn ? 'Use keyboard/mouse to play' : '用键盘/鼠标操作游戏';
-            document.getElementById('backHomeBtn').textContent = isEn ? '🏠 Back Home' : '🏠 返回首页';
+            document.getElementById('sponsorDesc').textContent = isEn ? 'If my articles help you, you can buy me a coffee ☕' : '如果我的文章对你有帮助，可以请我喝杯咖啡 ☕';
+            document.getElementById('sponsorLabel').textContent = isEn ? 'Scan with WeChat' : '微信扫一扫';
+            document.getElementById('sponsorThanks').textContent = isEn ? 'Thanks for your support ❤️' : '感谢你的支持 ❤️';
         }
     </script>
 </body>
