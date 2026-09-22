@@ -26,7 +26,6 @@
     background: rgba(255,255,255,0.35);
 }
 
-/* 菜单：固定到右上角，一定可见 */
 .theme-color-menu {
     position: fixed !important;
     top: 80px !important;
@@ -885,6 +884,109 @@ body.immersive .immersive-btn {
     font-size: 0.95rem;
     line-height: 1.6;
     font-weight: 500;
+}
+
+/* ===================================================
+   深色模式：所有卡片统一深色背景
+   =================================================== */
+
+/* 每日一句 */
+html.dark .quote-box {
+    background: var(--card-bg);
+    border-left-color: var(--accent);
+}
+
+/* 天气 */
+html.dark .weather-box {
+    background: var(--card-bg);
+    border-color: var(--accent);
+}
+
+/* 时间线 */
+html.dark .timeline-content {
+    background: var(--card-bg);
+    border-color: var(--accent);
+}
+
+/* 统计页 - 大数字卡片 */
+html.dark .stat-card {
+    background: var(--card-bg);
+    border-color: var(--accent);
+}
+
+/* 统计页 - 标签 */
+html.dark .stats-tag {
+    background: var(--card-bg);
+    border-color: var(--accent);
+}
+
+/* 统计页 - 最长文章列表 */
+html.dark .stats-list li {
+    background: var(--card-bg);
+    border-color: var(--accent);
+}
+
+/* 首页 - 博客统计（透明，不需要背景） */
+html.dark .stats-card {
+    background: transparent;
+}
+
+/* 首页 - 运行时长 */
+html.dark .runtime-box {
+    background: var(--card-bg);
+    border-color: var(--accent);
+}
+
+/* 首页 - 热门/置顶 */
+html.dark .extra-card {
+    background: var(--card-bg);
+    border-color: var(--accent);
+}
+
+/* 标签云 */
+html.dark .tag-cloud {
+    background: var(--card-bg);
+    border-color: var(--accent);
+}
+
+/* 标签热力图 */
+html.dark .heatmap {
+    background: var(--card-bg);
+    border-color: var(--accent);
+}
+
+/* 词云 */
+html.dark .wordcloud {
+    background: var(--card-bg);
+    border-color: var(--accent);
+}
+
+/* 日历 */
+html.dark .calendar {
+    background: var(--card-bg);
+    border-color: var(--accent);
+}
+
+/* 短链结果 */
+html.dark .shortlink-result {
+    background: var(--card-bg);
+    border-color: var(--accent);
+}
+
+/* 相关文章 */
+html.dark .related-list a {
+    background: var(--card-bg);
+    color: var(--text);
+}
+
+html.dark .related-list a:hover {
+    background: var(--accent);
+    color: #ffffff;
+}
+
+/* 归档项 hover */
+html.dark .archive-item:hover {
+    background: var(--card-bg);
 }
 
 /* ===================================================
