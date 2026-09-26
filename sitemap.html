@@ -80,14 +80,8 @@
         initEasterEgg();
         initMoreEggs();
         initI18n();
-        document.getElementById('langToggle').addEventListener('click', () => {
-            toggleLang();
-            const lang = localStorage.getItem('lang') || 'zh';
-            document.getElementById('langToggle').textContent = lang === 'zh' ? '中' : 'EN';
-        });
-        document.getElementById('langToggle').textContent = (localStorage.getItem('lang') || 'zh') === 'zh' ? '中' : 'EN';
 
-        (async () => {
+        async function renderSitemapArticles() {
             try {
                 const articles = await loadArticlesMeta();
                 const isEn = (localStorage.getItem('lang') || 'zh') === 'en';
@@ -98,7 +92,17 @@
             } catch (e) {
                 document.getElementById('sitemapArticles').innerHTML = '<li style="color:var(--text-faint)">加载失败</li>';
             }
-        })();
+        }
+
+        renderSitemapArticles();
+
+        document.getElementById('langToggle').addEventListener('click', () => {
+            toggleLang();
+            const lang = localStorage.getItem('lang') || 'zh';
+            document.getElementById('langToggle').textContent = lang === 'zh' ? '中' : 'EN';
+            renderSitemapArticles();
+        });
+        document.getElementById('langToggle').textContent = (localStorage.getItem('lang') || 'zh') === 'zh' ? '中' : 'EN';
     </script>
 </body>
 </html>

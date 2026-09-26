@@ -159,6 +159,20 @@ const I18N = {
         timeline: '时间线', tags: '标签', categories: '分类', gallery: '画廊',
         stats: '统计', sponsor: '赞赏', changelog: '日志', links: '友链',
         sitemap: '地图', notFound: '404',
+        count: '篇',
+        friend1: '朋友的博客',
+        friend1Desc: '简介写这里',
+        friend2: '另一个朋友',
+        friend2Desc: '简介写这里',
+        cl1: '新增赞助，统计关键词',
+        cl2: '加上天气功能',
+        cl3: '修复一堆bug',
+        cl4: '修复颜色问题',
+        cl5: '加了归档、热门、置顶、随机、分享、更新日志、友链、网站地图、标签云、沉浸阅读、主题色切换等一堆功能',
+        cl6: '博客上线（MY）加了文章详情页、目录、代码高亮、LaTeX 公式',
+        cl7: '博客下架',
+        cl8: '博客下架，博客上线（HUGO）加了文章详情页、目录、代码高亮、LaTeX 公式',
+        cl9: '博客上线（HEXO）',
         welcome: '欢迎光临', blog: '的博客', backHome: '← 回首页',
         hello: '你好，我是', homeDesc: '欢迎来到我的博客，这里记录我的项目、文章、标签与分类。',
         hotArticles: '🔥 热门文章', pinnedArticles: '📌 置顶文章',
@@ -191,6 +205,20 @@ const I18N = {
         timeline: 'Time', tags: 'Tags', categories: 'Cats', gallery: 'Pics',
         stats: 'Stats', sponsor: 'Tip', changelog: 'Log', links: 'Links',
         sitemap: 'Map', notFound: '404',
+        count: 'posts',
+        friend1: "Friend's Blog",
+        friend1Desc: 'Intro here',
+        friend2: 'Another Friend',
+        friend2Desc: 'Intro here',
+        cl1: 'Added sponsor page and stats keywords',
+        cl2: 'Added weather feature',
+        cl3: 'Fixed a bunch of bugs',
+        cl4: 'Fixed color issues',
+        cl5: 'Added archive, hot posts, pinned, random, share, changelog, links, sitemap, tag cloud, immersive reading, theme color switching',
+        cl6: 'Blog online (MY) added article detail, TOC, code highlight, LaTeX',
+        cl7: 'Blog offline',
+        cl8: 'Blog offline, blog online (HUGO) added article detail, TOC, code highlight, LaTeX',
+        cl9: 'Blog online (HEXO)',
         welcome: 'Welcome to', blog: "'s Blog", backHome: '← Home',
         hello: "Hi, I'm", homeDesc: 'Welcome to my blog where I record my projects, articles, tags and categories.',
         hotArticles: '🔥 Hot Posts', pinnedArticles: '📌 Pinned',
@@ -308,7 +336,7 @@ async function render3DTagCloud(containerId) {
                 const z2 = y * Math.sin(angleX) + z1 * Math.cos(angleX);
 
                 const scale = (z2 + radius) / (2 * radius) + 0.5;
-                const opacity = (z2 + radius) / (2 * radius) * 0.7 + 0.3;
+                const opacity = (z2 + radius) / (2 * radius) * 0.5 + 0.5;
 
                 item.style.transform = `translate(${x1}px, ${y1}px) scale(${scale})`;
                 item.style.opacity = opacity;
@@ -433,10 +461,15 @@ async function renderWordCloud(containerId) {
     try {
         const articles = await loadArticlesMeta();
         const wordCount = {};
+        const lang = localStorage.getItem('lang') || 'zh';
 
         for (const a of articles) {
             try {
-                const res = await fetch(`posts/${a.id}.md`);
+                const mdFile = lang === 'en' ? `posts/${a.id}.en.md` : `posts/${a.id}.md`;
+                let res = await fetch(mdFile);
+                if (!res.ok && lang === 'en') {
+                    res = await fetch(`posts/${a.id}.md`);
+                }
                 if (res.ok) {
                     const text = await res.text();
                     const clean = text.replace(/```[\s\S]*?```/g, '').replace(/[#>*`\-\[\]()!]/g, '');
@@ -455,7 +488,7 @@ async function renderWordCloud(containerId) {
             .slice(0, 50);
 
         if (words.length === 0) {
-            container.innerHTML = `<div class="empty-state"><div class="icon">☁️</div><h3>还没有足够的内容</h3></div>`;
+            container.innerHTML = `<div class="empty-state"><div class="icon">☁️</div><h3>${lang === 'en' ? 'Not enough content' : '还没有足够的内容'}</h3></div>`;
             return;
         }
 
@@ -470,7 +503,7 @@ async function renderWordCloud(containerId) {
                     const size = 0.9 + ratio * 1.8;
                     const color = colors[i % colors.length];
                     const rotate = (Math.random() - 0.5) * 20;
-                    return `<span class="wordcloud-item" style="font-size:${size}rem;color:${color};transform:rotate(${rotate}deg);" title="${w}: ${c}次">${w}</span>`;
+                    return `<span class="wordcloud-item" style="font-size:${size}rem;color:${color};transform:rotate(${rotate}deg);" title="${w}: ${c}">${w}</span>`;
                 }).join('')}
             </div>
         `;
@@ -488,8 +521,13 @@ async function renderTagHeatmap(containerId) {
 
     try {
         const articles = await loadArticlesMeta();
+        const lang = localStorage.getItem('lang') || 'zh';
+        const isEn = lang === 'en';
         const tagCount = {};
-        articles.forEach(a => (a.tags || []).forEach(t => { tagCount[t] = (tagCount[t] || 0) + 1; }));
+        articles.forEach(a => {
+            const tags = (isEn && a.tagsEn) ? a.tagsEn : (a.tags || []);
+            tags.forEach(t => { tagCount[t] = (tagCount[t] || 0) + 1; });
+        });
 
         const tags = Object.entries(tagCount).sort((a, b) => b[1] - a[1]);
         if (tags.length === 0) return;
@@ -502,7 +540,7 @@ async function renderTagHeatmap(containerId) {
                     const intensity = count / maxCount;
                     const bg = `rgba(2, 132, 199, ${0.15 + intensity * 0.85})`;
                     const color = intensity > 0.5 ? '#ffffff' : 'var(--text)';
-                    return `<a href="list.html?tag=${encodeURIComponent(tag)}" class="heatmap-item" style="background:${bg};color:${color};" title="${count} 篇">
+                    return `<a href="list.html?tag=${encodeURIComponent(tag)}" class="heatmap-item" style="background:${bg};color:${color};" title="${count} ${isEn ? 'posts' : '篇'}">
                         ${tag}
                         <span class="heatmap-count">${count}</span>
                     </a>`;
@@ -892,8 +930,6 @@ function init2048Game() {
 
     const keyHandler = (e) => {
         if (gameOver) return;
-        // 旋转方向映射：rotate 是逆时针
-        // 0 次 = 向左，1 次 = 向下，2 次 = 向右，3 次 = 向上
         const map = {
             'ArrowLeft': 0, 'ArrowDown': 1, 'ArrowRight': 2, 'ArrowUp': 3,
             'a': 0, 's': 1, 'd': 2, 'w': 3

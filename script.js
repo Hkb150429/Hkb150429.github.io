@@ -17,6 +17,13 @@ async function loadArticlesMeta() {
 const PAGE_SIZE = 20;
 
 // ===================================================
+// 获取当前语言（默认中文）
+// ===================================================
+function getCurrentLang() {
+    return localStorage.getItem('lang') || 'zh';
+}
+
+// ===================================================
 // HTML 转义
 // ===================================================
 function escapeHtml(str) {
@@ -59,13 +66,6 @@ function parseMarkdown(mdContent) {
     });
 
     return parsed;
-}
-
-// ===================================================
-// 获取当前语言
-// ===================================================
-function getCurrentLang() {
-    return localStorage.getItem('lang') || 'zh';
 }
 
 // ===================================================
@@ -140,13 +140,19 @@ async function renderArticleList(containerId) {
 
             container.innerHTML = pageList.map(a => cardHtml(a, keyword)).join('');
 
+            const lang = getCurrentLang();
+            const isEn = lang === 'en';
+            const unitWords = isEn ? 'words' : '字';
+            const unitMin = isEn ? 'min' : '分钟';
+            const prefixMin = isEn ? '~' : '约';
+
             pageList.forEach(async (a) => {
                 const stats = await getArticleStats(a.id);
                 const el = container.querySelector(`[data-stats-id="${a.id}"]`);
                 if (el && stats) {
                     el.innerHTML = `
-                        <span>📊 ${stats.words} 字</span>
-                        <span>⏱️ 约 ${stats.min} 分钟</span>
+                        <span>📊 ${stats.words} ${unitWords}</span>
+                        <span>⏱️ ${prefixMin} ${stats.min} ${unitMin}</span>
                     `;
                 }
             });
@@ -275,15 +281,17 @@ async function renderTagList(containerId) {
         const tags = Object.keys(tagCount).sort();
 
         if (tags.length === 0) {
-            container.innerHTML = emptyHtml('🏷️', '还没有标签', '在文章里添加 tags 后这里会自动显示。');
+            container.innerHTML = emptyHtml('🏷️', isEn ? 'No tags yet' : '还没有标签', '');
             return;
         }
+
+        const unitLabel = isEn ? 'posts' : '篇内容';
 
         container.innerHTML = tags.map(t => `
             <a href="list.html?tag=${encodeURIComponent(t)}" class="card tag-card">
                 <div class="card-icon">🏷️</div>
                 <h3 class="card-title">${t}</h3>
-                <span class="tag-count">${tagCount[t]} 篇内容</span>
+                <span class="tag-count">${tagCount[t]} ${unitLabel}</span>
             </a>
         `).join('');
 
@@ -314,17 +322,20 @@ async function renderCategoryList(containerId) {
         const cats = Object.keys(catCount).sort();
 
         if (cats.length === 0) {
-            container.innerHTML = emptyHtml('📁', '还没有分类', '在文章里添加 category 后这里会自动显示。');
+            container.innerHTML = emptyHtml('📁', isEn ? 'No categories yet' : '还没有分类', '');
             return;
         }
+
+        const descText = isEn ? 'All posts in this category.' : '该分类下的所有文章。';
+        const unitLabel = isEn ? 'posts' : '篇文章';
 
         container.innerHTML = cats.map(c => `
             <a href="list.html?category=${encodeURIComponent(c)}" class="card">
                 <div class="card-icon">📁</div>
                 <h3 class="card-title">${c}</h3>
-                <p class="card-description">该分类下的所有文章。</p>
+                <p class="card-description">${descText}</p>
                 <div class="card-meta">
-                    <span class="card-tag">${catCount[c]} 篇文章</span>
+                    <span class="card-tag">${catCount[c]} ${unitLabel}</span>
                 </div>
             </a>
         `).join('');
@@ -350,23 +361,28 @@ async function renderFilteredList(titleId, containerId) {
 
     try {
         const articles = await loadArticlesMeta();
+        const lang = getCurrentLang();
+        const isEn = lang === 'en';
 
         let filtered = articles;
-        let titleText = '全部文章';
+        let titleText = isEn ? 'All Posts' : '全部文章';
 
         if (tag) {
             filtered = articles.filter(a => (a.tags || []).includes(tag) || (a.tagsEn || []).includes(tag));
-            titleText = `🏷️ 标签：${tag}`;
+            titleText = isEn ? `🏷️ Tag: ${tag}` : `🏷️ 标签：${tag}`;
         } else if (category) {
             filtered = articles.filter(a => a.category === category || a.categoryEn === category);
-            titleText = `📁 分类：${category}`;
+            titleText = isEn ? `📁 Category: ${category}` : `📁 分类：${category}`;
         }
 
         if (titleEl) titleEl.textContent = titleText;
         document.title = titleText + ' · 我的博客';
 
         if (filtered.length === 0) {
-            container.innerHTML = emptyHtml('🔍', '没有找到文章', `该${tag ? '标签' : '分类'}下暂时没有文章。`);
+            const emptyMsg = isEn
+                ? `No posts under this ${tag ? 'tag' : 'category'}.`
+                : `该${tag ? '标签' : '分类'}下暂时没有文章。`;
+            container.innerHTML = emptyHtml('🔍', isEn ? 'No posts found' : '没有找到文章', emptyMsg);
             return;
         }
 
@@ -413,18 +429,15 @@ async function renderArticleDetail(containerId) {
         const prev = idx > 0 ? articles[idx - 1] : null;
         const next = idx < articles.length - 1 ? articles[idx + 1] : null;
 
-        // 当前语言
         const lang = getCurrentLang();
         const isEn = lang === 'en';
 
-        // 显示标题 / 分类 / 标签
         const displayTitle = (isEn && article.titleEn) ? article.titleEn : article.title;
         const displayCategory = (isEn && article.categoryEn) ? article.categoryEn : article.category;
         const displayTags = (isEn && article.tagsEn) ? article.tagsEn : (article.tags || []);
 
         document.title = displayTitle + ' · 我的博客';
 
-        // 读 md（英文优先 .en.md，没有则回退）
         const mdFile = isEn ? `posts/${article.id}.en.md` : `posts/${article.id}.md`;
         let mdContent = '';
         try {
@@ -451,7 +464,13 @@ async function renderArticleDetail(containerId) {
         const wordCount = plainText.replace(/\s/g, '').length;
         const readMin = Math.max(1, Math.round(wordCount / 300));
 
-        const pinnedBadge = article.pinned ? '<span class="pinned-badge">📌 置顶</span>' : '';
+        const pinnedBadge = article.pinned ? '<span class="pinned-badge">📌 ' + (isEn ? 'Pinned' : '置顶') + '</span>' : '';
+
+        const unitWords = isEn ? 'words' : '字';
+        const unitMin = isEn ? 'min' : '分钟';
+        const prefixMin = isEn ? '~' : '约';
+        const prevLabel = isEn ? '← Prev' : '← 上一篇';
+        const nextLabel = isEn ? 'Next →' : '下一篇 →';
 
         container.innerHTML = `
             <div class="article-layout">
@@ -461,9 +480,9 @@ async function renderArticleDetail(containerId) {
                         <div class="article-meta">
                             <span>${article.date}</span>
                             <span>·</span>
-                            <span>约 ${readMin} 分钟</span>
+                            <span>${prefixMin} ${readMin} ${unitMin}</span>
                             <span>·</span>
-                            <span>${wordCount} 字</span>
+                            <span>${wordCount} ${unitWords}</span>
                             <span>·</span>
                             <a href="list.html?category=${encodeURIComponent(displayCategory)}" class="card-tag">${displayCategory}</a>
                             ${tagsHtml}
@@ -475,13 +494,13 @@ async function renderArticleDetail(containerId) {
                         <div class="article-nav">
                             ${prev ? `
                                 <a href="article.html?id=${prev.id}">
-                                    <div class="nav-label">← 上一篇</div>
+                                    <div class="nav-label">${prevLabel}</div>
                                     <div class="nav-title">${(isEn && prev.titleEn) ? prev.titleEn : prev.title}</div>
                                 </a>
                             ` : '<span style="flex:1"></span>'}
                             ${next ? `
                                 <a href="article.html?id=${next.id}" class="nav-next">
-                                    <div class="nav-label">下一篇 →</div>
+                                    <div class="nav-label">${nextLabel}</div>
                                     <div class="nav-title">${(isEn && next.titleEn) ? next.titleEn : next.title}</div>
                                 </a>
                             ` : '<span style="flex:1"></span>'}
@@ -498,7 +517,6 @@ async function renderArticleDetail(containerId) {
             initShareBar('shareBar');
         }
 
-        // 代码高亮
         container.querySelectorAll('pre code').forEach(block => {
             if (!window.hljs) return;
             const raw = block.textContent;
@@ -512,32 +530,30 @@ async function renderArticleDetail(containerId) {
             }
         });
 
-        // 复制按钮
         container.querySelectorAll('pre').forEach(pre => {
             const btn = document.createElement('button');
             btn.className = 'copy-btn';
-            btn.textContent = '复制';
+            btn.textContent = isEn ? 'Copy' : '复制';
             btn.addEventListener('click', async (e) => {
                 e.stopPropagation();
                 const code = pre.querySelector('code');
                 const text = code ? code.innerText : pre.innerText;
                 const ok = await copyText(text);
                 if (ok) {
-                    btn.textContent = '已复制';
+                    btn.textContent = isEn ? 'Copied' : '已复制';
                     btn.classList.add('copied');
                     setTimeout(() => {
-                        btn.textContent = '复制';
+                        btn.textContent = isEn ? 'Copy' : '复制';
                         btn.classList.remove('copied');
                     }, 1500);
                 } else {
-                    btn.textContent = '失败';
-                    setTimeout(() => btn.textContent = '复制', 1500);
+                    btn.textContent = isEn ? 'Failed' : '失败';
+                    setTimeout(() => btn.textContent = isEn ? 'Copy' : '复制', 1500);
                 }
             });
             pre.appendChild(btn);
         });
 
-        // 图片灯箱
         container.querySelectorAll('.article-content img').forEach(img => {
             img.addEventListener('click', () => {
                 const lb = document.getElementById('lightbox');
@@ -549,7 +565,6 @@ async function renderArticleDetail(containerId) {
             });
         });
 
-        // LaTeX
         if (window.renderMathInElement) {
             renderMathInElement(container, {
                 delimiters: [
@@ -562,7 +577,6 @@ async function renderArticleDetail(containerId) {
             });
         }
 
-        // 新功能
         if (typeof initImmersiveMode === 'function') initImmersiveMode();
         if (typeof initReadingPosition === 'function') initReadingPosition();
         if (typeof renderRelatedArticles === 'function') renderRelatedArticles(article, container);
@@ -604,6 +618,9 @@ function generateTOC(container) {
         return;
     }
 
+    const lang = getCurrentLang();
+    const tocTitle = lang === 'en' ? '📑 TOC' : '📑 目录';
+
     const ul = items.map(it => {
         let cls = '';
         if (it.level === 1) cls = 'toc-h1';
@@ -613,7 +630,7 @@ function generateTOC(container) {
 
     mount.innerHTML = `
         <div class="article-toc">
-            <div class="article-toc-title">📑 目录</div>
+            <div class="article-toc-title">${tocTitle}</div>
             <ul>${ul}</ul>
         </div>
     `;
@@ -666,21 +683,26 @@ async function renderProjectList(containerId) {
 
     try {
         const projects = await loadProjects();
+        const lang = getCurrentLang();
+        const isEn = lang === 'en';
 
         if (projects.length === 0) {
-            container.innerHTML = emptyHtml('📦', '还没有项目', '在 projects.json 里添加第一个吧。');
+            container.innerHTML = emptyHtml('📦', isEn ? 'No projects yet' : '还没有项目', '');
             return;
         }
 
         container.innerHTML = projects.map(p => {
+            const title = isEn ? (p.titleEn || p.title) : p.title;
+            const summary = isEn ? (p.summaryEn || p.summary) : p.summary;
+
             const inner = `
                 <div class="card-icon">📦</div>
-                <h3 class="card-title">${p.title}</h3>
+                <h3 class="card-title">${title}</h3>
                 <div class="card-meta">
                     <span>${p.date}</span>
                     ${(p.tags || []).map(t => `<span class="card-tag">${t}</span>`).join('')}
                 </div>
-                <p class="card-description">${p.summary}</p>
+                <p class="card-description">${summary}</p>
             `;
             if (p.link) {
                 return `<a href="${p.link}" class="card article-card">${inner}</a>`;
@@ -696,7 +718,7 @@ async function renderProjectList(containerId) {
 }
 
 // ===================================================
-// 工具函数
+// 卡片 HTML（中文用 title，英文用 titleEn）
 // ===================================================
 function cardHtml(a, keyword) {
     function highlight(text) {
@@ -710,11 +732,11 @@ function cardHtml(a, keyword) {
     }
 
     const lang = getCurrentLang();
-    const isEn = lang === 'en';
+    const isEn = (lang === 'en');
 
-    const title = (isEn && a.titleEn) ? a.titleEn : a.title;
-    const summary = (isEn && a.summaryEn) ? a.summaryEn : a.summary;
-    const category = (isEn && a.categoryEn) ? a.categoryEn : a.category;
+    const title = isEn ? (a.titleEn || a.title) : a.title;
+    const summary = isEn ? (a.summaryEn || a.summary) : a.summary;
+    const category = isEn ? (a.categoryEn || a.category) : a.category;
 
     const pinnedBadge = a.pinned ? '<span class="pinned-badge">📌</span>' : '';
 
@@ -731,6 +753,9 @@ function cardHtml(a, keyword) {
     `;
 }
 
+// ===================================================
+// 工具函数
+// ===================================================
 function emptyHtml(icon, title, desc) {
     return `
         <div class="empty-state">

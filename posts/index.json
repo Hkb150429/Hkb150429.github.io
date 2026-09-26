@@ -2,29 +2,40 @@
     {
         "id": 1,
         "title": "文章标题一",
-        "date": "2025-01-01",
+        "titleEn": "Article Title 1",
+        "summary": "这是摘要。",
+        "summaryEn": "This is the summary.",
         "category": "分类一",
-        "tags": ["标签一", "标签二"],
-        "summary": "这是文章一的摘要。",
-        "pinned": true,
-        "views": 120
+        "categoryEn": "Category 1",
+        "tags": ["标签一"],
+        "tagsEn": ["Tag1"],
+        "date": "2025-01-01"
     },
     {
         "id": 2,
         "title": "Luogu B3834 长方形面积",
-        "date": "2026-09-20",
+        "titleEn": "Luogu B3834 Rectangular Area",
+        "summary": "本文为洛谷B3834题解",
+        "summaryEn": "This article provides the solution to the B3834 problem in Luogu.",
         "category": "信息学题解",
-        "tags": ["luogu","GESP"],
-        "summary": "这是文章二的摘要。",
-        "views": 80
+        "categoryEn": "IT Solutions",
+        "tags": ["洛谷", "GESP"],
+        "tagsEn": ["Luogu", "GESP"],
+        "date": "2026-09-24",
+        "pinned": true,
+        "views": 200
     },
     {
         "id": 6,
         "title": "LaTeX 公式测试",
-        "date": "2025-06-01",
-        "category": "数学",
-        "tags": ["LaTeX", "公式"],
+        "titleEn": "LaTeX Formula Test",
         "summary": "测试一下数学公式。",
+        "summaryEn": "Testing math formulas.",
+        "category": "数学",
+        "categoryEn": "Math",
+        "tags": ["LaTeX", "公式"],
+        "tagsEn": ["LaTeX", "Formula"],
+        "date": "2025-06-01",
         "pinned": true,
         "views": 200
     }

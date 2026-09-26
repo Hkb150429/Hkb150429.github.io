@@ -62,10 +62,12 @@
         initEasterEgg();
         initMoreEggs();
         initI18n();
+
         document.getElementById('langToggle').addEventListener('click', () => {
             toggleLang();
             const lang = localStorage.getItem('lang') || 'zh';
             document.getElementById('langToggle').textContent = lang === 'zh' ? '中' : 'EN';
+            renderTimeline('timelineBox');
         });
         document.getElementById('langToggle').textContent = (localStorage.getItem('lang') || 'zh') === 'zh' ? '中' : 'EN';
     </script>

@@ -43,21 +43,23 @@
         </nav>
     </header>
     <main class="container">
-	    <div class="changelog-item">
-             	<div class="changelog-date">2026-09-22</div>
+        <h2 class="page-title" data-i18n="changelogTitle">📋 更新日志</h2>
+        <div class="page-content">
+            <div class="changelog-item">
+                <div class="changelog-date">2026-09-22</div>
                 <div class="changelog-content">新增赞助，统计关键词</div>
             </div>
-	    <div class="changelog-item">
-             	<div class="changelog-date">2026-09-21</div>
+            <div class="changelog-item">
+                <div class="changelog-date">2026-09-21</div>
                 <div class="changelog-content">加上天气功能</div>
             </div>
-	    <div class="changelog-item">
-             	<div class="changelog-date">2026-09-20</div>
+            <div class="changelog-item">
+                <div class="changelog-date">2026-09-20</div>
                 <div class="changelog-content">修复一堆bug</div>
             </div>
-	    <div class="changelog-item">
-             	<div class="changelog-date">2026-09-19</div>
-              	<div class="changelog-content">修复颜色问题</div>
+            <div class="changelog-item">
+                <div class="changelog-date">2026-09-19</div>
+                <div class="changelog-content">修复颜色问题</div>
             </div>
             <div class="changelog-item">
                 <div class="changelog-date">2026-09-18</div>
@@ -94,6 +96,7 @@
         initEasterEgg();
         initMoreEggs();
         initI18n();
+
         document.getElementById('langToggle').addEventListener('click', () => {
             toggleLang();
             const lang = localStorage.getItem('lang') || 'zh';

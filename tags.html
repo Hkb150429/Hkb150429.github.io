@@ -44,8 +44,6 @@
     </header>
     <main class="container">
         <h2 class="page-title" data-i18n="tagsTitle">🏷️ 标签</h2>
-        <div id="tag3dBox" style="margin-bottom:2rem;"></div>
-        <div id="tagCloudWrap" style="margin-bottom:1.5rem;"></div>
         <div class="card-grid" id="tagList">
             <p style="color:#94a3b8;">加载中…</p>
         </div>
@@ -57,8 +55,6 @@
     <script src="extras3.js"></script>
     <script>
         renderTagList('tagList');
-        renderTagCloud('tagCloudWrap');
-        render3DTagCloud('tag3dBox');
         initBackToTop();
         initProgressBar();
         initThemeToggle();
@@ -66,10 +62,12 @@
         initEasterEgg();
         initMoreEggs();
         initI18n();
+
         document.getElementById('langToggle').addEventListener('click', () => {
             toggleLang();
             const lang = localStorage.getItem('lang') || 'zh';
             document.getElementById('langToggle').textContent = lang === 'zh' ? '中' : 'EN';
+            renderTagList('tagList');
         });
         document.getElementById('langToggle').textContent = (localStorage.getItem('lang') || 'zh') === 'zh' ? '中' : 'EN';
     </script>
